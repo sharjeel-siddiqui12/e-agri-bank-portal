@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import EyeGreen from "@/components/icons/EyeGreen";
+import { Eye } from "lucide-react";
 import styles from "./page.module.css";
 
 // Precise arrow SVG to match your screenshot
@@ -300,7 +300,7 @@ export default function LoanApplicationsPage() {
                       variant="ghost"
                       className={styles.eyeBtn}
                     >
-                      <EyeGreen className={styles.eyeIcon} />
+                      <Eye className={styles.eyeIcon} color="#5D882D" size={22} strokeWidth={2.2} />
                     </Button>
                   </TableCell>
                 </TableRow>
