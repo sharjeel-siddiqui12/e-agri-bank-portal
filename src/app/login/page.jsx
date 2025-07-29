@@ -24,7 +24,7 @@ export default function LoginPage() {
     >
       <div className={styles.logoWrapper}>
         <Image
-          src="/Frame.svg"
+          src="/logo.svg"
           width={158}
           height={60}
           alt="e-Agri Logo"
