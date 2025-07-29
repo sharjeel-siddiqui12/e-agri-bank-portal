@@ -17,100 +17,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Eye } from "lucide-react";
 import Image from "next/image";
-import { Eye } from "lucide-react";
 import styles from "./page.module.css";
+import { createLoanApplicationsDemoData } from "@/lib/demoData";
+import SortArrows from "@/components/ui/sort-arrows"; // Adjust the import path as needed
 
-// Precise arrow SVG to match your screenshot
-function SortArrows({ order }) {
-  return (
-    <span className={styles.sortArrows}>
-      <svg width="34" height="34" viewBox="0 0 14 14" style={{ display: "block" }}>
-        {/* Up arrow */}
-        <path
-          d="M7 4L9 6H5L7 4Z"
-          fill={order === "asc" ? "#5D882D" : "#B0B0B0"}
-        />
-        {/* Down arrow */}
-        <path
-          d="M7 10L5 8H9L7 10Z"
-          fill={order === "desc" ? "#5D882D" : "#B0B0B0"}
-        />
-      </svg>
-    </span>
-  );
-}
-
-// Generate a large demo dataset (e.g. 120 rows)
-function createDemoData() {
-  const names = [
-    "Muneeb Ahmed",
-    "Ali Raza",
-    "Sara Khan",
-    "Asad Ali",
-    "Ayesha Noor",
-    "Imran Tariq",
-    "Bilal Saeed",
-    "Fatima Zehra",
-    "Zain Khan",
-    "Hina Sheikh",
-  ];
-  const avatars = [
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-  ];
-  const regions = [
-    { main: "Okara", sub: "Dipalpur" },
-    { main: "Malir" },
-    { main: "Lahore", sub: "Model Town" },
-    { main: "Multan" },
-    { main: "Faisalabad" },
-    { main: "Sialkot" },
-    { main: "Karachi", sub: "Saddar" },
-    { main: "Hyderabad" },
-    { main: "Quetta" },
-    { main: "Rawalpindi", sub: "Cantt" },
-  ];
-  const loanStatuses = [
-    "In-review",
-    "Rejected",
-    "Cancelled",
-    "Recovered",
-    "Disbursed",
-    "Accepted",
-    "Approved",
-  ];
-  const loanTypes = ["Agri - Production Loan", "Crop Loan"];
-  const cnic = "42101-12345-6";
-  const kycStatus = "Approved";
-  const date = "07 May, 25";
-
-  let data = [];
-  for (let i = 0; i < 120; i++) {
-    data.push({
-      avatar: avatars[i % avatars.length],
-      name: names[i % names.length],
-      cnic: cnic,
-      region: regions[i % regions.length],
-      loanStatus: loanStatuses[i % loanStatuses.length],
-      kycStatus: kycStatus,
-      loanType: loanTypes[i % loanTypes.length],
-      date: date,
-    });
-  }
-  return data;
-}
-
-const demoData = createDemoData();
+const demoData = createLoanApplicationsDemoData();
 
 const loanStatusVariants = {
   "In-review": styles.inReview,
