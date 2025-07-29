@@ -15,18 +15,7 @@ export function createLoanApplicationsDemoData() {
     "Zain Khan",
     "Hina Sheikh",
   ];
-  const avatars = [
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-  ];
+  
   const regions = [
     { main: "Okara", sub: "Dipalpur" },
     { main: "Malir" },
@@ -56,7 +45,7 @@ export function createLoanApplicationsDemoData() {
   let data = [];
   for (let i = 0; i < 120; i++) {
     data.push({
-      avatar: avatars[i % avatars.length],
+      avatar: null,
       name: names[i % names.length],
       cnic: cnic,
       region: regions[i % regions.length],
@@ -76,11 +65,7 @@ export function createLoanApprovalsDemoData() {
     "Ali Raza",
     "Sara Khan",
   ];
-  const avatars = [
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-    "/avatars/1.jpg",
-  ];
+ 
   const regions = [
     { main: "Okara", sub: "Dipalpur" },
     { main: "Malir" },
@@ -110,7 +95,7 @@ export function createLoanApprovalsDemoData() {
   let data = [];
   for (let i = 0; i < 12; i++) {
     data.push({
-      avatar: avatars[i % avatars.length],
+      avatar: null,
       name: names[i % names.length],
       cnic: cnic,
       region: regions[i % regions.length],
@@ -123,3 +108,12 @@ export function createLoanApprovalsDemoData() {
   return data;
 }
 
+export const loanStatusList = [
+  "In-review",
+  "Rejected",
+  "Cancelled",
+  "Recovered",
+  "Disbursed",
+  "Accepted",
+  "Approved",
+];

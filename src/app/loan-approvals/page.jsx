@@ -10,16 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Image from "next/image";
-import { Eye } from "lucide-react";
+import { Eye, User } from "lucide-react";
 import styles from "./page.module.css";
-import SortArrows from "@/components/ui/sort-arrows"; // Adjust the import path as needed
-import { createLoanApprovalsDemoData } from "@/lib/demoData";
+import SortArrows from "@/components/ui/sort-arrows";
+import { createLoanApprovalsDemoData, loanStatusList } from "@/lib/demoData";
 
 const demoData = createLoanApprovalsDemoData();
-
-
-
 
 const loanStatusVariants = {
   "In-review": styles.inReview,
@@ -34,13 +30,11 @@ const loanStatusVariants = {
 const PAGE_SIZE_OPTIONS = [25, 50, 100];
 
 export default function LoanApplicationsPage() {
-  // Removed search and dropdown state
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[0]);
   const [sortField, setSortField] = useState("");
   const [sortOrder, setSortOrder] = useState(""); // "asc", "desc", or ""
 
-  // No search or status filter, show all data
   let filteredData = demoData;
 
   // Sorting
@@ -102,7 +96,6 @@ export default function LoanApplicationsPage() {
     <div className={styles.bg}>
       <div className={styles.wrapper}>
         <h1 className={styles.heading}>Application for Approval</h1>
-        {/* Top bar removed: search and dropdown menu are no longer rendered */}
         <div className={styles.tableOuter}>
           <Table>
             <TableHeader>
@@ -113,7 +106,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="User Name"
                 >
-                  <span className={styles.tableHeading}> User Name <SortArrows order={sortField === "name" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    User Name <SortArrows order={sortField === "name" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -121,7 +116,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="CNIC / Farmer ID"
                 >
-                  <span className={styles.tableHeading}> CNIC / Farmer ID <SortArrows order={sortField === "cnic" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    CNIC / Farmer ID <SortArrows order={sortField === "cnic" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -129,7 +126,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Region / District"
                 >
-                  <span className={styles.tableHeading}> Region / District <SortArrows order={sortField === "region" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Region / District <SortArrows order={sortField === "region" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -137,7 +136,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Loan Application Status"
                 >
-                  <span className={styles.tableHeading}> Loan Application Status <SortArrows order={sortField === "loanStatus" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Loan Application Status <SortArrows order={sortField === "loanStatus" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -145,7 +146,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="KYC Status"
                 >
-                  <span className={styles.tableHeading}> KYC Status <SortArrows order={sortField === "kycStatus" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    KYC Status <SortArrows order={sortField === "kycStatus" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -153,7 +156,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Loan Type"
                 >
-                  <span className={styles.tableHeading}> Loan Type <SortArrows order={sortField === "loanType" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Loan Type <SortArrows order={sortField === "loanType" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -161,7 +166,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Application Date"
                 >
-                  <span className={styles.tableHeading}> Application Date <SortArrows order={sortField === "date" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Application Date <SortArrows order={sortField === "date" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead className={styles.thIcon}></TableHead>
               </TableRow>
@@ -169,10 +176,7 @@ export default function LoanApplicationsPage() {
             <TableBody>
               {paginatedData.length === 0 && (
                 <TableRow>
-                  <TableCell
-                    colSpan={8}
-                    className={styles.noApplicants}
-                  >
+                  <TableCell colSpan={8} className={styles.noApplicants}>
                     No applicants found.
                   </TableCell>
                 </TableRow>
@@ -181,13 +185,7 @@ export default function LoanApplicationsPage() {
                 <TableRow key={i} className={styles.tableRow}>
                   <TableCell className={styles.userCell}>
                     <span>
-                      <Image
-                        src={app.avatar}
-                        alt="avatar"
-                        width={40}
-                        height={40}
-                        className={styles.avatar}
-                      />
+                      <User size={40} color="#B0B0B0" />
                     </span>
                     <span className={styles.userName}>{app.name}</span>
                   </TableCell>

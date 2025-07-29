@@ -17,11 +17,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ChevronDown, Eye } from "lucide-react";
-import Image from "next/image";
+import { ChevronDown, Eye, User } from "lucide-react";
 import styles from "./page.module.css";
-import { createLoanApplicationsDemoData } from "@/lib/demoData";
-import SortArrows from "@/components/ui/sort-arrows"; // Adjust the import path as needed
+import { createLoanApplicationsDemoData, loanStatusList } from "@/lib/demoData";
+import SortArrows from "@/components/ui/sort-arrows";
 
 const demoData = createLoanApplicationsDemoData();
 
@@ -72,7 +71,6 @@ export default function LoanApplicationsPage() {
       }
       // Special for date: parse as date string if needed
       if (sortField === "date") {
-        // Format is "07 May, 25", but just string compare for demo
         return sortOrder === "asc"
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
@@ -177,41 +175,14 @@ export default function LoanApplicationsPage() {
                 >
                   All Status
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("In-review")}
-                >
-                  In-review
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Rejected")}
-                >
-                  Rejected
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Cancelled")}
-                >
-                  Cancelled
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Recovered")}
-                >
-                  Recovered
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Disbursed")}
-                >
-                  Disbursed
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Accepted")}
-                >
-                  Accepted
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleDropdownSelect("Approved")}
-                >
-                  Approved
-                </DropdownMenuItem>
+                {loanStatusList.map((status) => (
+                  <DropdownMenuItem
+                    key={status}
+                    onClick={() => handleDropdownSelect(status)}
+                  >
+                    {status}
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             )}
           </DropdownMenu>
@@ -226,7 +197,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="User Name"
                 >
-                  <span className={styles.tableHeading}> User Name <SortArrows order={sortField === "name" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    User Name <SortArrows order={sortField === "name" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -234,7 +207,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="CNIC / Farmer ID"
                 >
-                  <span className={styles.tableHeading}> CNIC / Farmer ID <SortArrows order={sortField === "cnic" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    CNIC / Farmer ID <SortArrows order={sortField === "cnic" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -242,7 +217,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Region / District"
                 >
-                  <span className={styles.tableHeading}> Region / District <SortArrows order={sortField === "region" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Region / District <SortArrows order={sortField === "region" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -250,7 +227,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Loan Application Status"
                 >
-                  <span className={styles.tableHeading}> Loan Application Status <SortArrows order={sortField === "loanStatus" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Loan Application Status <SortArrows order={sortField === "loanStatus" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -258,7 +237,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="KYC Status"
                 >
-                  <span className={styles.tableHeading}> KYC Status <SortArrows order={sortField === "kycStatus" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    KYC Status <SortArrows order={sortField === "kycStatus" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -266,7 +247,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Loan Type"
                 >
-                  <span className={styles.tableHeading}> Loan Type <SortArrows order={sortField === "loanType" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Loan Type <SortArrows order={sortField === "loanType" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead
                   className={`${styles.th} ${styles.thSortable}`}
@@ -274,7 +257,9 @@ export default function LoanApplicationsPage() {
                   tabIndex={0}
                   aria-label="Application Date"
                 >
-                  <span className={styles.tableHeading}> Application Date <SortArrows order={sortField === "date" ? sortOrder : undefined} /></span>
+                  <span className={styles.tableHeading}>
+                    Application Date <SortArrows order={sortField === "date" ? sortOrder : undefined} />
+                  </span>
                 </TableHead>
                 <TableHead className={styles.thIcon}></TableHead>
               </TableRow>
@@ -282,10 +267,7 @@ export default function LoanApplicationsPage() {
             <TableBody>
               {paginatedData.length === 0 && (
                 <TableRow>
-                  <TableCell
-                    colSpan={8}
-                    className={styles.noApplicants}
-                  >
+                  <TableCell colSpan={8} className={styles.noApplicants}>
                     No applicants found.
                   </TableCell>
                 </TableRow>
@@ -294,13 +276,7 @@ export default function LoanApplicationsPage() {
                 <TableRow key={i} className={styles.tableRow}>
                   <TableCell className={styles.userCell}>
                     <span>
-                      <Image
-                        src={app.avatar}
-                        alt="avatar"
-                        width={40}
-                        height={40}
-                        className={styles.avatar}
-                      />
+                      <User size={40} color="#B0B0B0" />
                     </span>
                     <span className={styles.userName}>{app.name}</span>
                   </TableCell>
