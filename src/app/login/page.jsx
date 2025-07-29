@@ -1,14 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Input } from "@/components/ui/input-login";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-submit";
 import { useState } from "react";
 import styles from "./page.module.css";
-import MailIcon from "@/components/svg/MailIcon";
-import EyeIcon from "@/components/svg/EyeIcon";
-import EyeOffIcon from "@/components/svg/EyeOffIcon";
-import LockIcon from "@/components/svg/LockIcon";
+import { Mail, Eye, EyeOff, Lock } from "lucide-react";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +39,7 @@ export default function LoginPage() {
             <label className={styles.label}>Email Address</label>
             <div className={styles.inputWrapper}>
               <span className={styles.inputIconLeft}>
-                <MailIcon />
+                <Mail size={20} color="currentColor" strokeWidth={2} />
               </span>
               <Input
                 type="email"
@@ -59,7 +56,7 @@ export default function LoginPage() {
             <label className={styles.label}>Password</label>
             <div className={styles.inputWrapper}>
               <span className={styles.inputIconLeft}>
-                <LockIcon />
+                <Lock size={20} color="currentColor" strokeWidth={2} />
               </span>
               <Input
                 type={showPassword ? "text" : "password"}
@@ -77,7 +74,11 @@ export default function LoginPage() {
                 tabIndex={-1}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                {showPassword ? (
+                  <EyeOff size={20} color="currentColor" strokeWidth={2} />
+                ) : (
+                  <Eye size={20} color="currentColor" strokeWidth={2} />
+                )}
               </button>
             </div>
           </div>
