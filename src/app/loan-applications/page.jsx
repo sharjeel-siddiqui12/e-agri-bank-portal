@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ChevronDown, Eye, User } from "lucide-react";
+import { ChevronDown, Eye, User, Search } from "lucide-react";
 import styles from "./page.module.css";
 import { createLoanApplicationsDemoData, loanStatusList } from "@/lib/demoData";
 import { filterLoanApplications, sortLoanData } from "@/lib/filterAndSort";
@@ -103,7 +103,8 @@ export default function LoanApplicationsPage() {
               onChange={handleSearchChange}
               className={styles.searchInput}
             />
-            <span className={styles.searchIcon}>
+             <Search className={styles.searchIcon} size={20} strokeWidth={2} />
+            {/* <span className={styles.searchIcon}>
               <svg width="20" height="20" fill="none">
                 <path
                   d="M14.5 14.5L18 18"
@@ -119,7 +120,7 @@ export default function LoanApplicationsPage() {
                   strokeWidth="1.5"
                 />
               </svg>
-            </span>
+            </span> */}
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger>
