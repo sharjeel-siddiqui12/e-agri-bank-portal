@@ -77,7 +77,8 @@ e-agri-bank-portal/
 │   │   │   └── table.jsx        # Table components
 │   ├── lib/
 │   │   ├── demoData.js         # Demo data generators & status list
-│   │   └── utils.js            # Utility functions (class merging)
+│   │   ├── utils.js            # Utility functions (class merging)
+│   │   └── filterAndSort.js    # Utility functions for sorting and filter
 │   └── ...
 ├── package.json
 ├── README.md
