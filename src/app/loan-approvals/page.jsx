@@ -14,6 +14,7 @@ import { Eye, User } from "lucide-react";
 import styles from "./page.module.css";
 import SortArrows from "@/components/ui/sort-arrows";
 import { createLoanApprovalsDemoData, loanStatusList } from "@/lib/demoData";
+import { sortLoanData } from "@/lib/filterAndSort";
 
 const demoData = createLoanApprovalsDemoData();
 
@@ -35,34 +36,8 @@ export default function LoanApplicationsPage() {
   const [sortField, setSortField] = useState("");
   const [sortOrder, setSortOrder] = useState(""); // "asc", "desc", or ""
 
-  let filteredData = demoData;
 
-  // Sorting
-  if (sortField && sortOrder) {
-    filteredData = [...filteredData].sort((a, b) => {
-      let aValue = a[sortField];
-      let bValue = b[sortField];
-      // Special handling for region field (concatenate main+sub)
-      if (sortField === "region") {
-        aValue = a.region.main + (a.region.sub ? ", " + a.region.sub : "");
-        bValue = b.region.main + (b.region.sub ? ", " + b.region.sub : "");
-      }
-      // Special for date: parse as date string if needed
-      if (sortField === "date") {
-        // Format is "07 May, 25", but just string compare for demo
-        return sortOrder === "asc"
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
-      }
-      // Normal string compare
-      if (typeof aValue === "string" && typeof bValue === "string") {
-        return sortOrder === "asc"
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
-      }
-      return 0;
-    });
-  }
+  let filteredData = sortLoanData(demoData, sortField, sortOrder);
 
   const maxPage = Math.ceil(filteredData.length / pageSize);
   const paginatedData = filteredData.slice(
