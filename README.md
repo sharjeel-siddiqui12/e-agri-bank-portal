@@ -1,5 +1,3 @@
-yarn dev
-
 # E-Agri Bank Portal
 
 >A modern, responsive banking portal for agricultural loan management, built with Next.js, React, and Tailwind CSS.
