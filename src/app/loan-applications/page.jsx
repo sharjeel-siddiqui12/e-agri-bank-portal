@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useCallback } from "react";
+import debounce from "lodash/debounce";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-loan";
 import {
@@ -47,12 +49,18 @@ export default function LoanApplicationsPage() {
   const [sortOrder, setSortOrder] = useState(""); // "asc", "desc", or ""
 
   // Filter and search
-  let filteredData = filterLoanApplications(demoData, search, statusFilter);
+  const filteredData = useMemo(
+    () => filterLoanApplications(demoData, search, statusFilter),
+    [demoData, search, statusFilter]
+  );
   // Sorting
-  filteredData = sortLoanData(filteredData, sortField, sortOrder);
+  const sortedData = useMemo(
+    () => sortLoanData(filteredData, sortField, sortOrder),
+    [filteredData, sortField, sortOrder]
+  );
 
-  const maxPage = Math.ceil(filteredData.length / pageSize);
-  const paginatedData = filteredData.slice(
+  const maxPage = Math.ceil(sortedData.length / pageSize);
+  const paginatedData = sortedData.slice(
     (page - 1) * pageSize,
     page * pageSize
   );
@@ -66,10 +74,13 @@ export default function LoanApplicationsPage() {
     setShowDropdown(false);
     setPage(1);
   }
-  function handleSearchChange(e) {
-    setSearch(e.target.value);
-    setPage(1);
-  }
+  const handleSearchChange = useCallback(
+    debounce((e) => {
+      setSearch(e.target.value);
+      setPage(1);
+    }, 300),
+    []
+  );
   function handlePageChange(newPage) {
     if (newPage < 1 || newPage > maxPage) return;
     setPage(newPage);
@@ -99,11 +110,11 @@ export default function LoanApplicationsPage() {
           <div className={styles.searchContainer}>
             <Input
               placeholder="Search"
-              value={search}
+              defaultValue={search}
               onChange={handleSearchChange}
               className={styles.searchInput}
             />
-             <Search className={styles.searchIcon} size={20} strokeWidth={2} />
+            <Search className={styles.searchIcon} size={20} strokeWidth={2} />
             {/* <span className={styles.searchIcon}>
               <svg width="20" height="20" fill="none">
                 <path
@@ -165,7 +176,10 @@ export default function LoanApplicationsPage() {
                   aria-label="User Name"
                 >
                   <span className={styles.tableHeading}>
-                    User Name <SortArrows order={sortField === "name" ? sortOrder : undefined} />
+                    User Name{" "}
+                    <SortArrows
+                      order={sortField === "name" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -175,7 +189,10 @@ export default function LoanApplicationsPage() {
                   aria-label="CNIC / Farmer ID"
                 >
                   <span className={styles.tableHeading}>
-                    CNIC / Farmer ID <SortArrows order={sortField === "cnic" ? sortOrder : undefined} />
+                    CNIC / Farmer ID{" "}
+                    <SortArrows
+                      order={sortField === "cnic" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -185,7 +202,10 @@ export default function LoanApplicationsPage() {
                   aria-label="Region / District"
                 >
                   <span className={styles.tableHeading}>
-                    Region / District <SortArrows order={sortField === "region" ? sortOrder : undefined} />
+                    Region / District{" "}
+                    <SortArrows
+                      order={sortField === "region" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -195,7 +215,10 @@ export default function LoanApplicationsPage() {
                   aria-label="Loan Application Status"
                 >
                   <span className={styles.tableHeading}>
-                    Loan Application Status <SortArrows order={sortField === "loanStatus" ? sortOrder : undefined} />
+                    Loan Application Status{" "}
+                    <SortArrows
+                      order={sortField === "loanStatus" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -205,7 +228,10 @@ export default function LoanApplicationsPage() {
                   aria-label="KYC Status"
                 >
                   <span className={styles.tableHeading}>
-                    KYC Status <SortArrows order={sortField === "kycStatus" ? sortOrder : undefined} />
+                    KYC Status{" "}
+                    <SortArrows
+                      order={sortField === "kycStatus" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -215,7 +241,10 @@ export default function LoanApplicationsPage() {
                   aria-label="Loan Type"
                 >
                   <span className={styles.tableHeading}>
-                    Loan Type <SortArrows order={sortField === "loanType" ? sortOrder : undefined} />
+                    Loan Type{" "}
+                    <SortArrows
+                      order={sortField === "loanType" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead
@@ -225,7 +254,10 @@ export default function LoanApplicationsPage() {
                   aria-label="Application Date"
                 >
                   <span className={styles.tableHeading}>
-                    Application Date <SortArrows order={sortField === "date" ? sortOrder : undefined} />
+                    Application Date{" "}
+                    <SortArrows
+                      order={sortField === "date" ? sortOrder : undefined}
+                    />
                   </span>
                 </TableHead>
                 <TableHead className={styles.thIcon}></TableHead>
@@ -251,23 +283,36 @@ export default function LoanApplicationsPage() {
                   <TableCell className={styles.baseCell}>
                     <span className={styles.regionMain}>{app.region.main}</span>
                     {app.region.sub && (
-                      <span className={styles.regionSub}>, {app.region.sub}</span>
+                      <span className={styles.regionSub}>
+                        , {app.region.sub}
+                      </span>
                     )}
                   </TableCell>
                   <TableCell>
-                    <span className={`${styles.statusPill} ${loanStatusVariants[app.loanStatus]}`}>
+                    <span
+                      className={`${styles.statusPill} ${
+                        loanStatusVariants[app.loanStatus]
+                      }`}
+                    >
                       <span
                         className={styles.statusDot}
                         style={{
                           background:
-                            app.loanStatus === "In-review" ? "#FBE69A" :
-                            app.loanStatus === "Rejected" ? "#FECDCA" :
-                            app.loanStatus === "Cancelled" ? "#FFC448" :
-                            app.loanStatus === "Recovered" ? "#84CAFF" :
-                            app.loanStatus === "Disbursed" ? "#B2DDFF" :
-                            app.loanStatus === "Accepted" ? "#BAEFC6" :
-                            app.loanStatus === "Approved" ? "#BBF7D0" :
-                            "#dadada"
+                            app.loanStatus === "In-review"
+                              ? "#FBE69A"
+                              : app.loanStatus === "Rejected"
+                              ? "#FECDCA"
+                              : app.loanStatus === "Cancelled"
+                              ? "#FFC448"
+                              : app.loanStatus === "Recovered"
+                              ? "#84CAFF"
+                              : app.loanStatus === "Disbursed"
+                              ? "#B2DDFF"
+                              : app.loanStatus === "Accepted"
+                              ? "#BAEFC6"
+                              : app.loanStatus === "Approved"
+                              ? "#BBF7D0"
+                              : "#dadada",
                         }}
                       ></span>
                       {app.loanStatus}
@@ -279,14 +324,18 @@ export default function LoanApplicationsPage() {
                       {app.kycStatus}
                     </span>
                   </TableCell>
-                  <TableCell className={styles.baseCell}>{app.loanType}</TableCell>
+                  <TableCell className={styles.baseCell}>
+                    {app.loanType}
+                  </TableCell>
                   <TableCell className={styles.baseCell}>{app.date}</TableCell>
                   <TableCell>
-                    <Button
-                      variant="ghost"
-                      className={styles.eyeBtn}
-                    >
-                      <Eye className={styles.eyeIcon} color="#5D882D" size={22} strokeWidth={2.2} />
+                    <Button variant="ghost" className={styles.eyeBtn}>
+                      <Eye
+                        className={styles.eyeIcon}
+                        color="#5D882D"
+                        size={22}
+                        strokeWidth={2.2}
+                      />
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -309,14 +358,18 @@ export default function LoanApplicationsPage() {
                 ))}
               </select>
               <span className={styles.paginationText}>
-                Showing {filteredData.length === 0 ? 0 : (page - 1) * pageSize + 1}-
-                {Math.min(page * pageSize, filteredData.length)} of {filteredData.length}
+                Showing{" "}
+                {filteredData.length === 0 ? 0 : (page - 1) * pageSize + 1}-
+                {Math.min(page * pageSize, filteredData.length)} of{" "}
+                {filteredData.length}
               </span>
             </div>
             <div className={styles.paginationButtons}>
               <Button
                 variant="ghost"
-                className={`${styles.pageBtn} ${page === 1 ? styles.pageBtnDisabled : styles.pageBtnActive}`}
+                className={`${styles.pageBtn} ${
+                  page === 1 ? styles.pageBtnDisabled : styles.pageBtnActive
+                }`}
                 onClick={() => handlePageChange(page - 1)}
                 disabled={page === 1}
               >
@@ -331,7 +384,9 @@ export default function LoanApplicationsPage() {
                       <Button
                         key={pg}
                         variant={pg === page ? "default" : "ghost"}
-                        className={`${styles.pageBtn} ${pg === page ? styles.pageBtnActive : ""}`}
+                        className={`${styles.pageBtn} ${
+                          pg === page ? styles.pageBtnActive : ""
+                        }`}
                         onClick={() => handlePageChange(pg)}
                       >
                         {pg}
@@ -367,7 +422,9 @@ export default function LoanApplicationsPage() {
                       <Button
                         key={pg}
                         variant={pg === page ? "default" : "ghost"}
-                        className={`${styles.pageBtn} ${pg === page ? styles.pageBtnActive : ""}`}
+                        className={`${styles.pageBtn} ${
+                          pg === page ? styles.pageBtnActive : ""
+                        }`}
                         onClick={() => handlePageChange(pg)}
                       >
                         {pg}
@@ -377,7 +434,10 @@ export default function LoanApplicationsPage() {
                   if (page < maxPage - 2) {
                     if (page < maxPage - 3)
                       pages.push(
-                        <span key="end-ellipsis" className={styles.pageEllipsis}>
+                        <span
+                          key="end-ellipsis"
+                          className={styles.pageEllipsis}
+                        >
                           ...
                         </span>
                       );
@@ -397,7 +457,11 @@ export default function LoanApplicationsPage() {
               })()}
               <Button
                 variant="ghost"
-                className={`${styles.pageBtn} ${page === maxPage || maxPage === 0 ? styles.pageBtnDisabled : ""}`}
+                className={`${styles.pageBtn} ${
+                  page === maxPage || maxPage === 0
+                    ? styles.pageBtnDisabled
+                    : ""
+                }`}
                 onClick={() => handlePageChange(page + 1)}
                 disabled={page === maxPage || maxPage === 0}
               >
