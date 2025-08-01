@@ -1,0 +1,145 @@
+.container {
+  background-color: #FAFAFA;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #1D2939;
+  margin-bottom: 0.25rem;
+}
+
+.subheading {
+  font-size: 0.94rem;
+  color: #667085;
+  margin-bottom: 2rem;
+}
+
+.rolesCard {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.addedRoleText {
+  font-size: 0.94rem;
+  color: #48602C;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.rolesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.roleItem {
+  color: #333;
+  font-size: 0.94rem;
+}
+
+.formSection {
+  margin-top: 1rem;
+}
+
+.formHeading {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: #1D2939;
+  margin-bottom: 1.25rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: #1D2939;
+  margin-bottom: 0.5rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  height: 44px;
+  font-size: 0.94rem !important;
+  border: 1px solid #E4E7EC !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  padding-right: 2.5rem !important;
+  background: white !important;
+}
+
+.passwordInput {
+  padding-left: 2.5rem !important;
+}
+
+.iconButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lockIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.addButton {
+  background-color: #48602C !important;
+  color: white !important;
+  font-size: 0.94rem !important;
+  font-weight: 500 !important;
+  padding: 0 1.5rem !important;
+  height: 44px !important;
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+.addButton:hover {
+  background-color: #3b4f24 !important;
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
