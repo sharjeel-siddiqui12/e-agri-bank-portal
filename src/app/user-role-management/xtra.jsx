@@ -46,6 +46,23 @@ export default function RoleAccessPage() {
     }
   }
 
+  const [errorMsg, setErrorMsg] = useState("");
+
+  function handleAddRole() {
+    if (!roleName.trim()) {
+      setErrorMsg("Role name cannot be empty.");
+      return;
+    }
+    if (accessOptions.length === 0) {
+      setErrorMsg("Please select at least one access right.");
+      return;
+    }
+    setRoles([...roles, { name: roleName, access: [...accessOptions] }]);
+    setRoleName("");
+    setAccessOptions([]);
+    setErrorMsg("");
+  }
+
   return (
     <div className={styles.pageBg}>
       <div className={styles.wrapper}>
@@ -78,8 +95,12 @@ export default function RoleAccessPage() {
             <Input
               className={styles.roleInput}
               value={roleName}
-              placeholder="Enter Role Name"              
-              onChange={e => setRoleName(e.target.value)}
+              placeholder="Enter Role Name"
+              required={true}
+              onChange={e => {
+                setRoleName(e.target.value);
+                setErrorMsg("");
+              }}
             />
           </div>
           <div className={styles.inputCol}>
@@ -104,7 +125,10 @@ export default function RoleAccessPage() {
                         <DropdownMenuItem
                           key={opt}
                           className={styles.dropdownMenuItem}
-                          onClick={() => handleSelectAccess(opt)}
+                          onClick={() => {
+                            handleSelectAccess(opt);
+                            setErrorMsg("");
+                          }}
                         >
                           {opt}
                         </DropdownMenuItem>
@@ -131,6 +155,11 @@ export default function RoleAccessPage() {
             </button>
           </div>
         </div>
+        {errorMsg && (
+          <div className={styles.errorMsg}>
+            {errorMsg}
+          </div>
+        )}
       </div>
     </div>
   );

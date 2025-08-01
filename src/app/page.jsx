@@ -29,6 +29,18 @@ export default function Home() {
           >
             Go to Loan Approvals
           </Link>
+          <Link
+            href="/user-role-management"
+            className="block w-full py-3 px-6 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition"
+          >
+            Go to User Role Management
+          </Link>
+          <Link
+            href="/resource-management"
+            className="block w-full py-3 px-6 rounded-lg bg-purple-500 text-white font-semibold hover:bg-purple-600 transition"
+          >
+            Go to Resource Management
+          </Link>
         </div>
       </div>
     </div>
