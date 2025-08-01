@@ -28,7 +28,7 @@
 }
 .definedRolesLabel {
   font-size: 1rem;
-  color: #48602C;
+  color: #101727;
   margin-bottom: 10px;
   font-weight: 500;
 }
@@ -40,7 +40,7 @@
   margin-bottom: 6px;
 }
 .roleName {
-  color: #48602C;
+  color: #101727;
   font-weight: 600;
   margin-right: 6px;
 }
@@ -86,7 +86,7 @@
 .label {
   font-size: 1rem;
   font-weight: 500;
-  color: #48602C;
+  color: #000000;
   margin-bottom: 8px;
 }
 .roleInput {

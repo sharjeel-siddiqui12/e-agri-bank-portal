@@ -10,14 +10,14 @@ const allAccessOptions = [
   "User Management",
   "Employee Management",
   "KYC Review",
-  "Loan Application assessment",
-  "Disbursed Funds Monetoering",
+  "Loan Application Assessment",
+  "Disbursed Funds Monitoring",
 ];
 
 const initialRoles = [
   {
     name: "Loan Officer",
-    access: ["KYC Review", "Loan Application assessment", "Disbursed Funds Monetoering"],
+    access: ["KYC Review", "Loan Application Assessment", "Disbursed Funds Monitoring"],
   },
 ];
 
