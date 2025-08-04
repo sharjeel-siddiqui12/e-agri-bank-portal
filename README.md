@@ -2,7 +2,6 @@
 
 >A modern, responsive banking portal for agricultural loan management, built with Next.js, React, and Tailwind CSS.
 
-
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -27,6 +26,9 @@ The E-Agri Bank Portal is a full-featured web application designed to streamline
 ## Features
 - Responsive, mobile-first design
 - Loan Applications and Loan Approvals dashboards
+- Resource Management (add/view employees)
+- User Role Management (define roles and access)
+- Dashboard with KPIs, charts, and interactive Pakistan map
 - Search, filter, sort, and paginate applicant data
 - Status indicators and colored pills for loan and KYC status
 - Custom dropdowns, tables, and buttons
@@ -43,6 +45,8 @@ The E-Agri Bank Portal is a full-featured web application designed to streamline
 - [Lucide Icons](https://lucide.dev/) (icon library)
 - [Geist Font](https://vercel.com/font)
 - [clsx](https://github.com/lukeed/clsx) and [tailwind-merge](https://github.com/dcastil/tailwind-merge) (utility class merging)
+- [Recharts](https://recharts.org/) (charts)
+- [@react-map/pakistan](https://www.npmjs.com/package/@react-map/pakistan) (Pakistan map visualization)
 
 ---
 
@@ -55,30 +59,46 @@ e-agri-bank-portal/
 │   └── avatars/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css         # Global styles (Tailwind, custom theme)
-│   │   ├── layout.js           # Root layout, font setup
-│   │   ├── page.jsx            # Home page
+│   │   ├── globals.css           # Global styles (Tailwind, custom theme)
+│   │   ├── layout.js             # Root layout, font setup
+│   │   ├── page.jsx              # Home page
 │   │   ├── login/
-│   │   │   ├── page.jsx        # Login form
-│   │   │   └── page.module.css # Login styles
+│   │   │   ├── page.jsx          # Login form
+│   │   │   └── page.module.css   # Login styles
 │   │   ├── loan-applications/
-│   │   │   ├── page.jsx        # Loan Applications dashboard
-│   │   │   └── page.module.css # Styles for applications
+│   │   │   ├── page.jsx          # Loan Applications dashboard
+│   │   │   └── page.module.css   # Styles for applications
 │   │   ├── loan-approvals/
-│   │   │   ├── page.jsx        # Loan Approvals dashboard
-│   │   │   └── page.module.css # Styles for approvals
+│   │   │   ├── page.jsx          # Loan Approvals dashboard
+│   │   │   └── page.module.css   # Styles for approvals
+│   │   ├── resource-management/
+│   │   │   ├── page.jsx          # Employee management (add/view employees)
+│   │   │   └── page.module.css   # Styles for resource management
+│   │   ├── user-role-management/
+│   │   │   ├── page.jsx          # Role and access management
+│   │   │   └── page.module.css   # Styles for user role management
+│   │   ├── dashboard/
+│   │   │   ├── page.jsx          # Main dashboard with KPIs, charts, map
+│   │   │   └── page.module.css   # Dashboard styles
 │   ├── components/
+│   │   ├── PakistanMap.jsx       # Interactive Pakistan map component
+│   │   ├── FunnelChart.jsx       # Applications funnel chart
+│   │   ├── LoanAgingChart.jsx    # Loan aging chart
 │   │   ├── ui/
-│   │   │   ├── button-loan.jsx # Custom button component
+│   │   │   ├── button-loan.jsx   # Custom button component
 │   │   │   ├── button-submit.jsx # Submit button
 │   │   │   ├── dropdown-menu.jsx # Custom dropdown
-│   │   │   ├── input.jsx        # Input field
-│   │   │   ├── sort-arrows.jsx  # Sort arrow SVG
-│   │   │   └── table.jsx        # Table components
+│   │   │   ├── input.jsx         # Input field
+│   │   │   ├── select.jsx        # Select dropdown
+│   │   │   ├── card.jsx          # Card component
+│   │   │   ├── sort-arrows.jsx   # Sort arrow SVG
+│   │   │   └── table.jsx         # Table components
+│   ├── data/
+│   │   └── pakistan.json         # GeoJSON for Pakistan map
 │   ├── lib/
-│   │   ├── demoData.js         # Demo data generators & status list
-│   │   ├── utils.js            # Utility functions (class merging)
-│   │   └── filterAndSort.js    # Utility functions for sorting and filter
+│   │   ├── demoData.js           # Demo data generators & status list
+│   │   ├── utils.js              # Utility functions (class merging)
+│   │   └── filterAndSort.js      # Utility functions for sorting and filter
 │   └── ...
 ├── package.json
 ├── README.md
@@ -113,9 +133,13 @@ e-agri-bank-portal/
 - **Button**: `/src/components/ui/button-loan.jsx` and `/src/components/ui/button-submit.jsx`
 - **Dropdown**: `/src/components/ui/dropdown-menu.jsx` (custom, accessible)
 - **Input**: `/src/components/ui/input.jsx`
+- **Select**: `/src/components/ui/select.jsx`
+- **Card**: `/src/components/ui/card.jsx`
 - **Table**: `/src/components/ui/table.jsx` (modular table, header, row, cell)
 - **Sort Arrows**: `/src/components/ui/sort-arrows.jsx` (SVG sort indicators)
 - **Lucide Icons**: Used throughout for avatars, actions, and status
+- **Charts**: `/src/components/FunnelChart.jsx`, `/src/components/LoanAgingChart.jsx`
+- **Map**: `/src/components/PakistanMap.jsx` (uses `/src/data/pakistan.json`)
 
 ---
 
@@ -146,6 +170,9 @@ All demo data uses Lucide's `<User />` icon for avatars.
 - **Login**: `/login` – Login form
 - **Loan Applications**: `/loan-applications` – View, search, filter, and sort applications
 - **Loan Approvals**: `/loan-approvals` – View and manage approvals
+- **Resource Management**: `/resource-management` – Add/view employees
+- **User Role Management**: `/user-role-management` – Define roles and access
+- **Dashboard**: `/dashboard` – KPIs, charts, and Pakistan map
 
 ### Customization
 - Update demo data in `/src/lib/demoData.js`
