@@ -41,6 +41,12 @@ export default function Home() {
           >
             Go to Resource Management
           </Link>
+          <Link
+            href="/dashboard"
+            className="block w-full py-3 px-6 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
+          >
+            Go to Dashboard
+          </Link>
         </div>
       </div>
     </div>

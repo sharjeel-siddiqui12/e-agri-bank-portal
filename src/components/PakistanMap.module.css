@@ -1,0 +1,38 @@
+.mapWrapper {
+  width: 100%;
+  height: 320px; /* Set explicit height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.mapComponent {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.riskMarker {
+  border-radius: 50%;
+  border: 1.5px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.riskMarker:hover {
+  transform: translate(-50%, -50%) scale(1.2) !important;
+  z-index: 100;
+}
+
+.greenMarker {
+  background-color: #4caf50;
+}
+
+.yellowMarker {
+  background-color: #ffc107;
+}
+
+.redMarker {
+  background-color: #ef5350;
+}
