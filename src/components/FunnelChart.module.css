@@ -6,9 +6,11 @@
 }
 
 .labelList {
-  font-size: 14px;
-  font-weight: 500;
+  fill: #000000;
+  font-weight: 800;
+  font-size: 16px;
 }
+
 
 .labels {
   position: absolute;

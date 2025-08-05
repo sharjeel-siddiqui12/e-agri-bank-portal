@@ -92,8 +92,8 @@ export default function PakistanMap() {
         }`}
         style={{ 
           position: 'absolute',
-          left: `${((point.lng - 60.8) / (78.4 - 60.8)) * 100}%`,
-          top: `${(1 - (point.lat - 23.6) / (37.1 - 23.6)) * 100}%`,
+          left: `${((point.lng - 61.8) / (78.4 - 60.8)) * 100}%`,
+          top: `${(1 - (point.lat - 23.2) / (37.1 - 23.6)) * 100}%`,
           width: `${Math.max(8, Math.min(16, point.area / 30))}px`, 
           height: `${Math.max(8, Math.min(16, point.area / 30))}px`,
           transform: 'translate(-50%, -50%)',
