@@ -114,6 +114,7 @@ export default function PakistanMap() {
           strokeColor="#D4D4D4"
           strokeWidth={1}
           hoverColor="#D0D0D0"
+          selectColor="#b5b5b5"
           onHover={(province) => {
             console.log("Province hovered:", province);
             setHoveredProvince(province);
