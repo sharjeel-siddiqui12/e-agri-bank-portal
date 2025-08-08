@@ -47,6 +47,12 @@ export default function Home() {
           >
             Go to Dashboard
           </Link>
+          <Link
+            href="/reports"
+            className="block w-full py-3 px-6 rounded-lg bg-green-700 text-white font-semibold hover:bg-green-600 transition"
+          >
+            Go to Reports
+          </Link>
         </div>
       </div>
     </div>
