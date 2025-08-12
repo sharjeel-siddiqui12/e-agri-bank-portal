@@ -181,7 +181,7 @@ export default function DashboardPage() {
           </div>
           
           <div className={styles.cardFooter}>
-            <Button variant="ghost" className={styles.viewAllBtn}>
+            <Button variant="ghost" className={styles.viewAllBtnFunnel}>
               View All Applications <ArrowUpRight size={16} className={styles.arrowIcon} />
             </Button>
           </div>

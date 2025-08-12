@@ -1,63 +1,35 @@
-"use client";
-import React from "react";
-import { ResponsiveContainer, FunnelChart as RechartsFunnel, Funnel, LabelList, Tooltip } from "recharts";
-import styles from "./FunnelChart.module.css";
+import React from 'react';
+import styles from './FunnelChart.module.css';
 
-const data = [
-	{
-		name: "Applications Received",
-		value: 215,
-		fill: "#F2F7EA",
-	},
-	{
-		name: "Verification In Progress",
-		value: 114,
-		fill: "#E6EFD6",
-	},
-	{
-		name: "Sanctioned",
-		value: 71,
-		fill: "#D9E7C2",
-	},
-	{
-		name: "Disbursed",
-		value: 80,
-		fill: "#63862D",
-	},
+const FunnelChart = ({ data = defaultData }) => {
+  return (
+    <div className={styles.funnelContainer}>
+      {data.map((item, index) => (
+        <div key={index} className={styles.funnelItemWrapper}>
+          <div 
+            className={`${styles.funnelItem} ${styles[`level${index + 1}`]}`}
+          >
+            <span className={styles.itemValue}>{item.value}</span>
+          </div>
+          
+          <div className={styles.labelContainer}>
+            <div className={styles.labelLine}></div>
+            <div className={styles.labelText}>
+              {item.label}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// Demo data that matches the image
+const defaultData = [
+  { value: 215, label: 'Applications\nReceived' },
+  { value: 114, label: 'Verification in\nProgress' },
+  { value: 71, label: 'Sanctioned' },
+  { value: 80, label: 'Disbursed' }
 ];
 
-export default function FunnelChart() {
-	return (
-		<div className={styles.container}>
-			<ResponsiveContainer width="100%" height={350}>
-				<RechartsFunnel width={400} height={350} data={data}>
-					<Tooltip />
-					<Funnel dataKey="value" nameKey="name" isAnimationActive>
-						<LabelList className={styles.labelList}
-							position="inside"
-							dataKey="value"
-						/>
-					</Funnel>
-				</RechartsFunnel>
-			</ResponsiveContainer>
-			<div className={styles.labels}>
-				<div className={styles.labelItem}>
-					<div className={styles.line}></div>
-					<div className={styles.labelText}>Applications Received</div>
-				</div>
-				<div className={styles.labelItem}>
-					<div className={styles.line}></div>
-					<div className={styles.labelText}>Verification in Progress</div>
-				</div>
-				<div className={styles.labelItem}>
-					<div className={styles.line}></div>
-					<div className={styles.labelText}>Sanctioned</div>
-				</div>
-				<div className={styles.labelItem}>
-					<div className={styles.line}></div>
-					<div className={styles.labelText}>Disbursed</div>
-				</div>
-			</div>
-		</div>
-	);
-}
+export default FunnelChart;

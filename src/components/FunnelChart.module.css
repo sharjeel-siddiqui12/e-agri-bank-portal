@@ -1,39 +1,118 @@
-.container {
+.funnelContainer {
   width: 100%;
-  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.funnelItemWrapper {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
-.labelList {
-  fill: #000000;
-  font-weight: 800;
-  font-size: 16px;
-}
-
-
-.labels {
-  position: absolute;
-  right: 10px;
-  top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-.labelItem {
+.funnelItem {
+  position: relative;
+  height: 70px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  clip-path: polygon(0% 0%, 100% 0%, 92% 100%, 8% 100%);
 }
 
-.line {
-  width: 30px;
+/* First level is wider */
+.level1 {
+  width: 75%;
+  margin-left: 10px;
+  background-color: #eef4e9;
+  clip-path: polygon(0% 0%, 100% 0%, 95% 95% 100%, 4% 100%);
+  border-top-left-radius: 120px;
+  border-top-right-radius: 120px;
+  
+  
+}
+
+/* Second level */
+.level2 {
+  width: 65%;
+  margin-top: 0;
+  margin-left: 39px;
+  
+  background-color: #edf2e7;
+  clip-path: polygon(4% 0%, 96% 0%, 82% 100%, 19% 100%); 
+}
+
+/* Third level */
+.level3 {
+  width: 45%;
+  margin-top: 0 ;
+  margin-left: 100px;
+  background-color: #ecf0e5;
+  clip-path: polygon(8% 0%, 92% 0%, 75% 100%, 26% 100%);
+  /* clip-path: polygon(4% 0%, 96% 0%, 95% 95% 100%, 10% 100%); */
+}
+
+/* Fourth level - darker color */
+.level4 {
+  width: 20%;
+  height: 70px;
+ margin-top: 0 ;
+  margin-left: 175px;
+  background-color: #4d7c2a;
+  color: white;
+  clip-path: polygon(
+    0% 0%,      /* Top left */
+    100% 0%,    /* Top right */
+    85% 40%,    /* Right side angle */
+    70% 80%,    /* Right side before curve */
+    50% 100%,   /* Bottom center */
+    30% 80%,    /* Left side before curve */
+    15% 40%     /* Left side angle */
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemValue {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.labelLine {
+  width: 24px;
   height: 1px;
-  background-color: #999;
+  background-color: #000;
+  margin-right: 8px;
 }
 
 .labelText {
-  font-size: 12px;
-  color: #666;
+  font-size: 14px;
+  color: #4a4a4a;
+  white-space: pre-line;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .funnelItem {
+    height: 60px;
+  }
+  
+  .itemValue {
+    font-size: 18px;
+  }
+  
+  .labelText {
+    font-size: 12px;
+  }
 }
