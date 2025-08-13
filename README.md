@@ -1,6 +1,7 @@
+
 # E-Agri Bank Portal
 
->A modern, responsive banking portal for agricultural loan management, built with Next.js, React, and Tailwind CSS.
+>A modern, responsive banking portal for agricultural loan management, built with Next.js, React, and Tailwind CSS. Includes advanced reporting, lending rules configuration, and interactive dashboards.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -28,10 +29,12 @@ The E-Agri Bank Portal is a full-featured web application designed to streamline
 - Loan Applications and Loan Approvals dashboards
 - Resource Management (add/view employees)
 - User Role Management (define roles and access)
-- Dashboard with KPIs, charts, and interactive Pakistan map
-- Search, filter, sort, and paginate applicant data
+- Dashboard with KPIs, charts, interactive Pakistan map, and SVG stats
+- Reports page with advanced filtering, sorting, and pagination
+- Lending Rules configuration (product-based, tenure, exposure, disbursement)
+- Search, filter, sort, and paginate applicant and loan data
 - Status indicators and colored pills for loan and KYC status
-- Custom dropdowns, tables, and buttons
+- Custom dropdowns, tables, buttons, and switches
 - Lucide icons for consistent, scalable iconography
 - Demo data generation for development/testing
 - Modular, reusable React components
@@ -47,6 +50,7 @@ The E-Agri Bank Portal is a full-featured web application designed to streamline
 - [clsx](https://github.com/lukeed/clsx) and [tailwind-merge](https://github.com/dcastil/tailwind-merge) (utility class merging)
 - [Recharts](https://recharts.org/) (charts)
 - [@react-map/pakistan](https://www.npmjs.com/package/@react-map/pakistan) (Pakistan map visualization)
+- [Heroicons](https://heroicons.com/) (dashboard navigation)
 
 ---
 
@@ -78,20 +82,37 @@ e-agri-bank-portal/
 │   │   │   ├── page.jsx          # Role and access management
 │   │   │   └── page.module.css   # Styles for user role management
 │   │   ├── dashboard/
-│   │   │   ├── page.jsx          # Main dashboard with KPIs, charts, map
+│   │   │   ├── page.jsx          # Main dashboard with KPIs, charts, SVG stats, map
 │   │   │   └── page.module.css   # Dashboard styles
+│   │   ├── reports/
+│   │   │   ├── page.jsx          # Reports table with filter/sort/pagination
+│   │   │   └── page.module.css   # Reports styles
+│   │   ├── lending-rules/
+│   │   │   ├── product-based/    # Product-based lending rules
+│   │   │   ├── tenure-settings/  # Tenure settings
+│   │   │   ├── exposure-limits/  # Exposure limits
+│   │   │   ├── disbursement-conditions/ # Disbursement conditions
+│   │   │   ├── general/          # General lending rules
+│   │   │   ├── layout.jsx        # Lending rules layout
+│   │   │   └── page.jsx          # Lending rules main page
 │   ├── components/
 │   │   ├── PakistanMap.jsx       # Interactive Pakistan map component
+│   │   ├── PakistanMap.module.css# Map styles
 │   │   ├── FunnelChart.jsx       # Applications funnel chart
+│   │   ├── FunnelChart.module.css# Funnel chart styles
 │   │   ├── LoanAgingChart.jsx    # Loan aging chart
+│   │   ├── LoanAgingChart.module.css# Loan aging chart styles
 │   │   ├── ui/
 │   │   │   ├── button-loan.jsx   # Custom button component
 │   │   │   ├── button-submit.jsx # Submit button
+│   │   │   ├── button.jsx        # General button
 │   │   │   ├── dropdown-menu.jsx # Custom dropdown
 │   │   │   ├── input.jsx         # Input field
 │   │   │   ├── select.jsx        # Select dropdown
 │   │   │   ├── card.jsx          # Card component
 │   │   │   ├── sort-arrows.jsx   # Sort arrow SVG
+│   │   │   ├── switch.jsx        # Toggle switch
+│   │   │   ├── label.jsx         # Label component
 │   │   │   └── table.jsx         # Table components
 │   ├── data/
 │   │   └── pakistan.json         # GeoJSON for Pakistan map
@@ -135,20 +156,23 @@ e-agri-bank-portal/
 - **Input**: `/src/components/ui/input.jsx`
 - **Select**: `/src/components/ui/select.jsx`
 - **Card**: `/src/components/ui/card.jsx`
-- **Table**: `/src/components/ui/table.jsx` (modular table, header, row, cell)
+- **Table**: `/src/components/ui/table.jsx` (modular table, header, row, cell, supports sorting/filtering/pagination)
 - **Sort Arrows**: `/src/components/ui/sort-arrows.jsx` (SVG sort indicators)
 - **Lucide Icons**: Used throughout for avatars, actions, and status
-- **Charts**: `/src/components/FunnelChart.jsx`, `/src/components/LoanAgingChart.jsx`
-- **Map**: `/src/components/PakistanMap.jsx` (uses `/src/data/pakistan.json`)
+- **Charts**: `/src/components/FunnelChart.jsx`, `/src/components/LoanAgingChart.jsx` (with CSS modules for custom shapes)
+- **Map**: `/src/components/PakistanMap.jsx` (uses `/src/data/pakistan.json`, fully responsive, fixed province markers)
 
 ---
 
-## Demo Data
+
+## Demo Data & Utilities
 
 Demo data is generated in `/src/lib/demoData.js`:
 - `createLoanApplicationsDemoData()` – 120 rows, 10 names, for loan applications
 - `createLoanApprovalsDemoData()` – 12 rows, 3 names, for loan approvals
 - `loanStatusList` – shared status list for dropdowns, pills, etc.
+
+Filtering and sorting logic is handled in `/src/lib/filterAndSort.js` and `/src/app/reports/page.jsx`.
 
 All demo data uses Lucide's `<User />` icon for avatars.
 
@@ -157,13 +181,14 @@ All demo data uses Lucide's `<User />` icon for avatars.
 ## Custom Styling
 
 - **Tailwind CSS**: Utility classes for layout, spacing, color, and responsiveness
-- **CSS Modules**: Scoped styles for each page/component (e.g. `page.module.css`)
+- **CSS Modules**: Scoped styles for each page/component (e.g. `page.module.css`, `FunnelChart.module.css`, `PakistanMap.module.css`)
 - **Theme Variables**: Custom properties in `globals.css` for easy theming
 - **Responsive Design**: Mobile-first, with breakpoints for all devices
 
 ---
 
 ## How to Use
+
 
 ### Navigation
 - **Home**: `/` – Welcome page with navigation links
@@ -172,12 +197,16 @@ All demo data uses Lucide's `<User />` icon for avatars.
 - **Loan Approvals**: `/loan-approvals` – View and manage approvals
 - **Resource Management**: `/resource-management` – Add/view employees
 - **User Role Management**: `/user-role-management` – Define roles and access
-- **Dashboard**: `/dashboard` – KPIs, charts, and Pakistan map
+- **Dashboard**: `/dashboard` – KPIs, charts, SVG stats, and Pakistan map
+- **Reports**: `/reports` – Advanced table with filter, sort, and pagination
+- **Lending Rules**: `/lending-rules` – Configure product, tenure, exposure, disbursement, and general rules
+
 
 ### Customization
 - Update demo data in `/src/lib/demoData.js`
 - Add new UI components in `/src/components/ui/`
-- Adjust styles in the relevant `page.module.css` files
+- Adjust styles in the relevant CSS module files (e.g. `page.module.css`, `FunnelChart.module.css`)
+- Extend filtering/sorting logic in `/src/lib/filterAndSort.js` and `/src/app/reports/page.jsx`
 
 ---
 
