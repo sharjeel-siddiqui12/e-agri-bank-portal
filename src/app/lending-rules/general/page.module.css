@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.description {
+  font-size: 14px;
+  color: #6B7280;
+  margin-bottom: 24px;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.input, .select {
+  width: 100%;
+  background-color: white; /* Input fields have white background */
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: #111827;
+}
+
+.percentInputWrapper {
+  position: relative;
+}
+
+.percentSymbol {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6B7280;
+  font-size: 15px;
+}
+
+.switchGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Override for shadcn Switch to make it match the green color in the design */
+.switch[data-state="checked"] {
+  background-color: #4C7A20 !important;
+}

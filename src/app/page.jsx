@@ -53,6 +53,12 @@ export default function Home() {
           >
             Go to Reports
           </Link>
+          <Link
+            href="/lending-rules"
+            className="block w-full py-3 px-6 rounded-lg bg-gray-700 text-white font-semibold hover:bg-gray-600 transition"
+          >
+            Go to Lending Rules
+          </Link>
         </div>
       </div>
     </div>

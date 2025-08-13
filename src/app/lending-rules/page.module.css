@@ -1,0 +1,262 @@
+.container {
+  padding: 24px;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.statContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  flex-shrink: 0;
+}
+
+.statText {
+  flex: 1;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #6f7682;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.mapCard, .funnelCard, .loanAgingCard {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #101828;
+  position: relative;
+  padding-left: 16px;
+}
+
+.cardTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: #63862d;
+  border-radius: 2px;
+}
+
+.areaSelector {
+  min-width: 150px;
+  height: 36px;
+  background-color: white;
+  border-color: #e0e0e0;
+}
+
+.riskStats {
+  margin-bottom: 20px;
+}
+
+.riskAmount {
+  font-size: 22px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.growthLabel {
+  font-size: 12px;
+  color: #ffffff;
+  margin-left: 8px;
+  background: #4caf50;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.comparedLabel {
+  font-size: 12px;
+  color: #6f7682;
+  margin-top: 4px;
+}
+
+.mapContainer {
+  display: flex;
+  height: 320px;
+}
+
+.mapLegend {
+  flex: 0 0 180px;
+  padding-right: 16px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.greenDot {
+  background-color: #4caf50;
+}
+
+.yellowDot {
+  background-color: #ffc107;
+}
+
+.redDot {
+  background-color: #ef5350;
+}
+
+.legendLabel {
+  flex: 1;
+  font-size: 14px;
+  color: #101828;
+  font-weight: 400;
+}
+
+.legendValue {
+  font-size: 14px;
+  color: #6f7682;
+  font-weight: 500;
+}
+
+.map {
+  flex: 1;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.noteContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoIcon {
+  color: #6f7682;
+}
+
+.noteText {
+  font-size: 12px;
+  color: #6f7682;
+  max-width: 300px;
+}
+
+.acreage {
+  font-size: 12px;
+  color: #101828;
+  font-weight: 500;
+}
+
+.viewAllBtn {
+  font-size: 14px;
+  color: #101828;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.viewAllBtnFunnel {
+  font-size: 14px;
+  color: #101828;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  margin-left: 18px;
+}
+
+.arrowIcon {
+  margin-left: 4px;
+}
+
+.funnelContainer {
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agingChartContainer {
+  height: 200px;
+  padding: 16px 0;
+}
+
+@media (max-width: 1200px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+}
