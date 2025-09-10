@@ -93,11 +93,11 @@
 .sectionIcon {
   height: 18px;
   width: 18px;
-  color: #375515;
+  color: #4b5563;
 }
 
 .sectionTitle {
-  color: #375515;
+  color: #191F2B;
   font-weight: 600;
 }
 
@@ -157,7 +157,7 @@
   overflow-wrap: break-word;
   word-break: break-word;
   line-height: 1.2;
-  font-size: 0.85em;
+  font-size: 0.875em;
 }
 
 /* Large primary nav items (Dashboards, Onboard Farmer, Loan Marketplace) */
@@ -169,7 +169,7 @@
   padding: 10px 12px;
   border-radius: 8px;
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 600;
   transition: all 0.2s ease;
   color: #191F2B;
 }
