@@ -74,19 +74,19 @@ const riskData = [
 
 export default function PakistanMap() {
   const [hoveredProvince, setHoveredProvince] = useState(null);
-  const [mapSize, setMapSize] = useState(350);
+  const [mapSize, setMapSize] = useState(280); // Reduced initial size
   const mapRef = useRef(null);
 
   useEffect(() => {
     const updateMapSize = () => {
       if (typeof window !== 'undefined') {
         const windowWidth = window.innerWidth;
-        let newSize = 350;
+        let newSize = 280; // Reduced default size
         
         if (windowWidth < 640) {
-          newSize = Math.min(300, windowWidth * 0.9);
+          newSize = Math.min(250, windowWidth * 0.9);
         } else if (windowWidth < 1024) {
-          newSize = Math.min(350, windowWidth * 0.6);
+          newSize = Math.min(280, windowWidth * 0.4);
         }
         
         setMapSize(newSize);

@@ -128,17 +128,17 @@ export default function DashboardPage() {
 
           <div className={styles.mapContainer}>
             <div className={styles.mapLegend}>
-              <div className={styles.legendItem}>
+              <div className={`${styles.legendItem} ${styles.legendItemGreen}`}>
                 <span className={`${styles.legendDot} ${styles.greenDot}`}></span>
                 <span className={styles.legendLabel}>Performing Good</span>
                 <span className={styles.legendValue}>500 ac</span>
               </div>
-              <div className={styles.legendItem}>
+              <div className={`${styles.legendItem} ${styles.legendItemYellow}`}>
                 <span className={`${styles.legendDot} ${styles.yellowDot}`}></span>
                 <span className={styles.legendLabel}>At Risk (Uninsured)</span>
                 <span className={styles.legendValue}>120 ac</span>
               </div>
-              <div className={styles.legendItem}>
+              <div className={`${styles.legendItem} ${styles.legendItemRed}`}>
                 <span className={`${styles.legendDot} ${styles.redDot}`}></span>
                 <span className={styles.legendLabel}>Lost/Burnt</span>
                 <span className={styles.legendValue}>50 ac</span>

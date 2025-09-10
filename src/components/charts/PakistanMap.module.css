@@ -1,12 +1,13 @@
 .mapWrapper {
-  padding-left: 30px;
+  padding: 0;
   width: 100%;
-  min-height: 320px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: visible;
+  background: #F7FAFC;
 }
 
 .mapComponent {
