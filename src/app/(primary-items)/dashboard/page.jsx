@@ -24,7 +24,6 @@ export default function DashboardPage() {
     <div className={styles.container}>
       {/* Top KPIs */}
       <div className={styles.statsGrid}>
-        {/* ...your KPI cards unchanged... */}
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
@@ -40,7 +39,19 @@ export default function DashboardPage() {
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-              <Image src="dashboard-images/total-outstanding-amount.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/active-borrowers.svg" alt="Active Loans Icon" width={44} height={36} />
+            </div>
+            <div className={styles.statText}>
+              <div className={styles.statLabel}>Active Loans</div>
+              <div className={styles.statValue}>Rs. 99M</div>
+            </div>
+          </div>
+        </Card>
+
+        <Card className={styles.statCard}>
+          <div className={styles.statContent}>
+            <div className={styles.iconWrapper}>
+              <Image src="dashboard-images/total-outstanding-amount.svg" alt="Outstanding Amount Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Total Outstanding Amount</div>
@@ -52,7 +63,7 @@ export default function DashboardPage() {
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-              <Image src="dashboard-images/active-borrowers.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/active-borrowers.svg" alt="Active Borrowers Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Active Borrowers</div>
@@ -64,7 +75,7 @@ export default function DashboardPage() {
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-              <Image src="dashboard-images/overdue-accounts.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/overdue-accounts.svg" alt="Overdue Accounts Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Overdue Accounts</div>
@@ -76,7 +87,7 @@ export default function DashboardPage() {
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-              <Image src="dashboard-images/settled-loans.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/settled-loans.svg" alt="Settled Loans Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Settled Loans</div>
@@ -88,7 +99,7 @@ export default function DashboardPage() {
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-              <Image src="dashboard-images/npl.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/npl.svg" alt="NPL Rate Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>NPL (Defaults) Rate</div>

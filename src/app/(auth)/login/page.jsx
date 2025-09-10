@@ -35,7 +35,7 @@ export default function LoginPage() {
         />
       </div>
       <div className={styles.card}>
-        <h2 className={styles.heading}>Log Into Admin&apos;s Portal</h2>
+        <h2 className={styles.heading}>Log Into Bank&apos;s Portal</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>
             <label className={styles.label}>Email Address</label>

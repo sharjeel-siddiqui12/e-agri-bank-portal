@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FunnelChart.module.css";
 
-const STAGE_WIDTHS = [98, 86, 70, 46]; // wide but safe (relative to left column)
+const STAGE_WIDTHS = [98, 86, 70, 60]; // wide but safe (relative to left column)
 
 const FunnelChart = ({ data = defaultData }) => {
   return (
