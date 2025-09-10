@@ -1,0 +1,298 @@
+/* Grade Definition Page Styles */
+.page {
+  background: #f8f9fa;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: var(--font-inter);
+  max-width: 100%;
+  margin: 0;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 24px;
+  margin-left: 0;
+}
+
+.form {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-top: 0;
+}
+
+.input {
+  width: 100%;
+  max-width: 350px;
+  height: 40px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 0 12px;
+  background: #fff;
+  color: #1f2937;
+  font-weight: 400;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #375515;
+  box-shadow: 0 0 0 3px rgba(55, 85, 21, 0.1);
+}
+
+.inputDisabled {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.radioItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radioInput {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.radioInput[data-state="checked"] {
+  border-color: #375515;
+  background: white;
+}
+
+.radioInput[data-state="checked"] [data-slot="radio-group-indicator"] {
+  color: #375515;
+}
+
+.radioInput:hover {
+  border-color: #375515;
+}
+
+.radioLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.buttonRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.saveBtn {
+  background: #375515;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.07rem;
+  padding: 12px 35px;
+  cursor: pointer;
+  transition: background 0.18s;
+  margin-right: 0;
+}
+
+.saveBtn:hover {
+  background: #3a5100;
+}
+
+.cancelBtn {
+  background: #fff;
+  color: #375515;
+  border: 2px solid #375515;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 35px;
+  cursor: pointer;
+  margin-right: 0;
+}
+
+.cancelBtn:hover {
+  background: #f6f6f4;
+}
+
+.tableWrap {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.th {
+  background: #f9fafb;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tr {
+  background: white;
+  transition: background-color 0.2s;
+}
+
+.tr:hover {
+  background: #f9fafb;
+}
+
+.tr:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.td {
+  padding: 12px 16px;
+  color: #1f2937;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.actionTd {
+  text-align: center;
+  width: 60px;
+}
+
+.editBtn {
+  background: none;
+  border: none;
+  color: #375515;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn:hover {
+  background: #f3f4f6;
+  color: #3a5100;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.approved {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .label {
+    margin-bottom: 4px;
+    margin-top: 0;
+  }
+  .input {
+    max-width: 100%;
+    width: 100%;
+  }
+  .radioGroup {
+    gap: 16px;
+  }
+  .buttonRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .saveBtn, .cancelBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .tableWrap {
+    overflow-x: auto;
+    margin: 16px -16px 0 -16px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .table {
+    min-width: 900px;
+  }
+  .th, .td {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+.tr, .editBtn, .saveBtn, .cancelBtn {
+  transition: all 0.2s ease;
+}
+
+.statusBadge {
+  transition: all 0.2s ease;
+}
+
+.statusBadge:hover {
+  transform: scale(1.05);
+}

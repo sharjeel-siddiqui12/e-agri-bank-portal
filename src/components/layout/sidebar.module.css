@@ -1,0 +1,161 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e5e7eb;
+  background-color: white;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  transition: width 0.3s ease;
+  width: 250px;
+  font-size: 1rem;
+  font-family: var(--font-inter);
+}
+
+.sidebar.collapsed {
+  width: 64px;
+}
+
+.collapseButton {
+  position: absolute;
+  top: 10px;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.collapseIcon {
+  height: 14px;
+  width: 14px;
+  color: #4b5563;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  margin-top: 10px;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.menuLabel {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navigation {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  color: #375515;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sectionIcon {
+  height: 18px;
+  width: 18px;
+  color: #375515;
+}
+
+.sectionTitle {
+  color: #375515;
+  font-weight: 600;
+}
+
+.sectionItems {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  color: #000000;
+  position: relative;
+  
+}
+
+.collapsedItem {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.navItem:hover {
+  background-color: #f9fafb;
+}
+
+.navItem.active {
+  background-color: #f0fdf4;
+  color: #375515;
+  font-weight: 500;
+}
+
+.icon {
+  height: 18px;
+  width: 18px;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.collapsedIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.activeIcon {
+  color: #375515;
+}
+
+.navText {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.2;
+  font-size: 0.85em;
+}
