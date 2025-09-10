@@ -116,7 +116,7 @@
   border-radius: 6px;
   font-size: 0.85rem;
   transition: all 0.2s ease;
-  color: #000000;
+  color: #191F2B;
   position: relative;
   
 }
@@ -158,4 +158,27 @@
   word-break: break-word;
   line-height: 1.2;
   font-size: 0.85em;
+}
+
+/* Large primary nav items (Dashboards, Onboard Farmer, Loan Marketplace) */
+.primaryLarge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  color: #191F2B;
+}
+
+.primaryLarge:hover {
+  background-color: #f9fafb;
+}
+
+.primaryLarge.active {
+  background-color: #f0fdf4;
+  color: #375515;
 }

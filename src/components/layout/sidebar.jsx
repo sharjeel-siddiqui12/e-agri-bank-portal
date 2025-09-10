@@ -25,31 +25,44 @@ import {
   PenTool,
 } from "lucide-react";
 
-const masterDataItems = [
-  { name: "Person Category Setup", icon: FileText, href: "/person-category-setup" },
-  { name: "Person Category - Approval", icon: CheckCircle, href: "/person-category-approval" },
-  { name: "SCS Category Setup", icon: FileText, href: "/scs-category-setup" },
-  { name: "SCS Category - Approval", icon: CheckCircle, href: "/scs-category-approval" },
-  { name: "Person - Stakeholder Mapping", icon: Users, href: "/person-stakeholder-mapping" },
-  { name: "Person - Stakeholder Mapping - Approval", icon: CheckCircle, href: "/person-stakeholder-mapping-approval" },
-  { name: "KYC Document Setup", icon: FileText, href: "/kyc-document-setup" },
-  { name: "KYC Document Mapping", icon: FileCheck, href: "/kyc-document-mapping" },
-  { name: "KYC Document Mapping - Approval", icon: CheckCircle, href: "/kyc-document-mapping-approval" },
-  { name: "UoM Setup", icon: Scale, href: "/uom-setup" },
-  { name: "UoM Category Setup", icon: FileText, href: "/uom-category-setup" },
-  { name: "Grade Definition", icon: Award, href: "/grade-definition" },
-  { name: "Grading Parameters", icon: BarChart3, href: "/grading-parameters" },
-  { name: "Commodity Classification", icon: BookOpen, href: "/commodity-classification" },
-  { name: "Commodity Classification Approval", icon: BookOpen, href: "/commodity-classification-approval" },
-  { name: "Commodity Grade Specification", icon: Calculator, href: "/commodity-grade-specification" },
-  { name: "Commodity Grade Specification - Approval", icon: PenTool, href: "/commodity-grade-specification-approval" },
+// Primary top-level items
+const primaryItems = [
+  { name: "Dashboards", icon: BarChart3, href: "/dashboard" },
+  { name: "Onboard Farmer", icon: Users, href: "/onboard-farmer" },
+  { name: "Loan Marketplace", icon: FolderOpen, href: "/loan-marketplace" },
 ];
 
-const setupItems = [
-  { name: "Charts of Accounts", icon: FileText, href: "/charts-of-accounts" },
-  { name: "Charts of Accounts - Approval", icon: CheckCircle, href: "/charts-of-accounts-approval" },
-  { name: "Manual Voucher Entry", icon: ClipboardList, href: "/manual-voucher-entry" },
-  { name: "Manual Voucher Entry - Approval", icon: CheckCircle, href: "/manual-voucher-entry-approval" },
+// Product Management section
+const productManagementItems = [
+  { name: "Product Setup", icon: FileText, href: "/product-setup" },
+  { name: "Product Approval", icon: CheckCircle, href: "/product-approval" },
+  { name: "Credit Score Setup", icon: Scale, href: "/credit-score-setup" },
+  { name: "Preferred Vendor Setup", icon: FileText, href: "/preferred-vendor-setup" },
+  { name: "Preferred Vendor Setup - Approval", icon: CheckCircle, href: "/preferred-vendor-setup-approval" },
+];
+
+// Loan Operations section
+const loanOperationsItems = [
+  { name: "Loan Requests", icon: ClipboardList, href: "/loan-requests" },
+  { name: "Loan Assessments", icon: Award, href: "/loan-assessments" },
+  { name: "Loan Approvals", icon: CheckCircle, href: "/loan-approvals" },
+  { name: "Loan Disbursements", icon: Calculator, href: "/loan-disbursements" },
+  { name: "Loan Monitoring", icon: BarChart3, href: "/loan-monitoring" },
+];
+
+// Loan Settlements section
+const loanSettlementsItems = [
+  { name: "Auction Requests Approval", icon: CheckCircle, href: "/auction-requests-approval" },
+  { name: "Loan Settlements", icon: FileCheck, href: "/loan-settlements" },
+];
+
+// Standalone
+const resourceOnboardingItem = { name: "Resource Onboarding", icon: Settings, href: "/resource-onboarding" };
+
+// Access Rights Management section
+const accessRightsItems = [
+  { name: "User Role Define", icon: FileText, href: "/user-role-define" },
+  { name: "User Role Assign", icon: PenTool, href: "/user-role-assign" },
 ];
 
 export function Sidebar({ className, collapsed, setCollapsed }) {
@@ -78,9 +91,9 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
       {/* Logo section */}
       <div className={styles.logoSection}>
         <Link 
-          href="/person-category-setup" 
+          href="/dashboard" 
           className={styles.logoLink}
-          onClick={() => setActivePage("Person Category Setup")}
+          onClick={() => setActivePage("Dashboards")}
         >
           <Image
             src="/logo.svg"
@@ -98,16 +111,46 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
 
       {/* Navigation items */}
       <nav className={styles.navigation}>
-        {/* Master Data Section */}
+        {/* Primary items */}
+        <div className={styles.section}>
+          <div className={styles.sectionItems}>
+            {primaryItems.map((item) => {
+              const isActive = activePage === item.name;
+              const itemClassName = `${styles.primaryLarge} ${
+                isActive ? styles.active : ""
+              } ${collapsed ? styles.collapsedItem : ""}`;
+              const iconClassName = `${styles.icon} ${
+                isActive ? styles.activeIcon : ""
+              } ${collapsed ? styles.collapsedIcon : ""}`;
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={itemClassName}
+                  title={collapsed ? item.name : undefined}
+                  onClick={() => setActivePage(item.name)}
+                >
+                  <item.icon className={iconClassName} />
+                  {!collapsed && (
+                    <span className={styles.navText}>{item.name}</span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Product Management Section */}
         <div className={styles.section}>
           {!collapsed && (
             <div className={styles.sectionHeader}>
               <Database className={styles.sectionIcon} />
-              <span className={styles.sectionTitle}>Master Data</span>
+              <span className={styles.sectionTitle}>Product Management</span>
             </div>
           )}
           <div className={styles.sectionItems}>
-            {masterDataItems.map((item) => {
+            {productManagementItems.map((item) => {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
@@ -134,16 +177,118 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
           </div>
         </div>
 
-        {/* Setup Section */}
+        {/* Loan Operations Section */}
+        <div className={styles.section}>
+          {!collapsed && (
+            <div className={styles.sectionHeader}>
+              <FolderOpen className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>Loan Operations</span>
+            </div>
+          )}
+          <div className={styles.sectionItems}>
+            {loanOperationsItems.map((item) => {
+              const isActive = activePage === item.name;
+              const itemClassName = `${styles.navItem} ${
+                isActive ? styles.active : ""
+              } ${collapsed ? styles.collapsedItem : ""}`;
+              const iconClassName = `${styles.icon} ${
+                isActive ? styles.activeIcon : ""
+              } ${collapsed ? styles.collapsedIcon : ""}`;
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={itemClassName}
+                  title={collapsed ? item.name : undefined}
+                  onClick={() => setActivePage(item.name)}
+                >
+                  <item.icon className={iconClassName} />
+                  {!collapsed && (
+                    <span className={styles.navText}>{item.name}</span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Loan Settlements Section */}
+        <div className={styles.section}>
+          {!collapsed && (
+            <div className={styles.sectionHeader}>
+              <FileText className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>Loan Settlements</span>
+            </div>
+          )}
+          <div className={styles.sectionItems}>
+            {loanSettlementsItems.map((item) => {
+              const isActive = activePage === item.name;
+              const itemClassName = `${styles.navItem} ${
+                isActive ? styles.active : ""
+              } ${collapsed ? styles.collapsedItem : ""}`;
+              const iconClassName = `${styles.icon} ${
+                isActive ? styles.activeIcon : ""
+              } ${collapsed ? styles.collapsedIcon : ""}`;
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={itemClassName}
+                  title={collapsed ? item.name : undefined}
+                  onClick={() => setActivePage(item.name)}
+                >
+                  <item.icon className={iconClassName} />
+                  {!collapsed && (
+                    <span className={styles.navText}>{item.name}</span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Resource Onboarding */}
+        <div className={styles.section}>
+          <div className={styles.sectionItems}>
+            {(() => {
+              const item = resourceOnboardingItem;
+              const isActive = activePage === item.name;
+              const itemClassName = `${styles.navItem} ${
+                isActive ? styles.active : ""
+              } ${collapsed ? styles.collapsedItem : ""}`;
+              const iconClassName = `${styles.icon} ${
+                isActive ? styles.activeIcon : ""
+              } ${collapsed ? styles.collapsedIcon : ""}`;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={itemClassName}
+                  title={collapsed ? item.name : undefined}
+                  onClick={() => setActivePage(item.name)}
+                >
+                  <item.icon className={iconClassName} />
+                  {!collapsed && (
+                    <span className={styles.navText}>{item.name}</span>
+                  )}
+                </Link>
+              );
+            })()}
+          </div>
+        </div>
+
+        {/* Access Rights Management */}
         <div className={styles.section}>
           {!collapsed && (
             <div className={styles.sectionHeader}>
               <Settings className={styles.sectionIcon} />
-              <span className={styles.sectionTitle}>Setup</span>
+              <span className={styles.sectionTitle}>Access Rights Management</span>
             </div>
           )}
           <div className={styles.sectionItems}>
-            {setupItems.map((item) => {
+            {accessRightsItems.map((item) => {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
