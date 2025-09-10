@@ -4,22 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  Select, 
-  SelectTrigger, 
-  SelectValue, 
-  SelectContent, 
-  SelectItem 
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem
 } from "@/components/ui/select";
 import { InfoIcon, ArrowUpRight } from "lucide-react";
 import PakistanMap from "@/components/charts/PakistanMap";
 import FunnelChart from "@/components/charts/FunnelChart";
 import LoanAgingChart from "@/components/charts/LoanAgingChart";
-// import MetricsCards from "@/components/charts/MetricsCards";
 import styles from "./page.module.css";
-
-
-
 
 export default function DashboardPage() {
   const [selectedArea, setSelectedArea] = useState("All");
@@ -27,11 +23,12 @@ export default function DashboardPage() {
   return (
     <div className={styles.container}>
       {/* Top KPIs */}
-      {/* <div className={styles.statsGrid}>
+      <div className={styles.statsGrid}>
+        {/* ...your KPI cards unchanged... */}
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-             <Image src="dashboard-images/total-crop-loans.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/total-crop-loans.svg" alt="Crop Loan Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Total Crop Loans Disbursed</div>
@@ -39,7 +36,7 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-        
+
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
@@ -51,11 +48,11 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-        
+
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-             <Image src="dashboard-images/active-borrowers.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/active-borrowers.svg" alt="Crop Loan Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Active Borrowers</div>
@@ -63,11 +60,11 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-        
+
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-             <Image src="dashboard-images/overdue-accounts.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/overdue-accounts.svg" alt="Crop Loan Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Overdue Accounts</div>
@@ -75,11 +72,11 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-        
+
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-             <Image src="dashboard-images/settled-loans.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/settled-loans.svg" alt="Crop Loan Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>Settled Loans</div>
@@ -87,11 +84,11 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-        
+
         <Card className={styles.statCard}>
           <div className={styles.statContent}>
             <div className={styles.iconWrapper}>
-             <Image src="dashboard-images/npl.svg" alt="Crop Loan Icon" width={44} height={36} />
+              <Image src="dashboard-images/npl.svg" alt="Crop Loan Icon" width={44} height={36} />
             </div>
             <div className={styles.statText}>
               <div className={styles.statLabel}>NPL (Defaults) Rate</div>
@@ -99,20 +96,15 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
-      </div> */}
+      </div>
 
-
-      
-      {/* Main Content - Two Column Layout */}
+      {/* Main Content Grid */}
       <div className={styles.mainContent}>
-        {/* Left Column - Risk Heatmap */}
+        {/* FULL-WIDTH Pakistan map card */}
         <Card className={styles.mapCard}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Crop Risk & Loan Risk Heatmap</h2>
-            <Select
-              value={selectedArea}
-              onValueChange={setSelectedArea}
-            >
+            <Select value={selectedArea} onValueChange={setSelectedArea}>
               <SelectTrigger className={styles.areaSelector}>
                 <SelectValue placeholder="Select Area" />
               </SelectTrigger>
@@ -125,7 +117,7 @@ export default function DashboardPage() {
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className={styles.riskStats}>
             <div className={styles.riskAmount}>
               Rs. 76,000,000 PKR
@@ -133,7 +125,7 @@ export default function DashboardPage() {
             </div>
             <div className={styles.comparedLabel}>Compared to last month</div>
           </div>
-          
+
           <div className={styles.mapContainer}>
             <div className={styles.mapLegend}>
               <div className={styles.legendItem}>
@@ -152,12 +144,12 @@ export default function DashboardPage() {
                 <span className={styles.legendValue}>50 ac</span>
               </div>
             </div>
-            
+
             <div className={styles.map}>
               <PakistanMap />
             </div>
           </div>
-          
+
           <div className={styles.cardFooter}>
             <div className={styles.noteContainer}>
               <InfoIcon size={16} className={styles.infoIcon} />
@@ -166,41 +158,38 @@ export default function DashboardPage() {
               </span>
               <span className={styles.acreage}>500 ac</span>
             </div>
-            
+
             <Button variant="ghost" className={styles.viewAllBtn}>
               View All Applications <ArrowUpRight size={16} className={styles.arrowIcon} />
             </Button>
           </div>
         </Card>
-        
-        {/* Right Column - Applications Funnel */}
+
+        {/* 50% - Funnel */}
         <Card className={styles.funnelCard}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Applications Funnel View</h2>
           </div>
-          
           <div className={styles.funnelContainer}>
             <FunnelChart />
           </div>
-          
           <div className={styles.cardFooter}>
             <Button variant="ghost" className={styles.viewAllBtnFunnel}>
               View All Applications <ArrowUpRight size={16} className={styles.arrowIcon} />
             </Button>
           </div>
         </Card>
+
+        {/* 50% - Loan Aging */}
+        <Card className={styles.loanAgingCard}>
+          <div className={styles.cardHeader}>
+            <h2 className={styles.cardTitle}>Loan Aging Chart (farmers)</h2>
+          </div>
+          <div className={styles.agingChartContainer}>
+            <LoanAgingChart />
+          </div>
+        </Card>
       </div>
-      
-      {/* Bottom Chart - Loan Aging */}
-      <Card className={styles.loanAgingCard}>
-        <div className={styles.cardHeader}>
-          <h2 className={styles.cardTitle}>Loan Aging Chart (farmers)</h2>
-        </div>
-        
-        <div className={styles.agingChartContainer}>
-          <LoanAgingChart />
-        </div>
-      </Card>
     </div>
   );
 }
