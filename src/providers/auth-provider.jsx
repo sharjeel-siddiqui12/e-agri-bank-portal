@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
     // When authenticated: only redirect to dashboard if user just logged in
     // This prevents automatic redirect on page refresh
     if (isAuthenticated && hasJustLoggedIn && (pathname === "/" || pathname === "/login")) {
-      router.replace("/person-category-setup");
+      router.replace("/dashboard");
       setHasJustLoggedIn(false);
     }
   }, [isAuthenticated, isReady, pathname, router, hasJustLoggedIn]);

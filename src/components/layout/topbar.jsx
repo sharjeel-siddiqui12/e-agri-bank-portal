@@ -20,31 +20,32 @@ import { useAuth } from "@/providers/auth-provider";
 
 // Map of routes to page titles - should match what's in the NavigationProvider
 const routeTitleMap = {
-  "/": "Dashboard",
+  "/": "Dashboards",
   "/login": "Login",
-  "/dashboard": "Dashboard",
-  // Master Data routes
-  "/person-category-setup": "Person Category Setup",
-  "/person-category-approval": "Person Category - Approval",
-  "/scs-category-setup": "SCS Category Setup",
-  "/scs-category-approval": "SCS Category - Approval",
-  "/person-stakeholder-mapping": "Person - Stakeholder Mapping",
-  "/person-stakeholder-mapping-approval": "Person - Stakeholder Mapping - Approval",
-  "/kyc-document-setup": "KYC Document Setup",
-  "/kyc-document-mapping": "KYC Document Mapping",
-  "/kyc-document-mapping-approval": "KYC Document Mapping - Approval",
-  "/uom-setup": "UoM Setup",
-  "/uom-category-setup": "UoM Category Setup",
-  "/grade-definition": "Grade Definition",
-  "/grading-parameters": "Grading Parameters",
-  "/commodity-classification": "Commodity Classification",
-  "/commodity-grade-specification": "Commodity Grade Specification",
-  "/commodity-grade-specification-approval": "Commodity Grade Specification - Approval",
-  // Setup routes
-  "/charts-of-accounts": "Charts of Accounts",
-  "/charts-of-accounts-approval": "Charts of Accounts - Approval",
-  "/manual-voucher-entry": "Manual Voucher Entry",
-  "/manual-voucher-entry-approval": "Manual Voucher Entry - Approval",
+  "/dashboard": "Dashboards",
+  // Primary
+  "/onboard-farmer": "Onboard Farmer",
+  "/loan-marketplace": "Loan Marketplace",
+  // Product Management
+  "/product-setup": "Product Setup",
+  "/product-approval": "Product Approval",
+  "/credit-score-setup": "Credit Score Setup",
+  "/preferred-vendor-setup": "Preferred Vendor Setup",
+  "/preferred-vendor-setup-approval": "Preferred Vendor Setup - Approval",
+  // Loan Operations
+  "/loan-requests": "Loan Requests",
+  "/loan-assessments": "Loan Assessments",
+  "/loan-approvals": "Loan Approvals",
+  "/loan-disbursements": "Loan Disbursements",
+  "/loan-monitoring": "Loan Monitoring",
+  // Loan Settlements
+  "/auction-requests-approval": "Auction Requests Approval",
+  "/loan-settlements": "Loan Settlements",
+  // Resource Onboarding
+  "/resource-onboarding": "Resource Onboarding",
+  // Access Rights Management
+  "/user-role-define": "User Role Define",
+  "/user-role-assign": "User Role Assign",
 };
 
 export function Topbar() {
