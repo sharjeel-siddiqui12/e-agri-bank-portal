@@ -1,0 +1,547 @@
+/* Product Setup Page Styles */
+.page {
+  background: #f8f9fa;
+  font-family: var(--font-inter);
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: visible;
+}
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 24px;
+  margin-left: 0;
+}
+
+.form {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+  margin-bottom: 32px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formRowFull {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  grid-column: span 2;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 0 12px;
+  background: #fff;
+  color: #1f2937;
+  font-weight: 400;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #375515;
+  box-shadow: 0 0 0 3px rgba(55, 85, 21, 0.1);
+}
+
+.inputDisabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.multiSelectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  min-height: 28px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background: #375515;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.removeTagBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background 0.2s;
+  width: 16px;
+  height: 16px;
+}
+
+.removeTagBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.amountRow {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.amountInput {
+  flex: 1;
+}
+
+.currencyLabel {
+  padding: 0 12px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  min-width: 50px;
+  justify-content: center;
+}
+
+.percentRow {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.percentInput {
+  flex: 1;
+}
+
+.percentLabel {
+  padding: 0 12px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  min-width: 30px;
+  justify-content: center;
+}
+
+.buttonRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  justify-content: flex-start;
+}
+
+.saveBtn {
+  background: #375515;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.07rem;
+  padding: 12px 35px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.saveBtn:hover {
+  background: #3a5100;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.3);
+}
+
+.cancelBtn {
+  background: #fff;
+  color: #375515;
+  border: 2px solid #375515;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 35px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.cancelBtn:hover {
+  background: #f6f6f4;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.2);
+}
+
+.tableWrap {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow-x: auto;
+  overflow-y: visible;
+  margin: 0 auto 24px;
+  max-width: 1200px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.th {
+  background: #f9fafb;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tr {
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.tr:hover {
+  background: #f9fafb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tr:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.td {
+  padding: 12px 16px;
+  color: #1f2937;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.actionTd {
+  text-align: center;
+  width: 60px;
+}
+
+.editBtn {
+  background: none;
+  border: none;
+  color: #375515;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn:hover {
+  background: #f3f4f6;
+  color: #3a5100;
+  transform: none;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.approved {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.statusBadge:hover {
+  /* Remove transform that can cause layout shifts */
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form {
+    padding: 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  
+  .formRowFull {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .form {
+    padding: 20px;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .saveBtn,
+  .cancelBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tableWrap {
+    overflow-x: auto;
+    margin: 16px -16px 0 -16px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .table {
+    min-width: 1000px;
+  }
+
+  .th,
+  .td {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Enhanced visual effects for professional look */
+.table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.table tbody tr:nth-child(odd) {
+  background: white;
+}
+
+.table tbody tr:hover {
+  background: #f3f4f6 !important;
+}
+
+/* Smooth transitions for all interactive elements */
+.input,
+.tag,
+.saveBtn,
+.cancelBtn,
+.editBtn,
+.statusBadge {
+  transition: all 0.2s ease;
+}
+
+/* Form field alignment improvements */
+.formRow .input,
+.formRow .multiSelectContainer {
+  align-self: stretch;
+}
+
+.amountRow,
+.percentRow {
+  align-items: stretch;
+  height: 42px;
+}
+
+.currencyLabel,
+.percentLabel {
+  flex-shrink: 0;
+}
+
+/* Enhanced focus states for accessibility */
+.saveBtn:focus,
+.cancelBtn:focus,
+.editBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(55, 85, 21, 0.2);
+}
+
+.input:focus {
+  outline: none;
+  border-color: #375515;
+  box-shadow: 0 0 0 3px rgba(55, 85, 21, 0.1);
+}
+
+/* Professional hover effects for buttons */
+.saveBtn:active {
+  transform: translateY(0);
+}
+
+.cancelBtn:active {
+  transform: translateY(0);
+}
+
+/* Tag animations */
+.tag:hover {
+  /* Remove transform that can cause layout shifts */
+  transform: none;
+  box-shadow: 0 2px 8px rgba(55, 85, 21, 0.3);
+}
+
+/* Grid alignment consistency */
+.grid > .formRow,
+.grid > .formRowFull {
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Table professional styling */
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Additional spacing and layout refinements */
+.heading {
+  letter-spacing: -0.02em;
+}
+
+.form {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.tableWrap {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Professional color consistency */
+.input:focus,
+.saveBtn,
+.tag {
+  --primary-color: #375515;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+}
+
+.saveBtn {
+  background: var(--primary-color);
+}
+
+.tag {
+  background: var(--primary-color);
+}
+
+/* Date input styling */
+.input[type="date"] {
+  color-scheme: light;
+}
+
+/* Fix all layout and scrolling issues */
+.page * {
+  transform: none !important;
+}
+
+.page,
+.form,
+.tableWrap,
+.table {
+  overflow-x: visible;
+  overflow-y: visible;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+/* Ensure no fixed heights cause issues */
+.tableWrap {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.table {
+  height: auto !important;
+  table-layout: auto !important;
+}
