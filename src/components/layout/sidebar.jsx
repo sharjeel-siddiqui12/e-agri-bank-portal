@@ -33,7 +33,7 @@ import {
 // Primary top-level items (matches: dashboard tile, onboarding, marketplace)
 const primaryItems = [
   { name: "Dashboards", icon: LayoutDashboard, href: "/dashboard" },
-  { name: "Onboard Farmer", icon: UserPlus, href: "/onboard-farmer" },
+  { name: "Farmer Registration Request", icon: UserPlus, href: "/farmer-registration-request" },
   { name: "Loan Marketplace", icon: Store, href: "/loan-marketplace" },
 ];
 

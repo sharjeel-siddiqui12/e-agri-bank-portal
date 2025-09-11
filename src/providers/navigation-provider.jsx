@@ -7,12 +7,12 @@ const NavigationContext = createContext({});
 
 // Map routes to page titles - aligned with sidebar
 const routeTitleMap = {
-  
+
   "/": "Dashboards",
   "/login": "Login",
   "/dashboard": "Dashboards",
   // Primary
-  "/onboard-farmer": "Onboard Farmer",
+  "/farmer-registration-request": "Farmer Registration Request",
   "/loan-marketplace": "Loan Marketplace",
   // Product Management
   "/product-setup": "Product Setup",

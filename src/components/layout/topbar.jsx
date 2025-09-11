@@ -24,7 +24,7 @@ const routeTitleMap = {
   "/login": "Login",
   "/dashboard": "Dashboards",
   // Primary
-  "/onboard-farmer": "Onboard Farmer",
+  "/farmer-registration-request": "Farmer Registration Request",
   "/loan-marketplace": "Loan Marketplace",
   // Product Management
   "/product-setup": "Product Setup",
