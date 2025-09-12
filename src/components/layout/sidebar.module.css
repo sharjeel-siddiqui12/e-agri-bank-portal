@@ -8,12 +8,15 @@
   top: 0;
   transition: width 0.3s ease;
   width: 250px;
+  flex: 0 0 250px; /* prevent shrinking in flex row */
+  flex-shrink: 0;
   font-size: 1rem;
   font-family: var(--font-inter);
 }
 
 .sidebar.collapsed {
   width: 64px;
+  flex-basis: 64px; /* keep fixed basis when collapsed */
 }
 
 .collapseButton {

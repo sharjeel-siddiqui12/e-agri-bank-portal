@@ -121,18 +121,6 @@ body {
   padding: 0;
   background-color: #f9fafb;
   color: #111827;
-  overflow-x: hidden;
-}
-
-/* Fix scrolling issues */
-html, body {
-  height: auto;
-  min-height: 100vh;
-}
-
-/* Remove any transforms that could cause layout shifts */
-* {
-  transform: none !important;
 }
 
 * {

@@ -13,7 +13,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",  // define CSS variable
   display: "swap",
-  adjustFontFallback: true,
 });
 
 export default function RootLayout({ children }) {
@@ -29,9 +28,9 @@ export default function RootLayout({ children }) {
             <main className="flex-1 bg-white">{children}</main>
           ) : (
             <NavigationProvider>
-              <div className="flex h-screen overflow-hidden">
+              <div className="flex min-h-screen">
                 <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
-                <div className="flex flex-col flex-1 overflow-auto">
+                <div className="flex flex-col flex-1 min-w-0">
                   <Topbar />
                   <main className="flex-1 bg-white">{children}</main>
                 </div>
