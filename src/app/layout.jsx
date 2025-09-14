@@ -28,9 +28,9 @@ export default function RootLayout({ children }) {
             <main className="flex-1 bg-white">{children}</main>
           ) : (
             <NavigationProvider>
-              <div className="flex min-h-screen">
+              <div className="flex h-screen overflow-hidden">
                 <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
-                <div className="flex flex-col flex-1 min-w-0">
+                <div className="flex flex-col flex-1 overflow-auto">
                   <Topbar />
                   <main className="flex-1 bg-white">{children}</main>
                 </div>
