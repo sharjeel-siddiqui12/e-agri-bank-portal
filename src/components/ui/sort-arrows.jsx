@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/orders/orders.module.css";
+import styles from "../orders.module.css";
 
 export default function SortArrows({ order }) {
   return (
