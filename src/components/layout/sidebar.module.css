@@ -86,11 +86,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 5px 16px;
   font-size: 0.875rem;
   color: #375515;
   font-weight: 600;
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
 
 .sectionIcon {
@@ -115,7 +115,7 @@
   align-items: center;
   gap: 12px;
   margin: 2px 20px;
-  padding: 8px 12px;
+  padding: 3px 12px;
   border-radius: 6px;
   font-size: 0.85rem;
   transition: all 0.2s ease;

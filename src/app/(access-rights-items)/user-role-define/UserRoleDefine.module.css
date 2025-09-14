@@ -1,0 +1,207 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #111827; /* gray-900 */
+}
+
+.pageBg {
+  min-height: 100vh;
+  background: #FAFAFA;
+  padding: 2rem;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1D2739;
+  margin-bottom: 6px;
+}
+.subheading {
+  font-size: 1rem;
+  color: #6F7682;
+  margin-bottom: 30px;
+}
+.definedBox {
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px 30px;
+  margin-bottom: 36px;
+  box-shadow: 0 2px 8px 0 #e6e6e66a;
+}
+.definedRolesLabel {
+  font-size: 1rem;
+  color: #101727;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.roleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.roleName {
+  color: #101727;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.roleAccessList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.accessTag {
+  background: #48602C;
+  color: #fff;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  padding: 5px 14px 5px 14px;
+  margin-right: 2px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+.tagRemoveBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1em;
+  margin-left: 7px;
+  cursor: pointer;
+  margin-top: 1px;
+  padding: 0;
+  line-height: 1;
+}
+.formRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+}
+.inputCol {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 110px;
+  justify-content: flex-start;
+
+}
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 8px;
+}
+.roleInput {
+  height: 48px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  border: 1.5px solid #E6E6E6 !important;
+  background:  #FAFAFA !important;
+  box-shadow: none !important;
+  padding-left: 16px !important;
+}
+.accessInputWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.dropdownBtn {
+  height: 48px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #E6E6E6 !important;
+  background: #FAFAFA !important;
+  box-shadow: none !important;
+  color: #6F7682 !important;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.dropdownBtn:hover {
+  background: #F3F7EC !important;
+  border-color: #48602C !important;
+}
+
+.chevronIcon {
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.dropdownMenu {
+  min-width: 300px !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 18px 0 rgba(230, 230, 230, 0.4) !important;
+  border: 1px solid #E6E6E6 !important;
+  z-index: 1000 !important;
+  padding: 8px 0 !important;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.dropdownMenuItem {
+  font-size: 1rem !important;
+  padding: 12px 24px !important;
+  color: #48602C !important;
+  background: none !important;
+  cursor: pointer !important;
+  transition: background 0.13s !important;
+  border: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.dropdownMenuItem:hover {
+  background: #F3F7EC !important;
+}
+
+.dropdownMenuItem:focus {
+  background: #F3F7EC !important;
+  outline: none !important;
+}
+.selectedAccessTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.plusCol {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding-left: 12px;
+}
+.plusBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #48602C;
+  background: #FAFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.plusBtn:hover {
+  background: #F3F7EC;
+  border-color: #48602C;
+}
+.plusIcon {
+  width: 28px;
+  height: 28px;
+}
