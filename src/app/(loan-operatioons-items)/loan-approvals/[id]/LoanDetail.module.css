@@ -1,0 +1,1498 @@
+/* Predictive Outcome (exact like image) */
+.predictOutcomeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  margin: 18px 0 0 0;
+}
+.predictOutcomeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.predictOutcomeLabel {
+  color: #222;
+  font-size: 17px;
+  font-weight: 500;
+  margin-left: 0;
+}
+.predictOutcomeValue {
+  color: #375515;
+  font-size: 22px;
+  font-weight: 700;
+  margin-right: 0;
+  letter-spacing: 0.5px;
+}
+/* Farmer Profile Snapshot (exact like image) */
+.profileSnapshotGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  row-gap: 22px;
+  column-gap: 0;
+  align-items: center;
+  min-height: 320px;
+}
+.profileSnapshotLabels {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 6px;
+}
+.profileSnapshotValues {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-end;
+  padding-top: 6px;
+}
+.profileValue img {
+  display: block;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: 0;
+}
+.card {
+  border-radius: 18px;
+  box-shadow: none;
+  background: #fafbfa;
+}
+.cardTitle {
+  color: #1a2233;
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.profileLabel {
+  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+}
+.profileValue {
+  color: #222;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: right;
+}
+.docImg {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 0 0 1px #e2e2e2;
+}
+/* Spending Tracker Improved UI */
+.cardTitleBlack {
+  color: #1a2233;
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.spendingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+.spendingLabel {
+  color: #222;
+  font-weight: 500;
+}
+.spendingValue {
+  color: #888;
+  font-weight: 600;
+  font-size: 17px;
+}
+.spendingBreakdownBtn {
+  width: 100%;
+  padding: 12px 0;
+  border: 1.5px solid #375515;
+  border-radius: 16px;
+  background: #fff;
+  color: #375515;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 18px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+}
+.spendingBreakdownBtn:hover {
+  background: #f6faf4;
+  color: #375515;
+  border-color: #375515;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e8e8e8;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafbfc;
+}
+
+.modalTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1a1d23;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.modalCloseBtn {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modalCloseBtn:hover {
+  background: #e9ecef;
+  color: #333;
+  border-color: #ddd;
+}
+
+.modalBody {
+  padding: 28px;
+}
+
+.breakdownTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.breakdownHeader {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr 0.8fr;
+  gap: 24px;
+  padding: 16px 0;
+  font-weight: 600;
+  color: #555;
+  font-size: 15px;
+  border-bottom: 2px solid #e8eaed;
+  background: #f8f9fa;
+  margin: 0 -28px 0 -28px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+.breakdownHeader div:last-child {
+  text-align: right;
+}
+
+
+.breakdownRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr 0.8fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid #f0f2f4;
+  font-size: 15px;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.breakdownRow:hover {
+  background-color: #fafbfc;
+}
+
+.breakdownRow:last-child {
+  border-bottom: none;
+}
+
+.breakdownRow div:first-child {
+  font-weight: 500;
+  color: #444;
+}
+
+.breakdownRow div:nth-child(2) {
+  color: #666;
+}
+
+.breakdownRow div:last-child {
+  font-weight: 600;
+  text-align: right;
+  color: #2d3748;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Weather Pattern Improved Section */
+body,
+html {
+  font-family: var(--font-inter);
+}
+
+.weatherList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.weatherRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.weatherLabelBlock {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.weatherLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.weatherSub {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.weatherDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #375515;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.page {
+  background: #fafafa;
+  min-height: 100vh;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.title {
+  font-size: 22px;
+  font-weight: 600;
+}
+.mono {
+  font-variant-numeric: tabular-nums;
+  color: #7a7a7a;
+}
+.headerActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- SUMMARY STRIP (tight, aligned like reference) ---------- */
+.kvGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* responsive columns */
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.kvItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #fafafa; /* subtle contrast */
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.kvLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kvValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  word-break: break-word;
+}
+
+/* Compact variant for summary header */
+.summaryCompact .kvGrid {
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+}
+.summaryCompact .kvItem {
+  gap: 2px;
+  padding: 8px 10px;
+}
+.summaryCompact .kvLabel {
+  font-size: 12px;
+}
+.summaryCompact .kvValue {
+  font-size: 14px;
+}
+
+/* ---------- CHEVRON TABS (exact look & feel) ---------- */
+.chevBar {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 20px;
+  user-select: none;
+  height: 60px;
+}
+
+.chev {
+  position: relative;
+  height: 100%;
+  padding: 0 20px 0 30px;
+  border: none;
+  cursor: pointer;
+  background: #edefe7;
+  color: #3c3c3c;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 50%,
+    calc(100% - 20px) 100%,
+    0 100%,
+    20px 50%
+  );
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.chev:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.chevFirst {
+  padding-left: 10px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 50%,
+    calc(100% - 20px) 100%,
+    0 100%
+  );
+}
+
+.chevLast {
+  padding-right: 10px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%);
+}
+
+.chevDone {
+  background: #375515;
+  color: #ffffff;
+}
+
+.chevActive {
+  background: #375515;
+  color: #fff;
+}
+
+.chevLabel {
+  font-size: 15px;
+  white-space: wrap;
+  text-align: center;
+}
+
+/* Hide shadcn Tabs trigger bar – we render our own chevrons */
+/* .hiddenTabsList {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+} */
+.hiddenTabsList {
+  display: none;
+}
+
+/* ---------- LAYOUT HELPERS ---------- */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.twoColWideRight {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 16px;
+}
+.threeCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 1100px) {
+  .kvGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .twoCol,
+  .twoColWideRight,
+  .threeCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 14px;
+}
+.cardTitle {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.cardTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* KYC left panel */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  column-gap: 14px;
+  row-gap: 10px;
+}
+.profileLabel {
+  color: #666;
+}
+.profileValue {
+  font-weight: 500;
+}
+.docImgRow {
+  display: flex;
+  gap: 10px;
+}
+.docImg {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+}
+
+/* KYC right panel */
+.kvRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+}
+.kvLabelSm {
+  color: #666;
+}
+.kvValueRight {
+  font-weight: 600;
+}
+.ownershipBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background: #f7f7f7;
+  padding: 8px 10px;
+  margin-left: 8px;
+}
+.mapShot {
+  margin-top: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mapShot img {
+  width: 100%;
+  display: block;
+}
+.mapActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Inputs */
+.inputLabel {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+.select,
+.input,
+.numInput {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: #fff;
+}
+.numInput {
+  width: 64px;
+  text-align: right;
+}
+
+/* Footer bar */
+.footerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 14px 10px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+}
+.footerActions {
+  display: flex;
+  gap: 10px;
+}
+.primaryBtn {
+  cursor: pointer;
+  background: #375515 !important;
+  color: #fff !important;
+  border-color: #375515 !important;
+}
+
+.mapButton {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Advisory pills and charts */
+.filtersRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cardTitleBlack {
+  color: #000;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.chartRelative {
+  position: relative;
+}
+.chartNoteTopRight {
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  color: #6b7280;
+  font-size: 12px;
+}
+.pill {
+  padding: 6px 10px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  color: #3a3a3a;
+  font-weight: 500;
+  font-size: 13px;
+}
+/* removed legacy custom column chart styles (replaced with Recharts) */
+
+/* removed legacy custom horizontal bar styles (replaced with Recharts) */
+
+/* Risk profiling */
+.subCard {
+  background: #f8f8f8;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.subCardHead {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.tableHeader,
+.tableRow,
+.tableFooter {
+  display: grid;
+  grid-template-columns: 1fr 70px 40px 40px 70px 80px;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px dashed #e9e9e9;
+}
+.tableHeader {
+  color: #666;
+  font-size: 13px;
+  border-bottom: none;
+  padding-bottom: 8px;
+}
+.tableFooter {
+  font-weight: 600;
+  border-bottom: none;
+}
+.num,
+.right {
+  text-align: right;
+}
+.muted {
+  color: #777;
+}
+
+.sideCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sideCard {
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 12px;
+}
+.sideCardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.badge {
+  background: #eef1e8;
+  color: #375515;
+  border-radius: 9999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.sideItems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sideRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.statusHealthy {
+  color: #375515;
+  font-weight: 600;
+}
+
+/* Repayment */
+.saleStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+.pillGreen {
+  background: #5d882d;
+  color: #ffffff;
+  padding: 5px 15px 5px 10px;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: none;
+}
+.pillGreenDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #375515;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* ---- Meta row above pills ---- */
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin: 45px 0 35px;
+}
+.metaLabel {
+  color: #777;
+}
+.metaValue {
+  font-weight: 600;
+}
+
+/* ---- Pills ---- */
+.pillGroup {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0 35px;
+}
+.pill {
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: #eceee7;
+  border: 1px solid #d9dccf;
+  font-weight: 600;
+  color: #3e3e3e;
+}
+.pillActive {
+  background: #375515;
+  color: #fff;
+  border-color: #375515;
+}
+
+/* removed additional legacy chart helpers */
+
+/* ---- Area Analysis badges ---- */
+.badgeSoft {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: #f4f6f1;
+  color: #3b4a2a;
+  border: 1px solid #e2e7da;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge {
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 12px;
+}
+.badgeOk {
+  background: #5d882d;
+  color: #fff;
+}
+.badgeInfo {
+  background: #e7f1ff;
+  color: #245fa6;
+  border: 1px solid #d3e5ff;
+}
+.badgeWarn {
+  background: #fff7e6;
+  color: #9a6a00;
+  border: 1px solid #ffe5b3;
+}
+
+/* Weather list & soil */
+.kvList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.soilList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.npkRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.npkBadge {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 2px solid #5d882d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #375515;
+}
+
+/* NPK Circular Progress Indicators */
+.npkCircularRow {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.npkCircularItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.circularProgress {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressSvg {
+  transform: rotate(-90deg);
+}
+
+.progressCircle {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.progressLabel {
+  position: absolute;
+  font-size: 18px;
+  font-weight: 700;
+  color: #375515;
+}
+
+.npkLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+}
+
+/* Soil Metrics */
+.soilMetricsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.soilMetricRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.soilMetricInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.soilMetricLabel {
+  color: #666;
+  font-size: 14px;
+}
+
+.soilMetricValue {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+.soilWarning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.warningIcon {
+  color: #856404;
+  font-size: 14px;
+}
+
+.warningText {
+  color: #856404;
+  flex: 1;
+}
+
+.soilRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.soilHint {
+  margin-top: 6px;
+  color: #666;
+  background: #f7f7f7;
+  border: 1px solid #e6e6e6;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+/* ---- Inputs table ---- */
+.tableWrapper {
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.totalRow td {
+  background: #f7f7f7;
+}
+.bold {
+  font-weight: 700;
+}
+
+/* ---- Predictive KPIs ---- */
+.predictGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 4px;
+}
+.predictRow {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+}
+.predictLabel {
+  font-size: 16px;
+  color: #444;
+}
+.predictValue {
+  font-size: 28px;
+  font-weight: 800;
+  color: #375515;
+}
+
+.chartSm {
+  height: 240px;
+}
+
+/* ---- Compact styles for Approval tab ---- */
+.approvalCompact .cardTitle {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.approvalCompact .input,
+.approvalCompact .select {
+  height: 34px;
+  font-size: 14px;
+  padding: 0 10px;
+}
+.approvalCompact .kvLabelSm,
+.approvalCompact .kvValueRight {
+  font-size: 14px;
+}
+.approvalCompact .footerBar {
+  padding: 10px 8px;
+}
+
+/* ---- Compact styles for KYC tab ---- */
+.kycCompact .cardTitle {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.kycCompact .profileLabel {
+  font-size: 14px;
+}
+.kycCompact .profileValue {
+  font-size: 14px;
+}
+.kycCompact .docImg {
+  width: 100px;
+  height: 60px;
+}
+.kycCompact .kvLabelSm,
+.kycCompact .kvValueRight {
+  font-size: 14px;
+}
+.kycCompact .ownershipBox {
+  padding: 6px 8px;
+}
+.kycCompact .footerBar {
+  padding: 10px 8px;
+}
+
+/* ---- Compact styles for Monitoring tab ---- */
+.monitoringCompact .cardTitle {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.monitoringCompact .kvLabelSm,
+.monitoringCompact .kvValueRight {
+  font-size: 14px;
+}
+.monitoringCompact .statusHealthy {
+  font-size: 14px;
+}
+.monitoringCompact .mapShot {
+  margin-top: 8px;
+}
+.monitoringCompact .footerBar {
+  padding: 10px 8px;
+}
+
+/* ---- Compact styles for Repayment tab ---- */
+.repaymentCompact .cardTitle {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.repaymentCompact .sideRow {
+  font-size: 14px;
+}
+.repaymentCompact .pillGreen {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+.repaymentCompact .footerBar {
+  padding: 10px 8px;
+}
+
+/* ---- Compact styles for Risk Profiling tab ---- */
+.riskCompact .cardTitle {
+  font-size: 1rem;
+}
+.riskCompact .subCard {
+  padding: 8px;
+}
+.riskCompact .subCardHead {
+  margin-bottom: 4px;
+}
+.riskCompact .tableHeader {
+  font-size: 12px;
+}
+.riskCompact .tableRow {
+  font-size: 14px;
+}
+.riskCompact .tableFooter {
+  font-size: 14px;
+}
+.riskCompact .numInput {
+  height: 34px;
+}
+.riskCompact .sideCard {
+  padding: 10px;
+}
+.riskCompact .badge {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+.riskCompact .footerBar {
+  padding: 10px 8px;
+}
+
+/* ---- Risk Profiling Tab Styles (exact like image) ---- */
+.riskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 4px;
+}
+
+.riskTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.riskTotalScore {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.riskMainContent {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.riskLeftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.riskRightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Risk Section Cards */
+.riskSectionCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.riskSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.riskSectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.riskWeightText {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.riskSectionScore {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.riskScoreText {
+  font-style: italic;
+}
+
+/* Risk Table Styling */
+.riskTableContent {
+  padding: 0;
+}
+
+.riskTableHeader {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
+
+.riskTableHeaderLabel {
+  text-align: left;
+}
+
+.riskTableHeaderMin,
+.riskTableHeaderMax,
+.riskTableHeaderWeight,
+.riskTableHeaderObtained {
+  text-align: center;
+}
+
+.riskTableRow {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f8f9fa;
+  font-size: 14px;
+  color: #374151;
+  align-items: center;
+}
+
+.riskTableRow:hover {
+  background: #f9fafb;
+}
+
+.riskTableLabel {
+  text-align: left;
+  font-weight: 500;
+}
+
+.riskTableScore,
+.riskTableMin,
+.riskTableMax,
+.riskTableWeight,
+.riskTableObtained {
+  text-align: center;
+  font-weight: 400;
+}
+
+.riskTableFooter {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #f3f4f6;
+  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a1a;
+  border-top: 2px solid #e5e7eb;
+}
+
+.riskTableFooterLabel {
+  text-align: left;
+}
+
+.riskTableFooterValue {
+  text-align: center;
+}
+
+/* Risk Metric Cards */
+.riskMetricCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.riskMetricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.riskMetricTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.riskStatusPill {
+  background: #375515;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.riskMetricContent {
+  padding: 16px 20px;
+}
+
+.riskMetricRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.riskMetricRow:last-child {
+  border-bottom: none;
+}
+
+.riskMetricLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  flex: 1;
+}
+
+.riskMetricValue {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: right;
+  flex: 1;
+}
+
+/* Underwriter Engagement */
+.underwriterCard {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.underwriterTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.underwriterQuestion {
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.underwriterRadioGroup {
+  display: flex;
+  gap: 24px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radioLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* Responsive Design for Risk Profiling */
+@media (max-width: 1024px) {
+  .riskMainContent {
+    grid-template-columns: 1fr;
+  }
+  
+  .riskRightColumn {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .riskHeader {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .riskTableHeader,
+  .riskTableRow,
+  .riskTableFooter {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .riskTableHeaderLabel,
+  .riskTableLabel,
+  .riskTableFooterLabel {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .riskTableScore,
+  .riskTableMin,
+  .riskTableMax,
+  .riskTableWeight,
+  .riskTableObtained,
+  .riskTableFooterValue {
+    text-align: left;
+  }
+  
+  .underwriterRadioGroup {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ---- Repayment Tab Card Styling (exact like image) ---- */
+.repaymentCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.repaymentCardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.repaymentRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 4px 0;
+}
+
+.repaymentRow:last-child {
+  margin-bottom: 0;
+}
+
+.repaymentLabel {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  flex: 1;
+}
+
+.repaymentValue {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: right;
+  flex: 1;
+}
+
+.statusButton {
+  background: #375515;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}

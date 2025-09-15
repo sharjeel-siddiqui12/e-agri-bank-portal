@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import debounce from "lodash/debounce";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-loan";
@@ -160,6 +161,7 @@ function sortRows(rows, field, order) {
 
 /* --------------------------------- Page -------------------------------- */
 export default function LoanRequestsPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -378,7 +380,12 @@ export default function LoanRequestsPage() {
               )}
 
               {pageRows.map((r, i) => (
-                <TableRow key={r.id + i} className={styles.tableRow}>
+                <TableRow
+                  key={r.id + i}
+                  className={styles.tableRow}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => router.push(`/loan-requests/${r.id}`)}
+                >
                   <TableCell className={styles.baseCellMono}>{r.id}</TableCell>
 
                   <TableCell className={styles.userCell}>
@@ -422,7 +429,10 @@ export default function LoanRequestsPage() {
                     <Button
                       variant="ghost"
                       className={styles.eyeBtn}
-                      onClick={() => alert(`Open request ${r.id}`)}
+                      onClick={e => {
+                        e.stopPropagation();
+                        router.push(`/loan-requests/${r.id}`);
+                      }}
                     >
                       <Eye className={styles.eyeIcon} color="#5D882D" size={22} strokeWidth={2.2} />
                     </Button>
