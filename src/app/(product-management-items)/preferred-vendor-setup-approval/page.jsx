@@ -1,6 +1,9 @@
 "use client";
 
 import { Suspense, useEffect, useMemo, useState } from "react";
+// Avoid static prerendering; this page depends on client-only search params/localStorage
+export const dynamic = "force-dynamic";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./PreferredVendorApproval.module.css";
 import { Button } from "@/components/ui/button";
