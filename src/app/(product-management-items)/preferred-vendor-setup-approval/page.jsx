@@ -93,7 +93,7 @@ function recordKeyOf(row) {
   return `${row.productId}|${row.inputType}|${row.preferredVendor}`;
 }
 
-export default function PreferredVendorSetupApprovalPage() {
+function PreferredVendorSetupApprovalContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [pendingData, setPendingData] = useState(pendingVendorData);
@@ -288,7 +288,6 @@ export default function PreferredVendorSetupApprovalPage() {
   }, [searchParams?.toString()]);
 
   return (
-    <Suspense fallback={null}>
     <div className={styles.page}>
       <h1 className={styles.heading}>Preferred Vendor Setup - Approval</h1>
 
@@ -427,6 +426,13 @@ export default function PreferredVendorSetupApprovalPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PreferredVendorSetupApprovalPage() {
+  return (
+    <Suspense fallback={null}>
+      <PreferredVendorSetupApprovalContent />
     </Suspense>
   );
 }
