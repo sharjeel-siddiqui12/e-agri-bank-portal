@@ -4,7 +4,7 @@ import { Suspense, useEffect, useMemo, useState } from "react";
 // Avoid static prerendering; this page depends on client-only search params/localStorage
 export const dynamic = "force-dynamic";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import styles from "./PreferredVendorApproval.module.css";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -95,7 +95,6 @@ function recordKeyOf(row) {
 
 function PreferredVendorSetupApprovalContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [pendingData, setPendingData] = useState(pendingVendorData);
   const [approvedDataState, setApprovedDataState] = useState(approvedVendorData);
   const [selectAll, setSelectAll] = useState(false);
@@ -281,11 +280,7 @@ function PreferredVendorSetupApprovalContent() {
     applyUpdatesFromLocalStorage();
   }, []);
 
-  // Run again every time ts changes (ensures subsequent saves are processed)
-  useEffect(() => {
-    // any change in query string (we push ts=...) will trigger this
-    applyUpdatesFromLocalStorage();
-  }, [searchParams?.toString()]);
+  // When this page is navigated to, it mounts fresh and applies updates on mount.
 
   return (
     <div className={styles.page}>
