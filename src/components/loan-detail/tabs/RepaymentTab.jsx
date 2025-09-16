@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button-loan";
-import styles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css";
+import styles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css";
 
 const Row = ({ k, v, unit }) => (
   <div className={styles.repaymentRow}>

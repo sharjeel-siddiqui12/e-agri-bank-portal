@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button-loan";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import styles from "@/app/(loan-operatioons-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
+import styles from "@/app/(loan-operations-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
 
 const InfoRow = ({ label, value, className = "" }) => (
   <div className={`${styles.infoRow} ${className}`}>
@@ -19,23 +19,23 @@ export default function ApplicationPendingPage() {
   const [rowData, setRowData] = useState(null);
 
   const REGIONS = [
-    { main: "Sialkot", sub: "Pasrur" },
-    { main: "Sialkot", sub: "Sambrial" },
-    { main: "Rawalpindi", sub: "Murree" },
-    { main: "Gujrat", sub: "Kharian" },
     { main: "Faisalabad", sub: "Jaranwala" },
+    { main: "Faisalabad", sub: "Tandlianwala" },
+    { main: "Faisalabad", sub: "Samundri" },
+    { main: "Multan", sub: "Shujabad" },
+    { main: "Lahore", sub: "Model Town" },
   ];
   const NAMES = [
-    "Sher Ali",
-    "Barkat Ali",
-    "Niaz Ahmed",
-    "Sultan Ahmed",
-    "Liaqat Ali",
-    "Ashfaq Mahmood",
-    "Abdul Sattar",
-    "Haji Karim Bakhsh",
-    "Manzoor Hussain",
+    "Muhammad Akram",
+    "Ghulam Rasool",
+    "Allah Ditta",
+    "Noor Muhammad",
+    "Muneeb Ahmed",
+    "Ali Raza",
+    "Ahmed Khan",
+    "Hassan Javed",
     "Bilal Aslam",
+    "Usman Tariq",
   ];
   const LOAN_TYPES = ["Crop Loan", "Agri - Production Loan"];
   const formatAmount = (n) => (typeof n === "number" ? n.toLocaleString("en-US") : n);
@@ -53,14 +53,14 @@ export default function ApplicationPendingPage() {
       type,
       amount,
       province: "Punjab",
-      tehsil: `${region.main}, ${region.sub || "Jaranwala"}`,
+      tehsil: `${region.main}, ${region.sub || "Samundri"}`,
       crop: "Wheat",
     };
   }
 
   function buildRecordFromRow(idStr, row) {
     if (!row) return null;
-    const region = row.region || { main: "Sialkot", sub: "Pasrur" };
+    const region = row.region || { main: "Faisalabad", sub: "Jaranwala" };
     return {
       id: row.id || idStr,
       name: row.name,
@@ -79,7 +79,7 @@ export default function ApplicationPendingPage() {
   useEffect(() => {
     try {
       if (typeof window !== "undefined" && window.sessionStorage && id) {
-        const raw = window.sessionStorage.getItem(`loan-monitoring:row:${id}`);
+        const raw = window.sessionStorage.getItem(`loan-assessments:row:${id}`);
         if (raw) setRowData(JSON.parse(raw));
       }
     } catch (_) {}
@@ -167,13 +167,13 @@ export default function ApplicationPendingPage() {
                 <InfoRow label="Crop Location" value="Warehouse" />
                 <InfoRow
                   label="Warehouse Address"
-                  value={`${rec.region.main}, ${rec.region.sub || "Jaranwala"} in ${rec.tehsil} Tehsil.`}
+                  value={`${rec.region.main}, ${rec.region.sub || "Samundri"} in ${rec.tehsil} Tehsil.`}
                 />
                 <InfoRow label="Province" value={rec.province} />
                 <InfoRow label="Teshsil/District" value={rec.tehsil} />
                 <InfoRow
                   label="Market Committee Name"
-                  value="The Market Committee, Sialkot"
+                  value="The Market Committee, Faisalabad"
                 />
                 <InfoRow label="Dispute Handling" value="Market Committee" />
               </CardContent>
@@ -240,13 +240,10 @@ export default function ApplicationPendingPage() {
         <div className={`${styles.footerBar} ${styles.repaymentCompact}`}>
           <div />
           <div className={styles.footerActions}>
-            <Button variant="outline" onClick={() => alert("Report generated")}>
+            <Button variant="outline" onClick={() => alert("Report generated")}> 
               Generate Report
             </Button>
-            <Button
-              className={styles.primaryBtn}
-              onClick={() => alert("Marked as completed")}
-            >
+            <Button className={styles.primaryBtn} onClick={() => alert("Marked as completed")}>
               Mark as Completed
             </Button>
           </div>

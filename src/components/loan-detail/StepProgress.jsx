@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css";
+import styles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css";
 
 export default function StepProgress({ steps, activeIndex = 0, onStepClick }) {
   return (

@@ -11,8 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import styles from "@/app/(loan-operatioons-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
-import detailStyles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css";
+import styles from "@/app/(loan-operations-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
+import detailStyles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css";
 
 const InfoRow = ({ label, value, className = "" }) => (
   <div className={`${styles.infoRow} ${className}`}>

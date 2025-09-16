@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button-loan";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import styles from "@/app/(loan-operatioons-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
+import styles from "@/app/(loan-operations-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
 
 const InfoRow = ({ label, value, className = "" }) => (
   <div className={`${styles.infoRow} ${className}`}>

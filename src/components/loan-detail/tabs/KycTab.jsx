@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button-loan";
-import styles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css";
+import styles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css";
 import { Eye } from "lucide-react";
 
 export default function KYCTab({ region, onViewMap, onProceed, onReject }) {

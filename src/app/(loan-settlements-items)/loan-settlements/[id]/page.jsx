@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button-loan";
-import styles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css"; 
+import styles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css"; 
 
 import StepProgress from "@/components/loan-detail/StepProgress";
 import SummaryHeader from "@/components/loan-detail/SummaryHeader";

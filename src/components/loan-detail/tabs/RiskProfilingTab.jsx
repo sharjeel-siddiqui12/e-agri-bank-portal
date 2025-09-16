@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button-loan";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import styles from "@/app/(loan-operatioons-items)/loan-requests/[id]/LoanDetail.module.css";
+import styles from "@/app/(loan-operations-items)/loan-requests/[id]/LoanDetail.module.css";
 
 const TableRow = ({ label, score, min=0, max=10, weight="7.50", obtained="7.50" }) => (
   <div className={styles.riskTableRow}>
