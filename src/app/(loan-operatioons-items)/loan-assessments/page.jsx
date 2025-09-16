@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import debounce from "lodash/debounce";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-loan";
@@ -182,6 +183,7 @@ function sortRows(rows, field, order) {
 
 /* --------------------------------- Page -------------------------------- */
 export default function LoanAssessmentsPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -238,6 +240,18 @@ export default function LoanAssessmentsPage() {
     setStatusFilter(v);
     setShowDropdown(false);
     setPage(1);
+  }
+
+  function openDetail(row) {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          `loan-assessments:row:${row.id}`,
+          JSON.stringify(row)
+        );
+      }
+    } catch (_) {}
+    router.push(`/loan-assessments/${row.id}`);
   }
 
   function downloadCsv() {
@@ -467,7 +481,7 @@ export default function LoanAssessmentsPage() {
               )}
 
               {pageRows.map((r, i) => (
-                <TableRow key={r.id + i} className={styles.tableRow}>
+                <TableRow key={r.id + i} className={styles.tableRow} style={{ cursor: "pointer" }} onClick={() => openDetail(r)}>
                   <TableCell className={styles.baseCellMono}>{r.id}</TableCell>
 
                   <TableCell className={styles.userCell}>
@@ -540,7 +554,7 @@ export default function LoanAssessmentsPage() {
                     <Button
                       variant="ghost"
                       className={styles.eyeBtn}
-                      onClick={() => alert(`Open assessment ${r.id}`)}
+                      onClick={(e) => { e.stopPropagation(); openDetail(r); }}
                     >
                       <Eye
                         className={styles.eyeIcon}

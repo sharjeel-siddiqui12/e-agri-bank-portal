@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import debounce from "lodash/debounce";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-loan";
@@ -159,6 +160,7 @@ function sortRows(rows, field, order) {
 
 /* --------------------------------- Page -------------------------------- */
 export default function AuctionRequestsApprovalPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [kycFilter, setKycFilter] = useState("All Status");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -215,6 +217,18 @@ export default function AuctionRequestsApprovalPage() {
     setKycFilter(v);
     setShowDropdown(false);
     setPage(1);
+  }
+
+  function openDetail(row) {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          `auction-requests-approval:row:${row.id}`,
+          JSON.stringify(row)
+        );
+      }
+    } catch (_) {}
+    router.push(`/auction-requests-approval/${row.id}`);
   }
 
   return (
@@ -377,7 +391,7 @@ export default function AuctionRequestsApprovalPage() {
               )}
 
               {pageRows.map((r, i) => (
-                <TableRow key={r.id + i} className={styles.tableRow}>
+                <TableRow key={r.id + i} className={styles.tableRow} style={{ cursor: "pointer" }} onClick={() => openDetail(r)}>
                   <TableCell className={styles.userCell}>
                     <span className={styles.avatarWrap}>
                       <User size={18} color="#7a7a7a" />
@@ -433,7 +447,7 @@ export default function AuctionRequestsApprovalPage() {
                     <Button
                       variant="ghost"
                       className={styles.eyeBtn}
-                      onClick={() => alert(`Open auction request ${r.auctionId}`)}
+                      onClick={(e) => { e.stopPropagation(); openDetail(r); }}
                     >
                       <Eye
                         className={styles.eyeIcon}

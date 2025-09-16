@@ -11,11 +11,28 @@ const Row = ({ k, v, unit }) => (
   </div>
 );
 
-export default function RepaymentTab() {
+export default function RepaymentTab({ recordId, section = "loan-requests", rowDataForPending }) {
   const router = useRouter();
 
   const handleApplicationPendingClick = () => {
-    router.push('/loan-requests/000021/application-pending');
+    const id = recordId || "000001";
+    const base = section === "loan-approvals"
+      ? "/loan-approvals"
+      : section === "loan-assessments"
+        ? "/loan-assessments"
+      : section === "loan-disbursements"
+        ? "/loan-disbursements"
+      : section === "loan-monitoring"
+        ? "/loan-monitoring"
+      : section === "loan-settlements"
+        ? "/loan-settlements"
+        : "/loan-requests";
+    try {
+      if (typeof window !== 'undefined' && window.sessionStorage && rowDataForPending) {
+        window.sessionStorage.setItem(`${section}:row:${id}`, JSON.stringify(rowDataForPending));
+      }
+    } catch (_) {}
+    router.push(`${base}/${id}/application-pending`);
   };
 
   return (

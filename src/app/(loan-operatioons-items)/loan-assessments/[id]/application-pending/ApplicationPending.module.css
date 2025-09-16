@@ -1,0 +1,4 @@
+/* Reuse the same styles as approvals pending page for consistency */
+@import url("../../../../loan-approvals/[id]/application-pending/ApplicationPending.module.css");
+
+

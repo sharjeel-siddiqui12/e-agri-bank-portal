@@ -209,6 +209,18 @@ export default function LoanRequestsPage() {
     setPage(1);
   }
 
+  function openDetail(row) {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          `loan-requests:row:${row.id}`,
+          JSON.stringify(row)
+        );
+      }
+    } catch (_) {}
+    router.push(`/loan-requests/${row.id}`);
+  }
+
   function downloadCsv() {
     const header = [
       "Loan Application ID",
@@ -384,7 +396,7 @@ export default function LoanRequestsPage() {
                   key={r.id + i}
                   className={styles.tableRow}
                   style={{ cursor: "pointer" }}
-                  onClick={() => router.push(`/loan-requests/${r.id}`)}
+                  onClick={() => openDetail(r)}
                 >
                   <TableCell className={styles.baseCellMono}>{r.id}</TableCell>
 
@@ -431,7 +443,7 @@ export default function LoanRequestsPage() {
                       className={styles.eyeBtn}
                       onClick={e => {
                         e.stopPropagation();
-                        router.push(`/loan-requests/${r.id}`);
+                        openDetail(r);
                       }}
                     >
                       <Eye className={styles.eyeIcon} color="#5D882D" size={22} strokeWidth={2.2} />

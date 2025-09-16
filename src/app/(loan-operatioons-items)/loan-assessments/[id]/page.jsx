@@ -16,23 +16,23 @@ import MonitoringTab from "@/components/loan-detail/tabs/MonitoringTab";
 import RepaymentTab from "@/components/loan-detail/tabs/RepaymentTab";
 
 const REGIONS = [
-  { main: "Multan", sub: "Jalalpur Pirwala" },
-  { main: "Gujranwala", sub: "Wazirabad" },
-  { main: "Gujranwala", sub: "Nowshera Virkan" },
   { main: "Faisalabad", sub: "Jaranwala" },
+  { main: "Faisalabad", sub: "Tandlianwala" },
   { main: "Faisalabad", sub: "Samundri" },
+  { main: "Multan", sub: "Shujabad" },
+  { main: "Lahore", sub: "Model Town" },
 ];
 const NAMES = [
-  "Abdul Sattar",
-  "Haji Karim Bakhsh",
-  "Manzoor Hussain",
   "Muhammad Akram",
   "Ghulam Rasool",
   "Allah Ditta",
   "Noor Muhammad",
+  "Muneeb Ahmed",
   "Ali Raza",
-  "Fahad Mehmood",
+  "Ahmed Khan",
+  "Hassan Javed",
   "Bilal Aslam",
+  "Usman Tariq",
 ];
 const LOAN_TYPES = ["Crop Loan", "Agri - Production Loan"];
 const formatAmount = (n) => n.toLocaleString("en-US");
@@ -60,7 +60,7 @@ function getMockById(id) {
 
 function buildRecordFromRow(id, row) {
   if (!row) return null;
-  const region = row.region || { main: "Multan", sub: "Jalalpur Pirwala" };
+  const region = row.region || { main: "Faisalabad", sub: "Jaranwala" };
   return {
     id: row.id || id,
     name: row.name || undefined,
@@ -88,7 +88,7 @@ const STEPS = [
   "Repayment & Settlement",
 ];
 
-export default function LoanApprovalDetailPage() {
+export default function LoanAssessmentDetailPage() {
   const router = useRouter();
   const { id } = useParams();
   const [rowData, setRowData] = useState(null);
@@ -96,7 +96,7 @@ export default function LoanApprovalDetailPage() {
   useEffect(() => {
     try {
       if (typeof window !== "undefined" && window.sessionStorage && id) {
-        const raw = window.sessionStorage.getItem(`loan-approvals:row:${id}`);
+        const raw = window.sessionStorage.getItem(`loan-assessments:row:${id}`);
         if (raw) setRowData(JSON.parse(raw));
       }
     } catch (_) {}
@@ -127,7 +127,7 @@ export default function LoanApprovalDetailPage() {
 
   const [active, setActive] = useState("0");
   const goto = (idx) => setActive(String(idx));
-  const backToList = () => router.push("/loan-approvals");
+  const backToList = () => router.push("/loan-assessments");
 
   return (
     <div className={styles.page}>
@@ -209,7 +209,7 @@ export default function LoanApprovalDetailPage() {
           </TabsContent>
 
           <TabsContent value="5" className={styles.tabContent}>
-            <RepaymentTab recordId={rec.id} section="loan-approvals" rowDataForPending={{
+            <RepaymentTab recordId={rec.id} section="loan-assessments" rowDataForPending={{
               id: rec.id,
               name: rec.name,
               amount: rec.amount,

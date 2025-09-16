@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button-loan";
@@ -62,6 +62,28 @@ function getMockById(id) {
   };
 }
 
+function buildRecordFromRow(id, row) {
+  if (!row) return null;
+  const region = row.region || { main: "Okara", sub: "Dipalp ur" };
+  const record = {
+    id: row.id || id,
+    name: row.name || undefined,
+    amount: typeof row.amount === "number" ? row.amount : undefined,
+    region,
+    province: "Punjab",
+    tehsil: `${region.main}${region.sub ? ", " + region.sub : ""}`,
+    type: row.loanType || undefined,
+    landZones: undefined,
+    waterSource: undefined,
+    landSize: undefined,
+    crop: undefined,
+    status: row.status,
+    date: row.date,
+    time: row.time,
+  };
+  return record;
+}
+
 const STEPS = [
   "KYC & Identity Verification",
   "Loan Application + Advisory Analysis",
@@ -74,7 +96,42 @@ const STEPS = [
 export default function LoanRequestDetailPage() {
   const router = useRouter();
   const { id } = useParams();
-  const rec = useMemo(() => getMockById(id), [id]);
+  const [rowData, setRowData] = useState(null);
+
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage && id) {
+        const raw = window.sessionStorage.getItem(`loan-requests:row:${id}`);
+        if (raw) setRowData(JSON.parse(raw));
+      }
+    } catch (_) {}
+  }, [id]);
+
+  const rec = useMemo(() => {
+    const base = getMockById(id);
+    const fromRow = buildRecordFromRow(id, rowData);
+    if (!fromRow) return base;
+    return {
+      ...base,
+      // prefer row values when present
+      id: fromRow.id || base.id,
+      name: fromRow.name || base.name,
+      amount: fromRow.amount ?? base.amount,
+      region: fromRow.region || base.region,
+      province: fromRow.province || base.province,
+      tehsil: fromRow.tehsil || base.tehsil,
+      type: fromRow.type || base.type,
+      // keep demo fallbacks for fields not present in row
+      landZones: base.landZones,
+      waterSource: base.waterSource,
+      landSize: base.landSize,
+      crop: base.crop,
+      // keep extra row-only metadata if needed in tabs later
+      status: fromRow.status || base.status,
+      date: fromRow.date || base.date,
+      time: fromRow.time || base.time,
+    };
+  }, [id, rowData]);
 
   const [active, setActive] = useState("0"); // Tabs value "0".."5"
 
@@ -179,7 +236,16 @@ export default function LoanRequestDetailPage() {
           </TabsContent>
 
           <TabsContent value="5" className={styles.tabContent}>
-            <RepaymentTab />
+            <RepaymentTab recordId={rec.id} section="loan-requests" rowDataForPending={{
+              id: rec.id,
+              name: rec.name,
+              amount: rec.amount,
+              region: rec.region,
+              loanType: rec.type,
+              status: "Application Pending",
+              date: rec.date,
+              time: rec.time,
+            }} />
           </TabsContent>
         </Tabs>
       </div>

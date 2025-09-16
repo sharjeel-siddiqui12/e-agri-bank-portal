@@ -5,6 +5,9 @@ import styles from "./ProductSetup.module.css";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CalendarIcon } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pencil, X } from "lucide-react";
@@ -482,7 +485,36 @@ export default function ProductSetupPage() {
 
             <div className={styles.formRow}>
               <Label className={styles.label}>Offer Valid Date:</Label>
-              <Input className={styles.input} value={formData.offerValidDate} onChange={(e)=>handleChange('offerValidDate', e.target.value)} type="date" />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={styles.input}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", cursor: "pointer", paddingRight: "16px" }}
+                  >
+                    <span style={{ color: formData.offerValidDate ? "#111827" : "#6F7682" }}>
+                      {formData.offerValidDate
+                        ? new Date(formData.offerValidDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "2-digit" })
+                        : "Select date"}
+                    </span>
+                    <CalendarIcon size={18} style={{ marginLeft: "8px", color: "#6F7682" }} />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent align="end" style={{ padding: 0, borderRadius: 8, boxShadow: "0 4px 18px 0 rgba(230,230,230,0.4)" }}>
+                  <Calendar
+                    mode="single"
+                    selected={formData.offerValidDate ? new Date(formData.offerValidDate) : undefined}
+                    onSelect={date => {
+                      if (date) {
+                        const yyyy = date.getFullYear();
+                        const mm = String(date.getMonth() + 1).padStart(2, "0");
+                        const dd = String(date.getDate()).padStart(2, "0");
+                        handleChange('offerValidDate', `${yyyy}-${mm}-${dd}`);
+                      }
+                    }}
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
         </div>

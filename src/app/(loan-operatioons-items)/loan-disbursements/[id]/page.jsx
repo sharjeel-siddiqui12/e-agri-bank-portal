@@ -16,22 +16,22 @@ import MonitoringTab from "@/components/loan-detail/tabs/MonitoringTab";
 import RepaymentTab from "@/components/loan-detail/tabs/RepaymentTab";
 
 const REGIONS = [
-  { main: "Multan", sub: "Jalalpur Pirwala" },
-  { main: "Gujranwala", sub: "Wazirabad" },
-  { main: "Gujranwala", sub: "Nowshera Virkan" },
+  { main: "Gujrat", sub: "Kharian" },
+  { main: "Gujrat", sub: "Sara-i-Alamgir" },
+  { main: "Sialkot", sub: "Daska" },
+  { main: "Multan", sub: "Shujabad" },
   { main: "Faisalabad", sub: "Jaranwala" },
-  { main: "Faisalabad", sub: "Samundri" },
 ];
 const NAMES = [
+  "Liaqat Ali",
+  "Sultan Ahmed",
+  "Ashfaq Mahmood",
   "Abdul Sattar",
   "Haji Karim Bakhsh",
   "Manzoor Hussain",
-  "Muhammad Akram",
   "Ghulam Rasool",
   "Allah Ditta",
   "Noor Muhammad",
-  "Ali Raza",
-  "Fahad Mehmood",
   "Bilal Aslam",
 ];
 const LOAN_TYPES = ["Crop Loan", "Agri - Production Loan"];
@@ -47,7 +47,7 @@ function getMockById(id) {
     id,
     name,
     province: "Punjab",
-    tehsil: `${region.main}, ${region.sub || "Samundri"}`,
+    tehsil: `${region.main}, ${region.sub || "Jaranwala"}`,
     type,
     landZones: 4,
     waterSource: "Canal",
@@ -60,7 +60,7 @@ function getMockById(id) {
 
 function buildRecordFromRow(id, row) {
   if (!row) return null;
-  const region = row.region || { main: "Multan", sub: "Jalalpur Pirwala" };
+  const region = row.region || { main: "Gujrat", sub: "Kharian" };
   return {
     id: row.id || id,
     name: row.name || undefined,
@@ -88,7 +88,7 @@ const STEPS = [
   "Repayment & Settlement",
 ];
 
-export default function LoanApprovalDetailPage() {
+export default function LoanDisbursementDetailPage() {
   const router = useRouter();
   const { id } = useParams();
   const [rowData, setRowData] = useState(null);
@@ -96,7 +96,7 @@ export default function LoanApprovalDetailPage() {
   useEffect(() => {
     try {
       if (typeof window !== "undefined" && window.sessionStorage && id) {
-        const raw = window.sessionStorage.getItem(`loan-approvals:row:${id}`);
+        const raw = window.sessionStorage.getItem(`loan-disbursements:row:${id}`);
         if (raw) setRowData(JSON.parse(raw));
       }
     } catch (_) {}
@@ -127,7 +127,7 @@ export default function LoanApprovalDetailPage() {
 
   const [active, setActive] = useState("0");
   const goto = (idx) => setActive(String(idx));
-  const backToList = () => router.push("/loan-approvals");
+  const backToList = () => router.push("/loan-disbursements");
 
   return (
     <div className={styles.page}>
@@ -209,7 +209,7 @@ export default function LoanApprovalDetailPage() {
           </TabsContent>
 
           <TabsContent value="5" className={styles.tabContent}>
-            <RepaymentTab recordId={rec.id} section="loan-approvals" rowDataForPending={{
+            <RepaymentTab recordId={rec.id} section="loan-disbursements" rowDataForPending={{
               id: rec.id,
               name: rec.name,
               amount: rec.amount,

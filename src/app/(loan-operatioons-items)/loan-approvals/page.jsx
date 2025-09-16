@@ -235,6 +235,18 @@ export default function LoanApprovalsPage() {
     setPage(1);
   }
 
+  function openDetail(row) {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          `loan-approvals:row:${row.id}`,
+          JSON.stringify(row)
+        );
+      }
+    } catch (_) {}
+    router.push(`/loan-approvals/${row.id}`);
+  }
+
   return (
     <div className={styles.bg}>
       <div className={styles.wrapper}>
@@ -400,7 +412,7 @@ export default function LoanApprovalsPage() {
                   key={r.id + i}
                   className={styles.tableRow}
                   style={{ cursor: "pointer" }}
-                  onClick={() => router.push(`/loan-approvals/${r.id}`)}
+                  onClick={() => openDetail(r)}
                 >
                   <TableCell className={styles.userCell}>
                     <span className={styles.avatarWrap}>
@@ -473,7 +485,7 @@ export default function LoanApprovalsPage() {
                       className={styles.eyeBtn}
                       onClick={(e) => {
                         e.stopPropagation();
-                        router.push(`/loan-approvals/${r.id}`);
+                        openDetail(r);
                       }}
                     >
                       <Eye

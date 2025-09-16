@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button-loan";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +16,95 @@ const InfoRow = ({ label, value, className = "" }) => (
 export default function ApplicationPendingPage() {
   const router = useRouter();
   const { id } = useParams();
+  const [rowData, setRowData] = useState(null);
+
+  // --- Demo helpers (aligned with other detail pages) ---
+  const REGIONS = [
+    { main: "Okara", sub: "Dipalpur" },
+    { main: "Okara", sub: "Renala Khurd" },
+    { main: "Lahore", sub: "Model Town" },
+    { main: "Sahiwal", sub: "Harappa" },
+    { main: "Multan", sub: "Shujabad" },
+  ];
+  const NAMES = [
+    "Muneeb Ahmed",
+    "Ali Raza",
+    "Ahmed Khan",
+    "Hassan Javed",
+    "Bilal Aslam",
+    "Sana Ullah",
+    "Usman Tariq",
+    "Hammad Iqbal",
+    "Zain Shah",
+    "Fahad Mehmood",
+  ];
+  const LOAN_TYPES = ["Crop Loan", "Agri - Production Loan"];
+  const formatAmount = (n) => (typeof n === "number" ? n.toLocaleString("en-US") : n);
+
+  function getMockById(idStr) {
+    const n = Number(String(idStr).replace(/^0+/, "")) || 1;
+    const name = NAMES[n % NAMES.length] || NAMES[0];
+    const region = REGIONS[n % REGIONS.length] || REGIONS[0];
+    const type = LOAN_TYPES[n % LOAN_TYPES.length];
+    const amount = [1500000, 300000, 500000, 1250000][n % 4];
+    return {
+      id: idStr,
+      name,
+      region,
+      type,
+      amount,
+      province: "Punjab",
+      tehsil: `${region.main}, ${region.sub || "Dipalpur"}`,
+      crop: "Maize",
+    };
+  }
+
+  function buildRecordFromRow(idStr, row) {
+    if (!row) return null;
+    const region = row.region || { main: "Okara", sub: "Dipalpur" };
+    return {
+      id: row.id || idStr,
+      name: row.name,
+      region,
+      type: row.loanType,
+      amount: typeof row.amount === "number" ? row.amount : undefined,
+      province: "Punjab",
+      tehsil: `${region.main}${region.sub ? ", " + region.sub : ""}`,
+      crop: undefined,
+      status: row.status,
+      date: row.date,
+      time: row.time,
+    };
+  }
+
+  useEffect(() => {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage && id) {
+        const raw = window.sessionStorage.getItem(`loan-requests:row:${id}`);
+        if (raw) setRowData(JSON.parse(raw));
+      }
+    } catch (_) {}
+  }, [id]);
+
+  const rec = useMemo(() => {
+    const base = getMockById(id);
+    const fromRow = buildRecordFromRow(id, rowData);
+    if (!fromRow) return base;
+    return {
+      ...base,
+      id: fromRow.id || base.id,
+      name: fromRow.name || base.name,
+      region: fromRow.region || base.region,
+      type: fromRow.type || base.type,
+      amount: fromRow.amount ?? base.amount,
+      province: fromRow.province || base.province,
+      tehsil: fromRow.tehsil || base.tehsil,
+      crop: base.crop,
+      status: fromRow.status || base.status,
+      date: fromRow.date || base.date,
+      time: fromRow.time || base.time,
+    };
+  }, [id, rowData]);
 
   const handleBack = () => {
     router.back();
@@ -26,7 +116,7 @@ export default function ApplicationPendingPage() {
         {/* Header Section */}
         <div className={styles.header}>
           <div className={styles.headerTop}>
-            <h1 className={styles.pageTitle}>Loan Application ID: #{id}</h1>
+            <h1 className={styles.pageTitle}>Loan Application ID: #{rec.id}</h1>
             <Button
               variant="outline"
               onClick={handleBack}
@@ -40,19 +130,19 @@ export default function ApplicationPendingPage() {
           <div className={styles.summaryStrip}>
             <div className={styles.summaryItem}>
               <div className={styles.summaryLabel}>Full Name</div>
-              <div className={styles.summaryValue}>Muneeb Ahmed</div>
+              <div className={styles.summaryValue}>{rec.name}</div>
             </div>
             <div className={styles.summaryItem}>
               <div className={styles.summaryLabel}>Type of Loan</div>
-              <div className={styles.summaryValue}>Agri - Production Loan</div>
+              <div className={styles.summaryValue}>{rec.type}</div>
             </div>
             <div className={styles.summaryItem}>
               <div className={styles.summaryLabel}>Loan Amount</div>
-              <div className={styles.summaryValue}>1,250,000 PKR</div>
+              <div className={styles.summaryValue}>{formatAmount(rec.amount)} PKR</div>
             </div>
             <div className={styles.summaryItem}>
               <div className={styles.summaryLabel}>Ammount Due</div>
-              <div className={styles.summaryValue}>1,627,500</div>
+              <div className={styles.summaryValue}>{formatAmount(Math.round((rec.amount || 0) * 1.302))}</div>
             </div>
             <div className={styles.summaryItem}>
               <div className={styles.summaryLabel}>Lein</div>
@@ -73,15 +163,15 @@ export default function ApplicationPendingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <InfoRow label="Crop" value="Maize" />
+                <InfoRow label="Crop" value={rec.crop || "Maize"} />
                 <InfoRow label="Crop Stage" value="Stored" />
                 <InfoRow label="Crop Location" value="Warehouse" />
                 <InfoRow
                   label="Warehouse Address"
-                  value="Okara, Dipalpur in Depalpur Tehsil."
+                  value={`${rec.region.main}, ${rec.region.sub || "Dipalpur"} in ${rec.tehsil} Tehsil.`}
                 />
-                <InfoRow label="Province" value="Punjab" />
-                <InfoRow label="Teshsil/District" value="Okara, Dipalpur" />
+                <InfoRow label="Province" value={rec.province} />
+                <InfoRow label="Teshsil/District" value={rec.tehsil} />
                 <InfoRow
                   label="Market Committee Name"
                   value="The Market Committee, Okara"

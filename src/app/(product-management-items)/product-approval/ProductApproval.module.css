@@ -329,43 +329,26 @@
 .radioInput {
   width: 16px;
   height: 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 50%;
-  background: white;
+  accent-color: #375515;
   cursor: pointer;
-  transition: all 0.2s;
-}
-
-.radioInput:checked {
-  border-color: #375515;
-  background: white;
-}
-
-.radioInput[data-state="checked"] {
-  border-color: #375515;
-  background: white;
-}
-
-.radioInput[data-state="checked"]::after {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  background: #375515;
-  border-radius: 50%;
-  margin: 3px;
-}
-
-.radioInput:hover {
-  border-color: #375515;
 }
 
 .radioLabel {
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
+}
+
+/* Ensure radios inside the label match the provided spec */
+.radioLabel input[type="radio"] {
+  accent-color: #375515;
+  width: 16px;
+  height: 16px;
 }
 
 .saveBtn {

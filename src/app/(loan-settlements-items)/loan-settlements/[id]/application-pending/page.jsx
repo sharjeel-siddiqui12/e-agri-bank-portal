@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button-loan";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import styles from "./ApplicationPending.module.css";
+import styles from "@/app/(loan-operatioons-items)/loan-approvals/[id]/application-pending/ApplicationPending.module.css";
 
 const InfoRow = ({ label, value, className = "" }) => (
   <div className={`${styles.infoRow} ${className}`}>
@@ -18,25 +18,24 @@ export default function ApplicationPendingPage() {
   const { id } = useParams();
   const [rowData, setRowData] = useState(null);
 
-  // --- Demo helpers (aligned with other detail pages) ---
   const REGIONS = [
-    { main: "Okara", sub: "Dipalpur" },
-    { main: "Okara", sub: "Renala Khurd" },
+    { main: "Rawalpindi", sub: "Gujar Khan" },
+    { main: "Rawalpindi", sub: "Kahuta" },
+    { main: "Bahawalpur", sub: "Hasilpur" },
     { main: "Lahore", sub: "Model Town" },
-    { main: "Sahiwal", sub: "Harappa" },
-    { main: "Multan", sub: "Shujabad" },
+    { main: "Faisalabad", sub: "Jaranwala" },
   ];
   const NAMES = [
-    "Muneeb Ahmed",
-    "Ali Raza",
-    "Ahmed Khan",
-    "Hassan Javed",
+    "Nazir Hussain",
+    "Fida Hussain",
+    "Hafiz Abdul Ghaffar",
+    "Sultan Ahmed",
+    "Sher Ali",
+    "Barkat Ali",
+    "Niaz Ahmed",
+    "Manzoor Hussain",
+    "Ghulam Rasool",
     "Bilal Aslam",
-    "Sana Ullah",
-    "Usman Tariq",
-    "Hammad Iqbal",
-    "Zain Shah",
-    "Fahad Mehmood",
   ];
   const LOAN_TYPES = ["Crop Loan", "Agri - Production Loan"];
   const formatAmount = (n) => (typeof n === "number" ? n.toLocaleString("en-US") : n);
@@ -54,14 +53,14 @@ export default function ApplicationPendingPage() {
       type,
       amount,
       province: "Punjab",
-      tehsil: `${region.main}, ${region.sub || "Dipalpur"}`,
-      crop: "Maize",
+      tehsil: `${region.main}, ${region.sub || "Jaranwala"}`,
+      crop: "Wheat",
     };
   }
 
   function buildRecordFromRow(idStr, row) {
     if (!row) return null;
-    const region = row.region || { main: "Okara", sub: "Dipalpur" };
+    const region = row.region || { main: "Rawalpindi", sub: "Gujar Khan" };
     return {
       id: row.id || idStr,
       name: row.name,
@@ -80,7 +79,7 @@ export default function ApplicationPendingPage() {
   useEffect(() => {
     try {
       if (typeof window !== "undefined" && window.sessionStorage && id) {
-        const raw = window.sessionStorage.getItem(`loan-approvals:row:${id}`);
+        const raw = window.sessionStorage.getItem(`loan-settlements:row:${id}`);
         if (raw) setRowData(JSON.parse(raw));
       }
     } catch (_) {}
@@ -163,18 +162,18 @@ export default function ApplicationPendingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <InfoRow label="Crop" value={rec.crop || "Maize"} />
+                <InfoRow label="Crop" value={rec.crop || "Wheat"} />
                 <InfoRow label="Crop Stage" value="Stored" />
                 <InfoRow label="Crop Location" value="Warehouse" />
                 <InfoRow
                   label="Warehouse Address"
-                  value={`${rec.region.main}, ${rec.region.sub || "Dipalpur"} in ${rec.tehsil} Tehsil.`}
+                  value={`${rec.region.main}, ${rec.region.sub || "Jaranwala"} in ${rec.tehsil} Tehsil.`}
                 />
                 <InfoRow label="Province" value={rec.province} />
                 <InfoRow label="Teshsil/District" value={rec.tehsil} />
                 <InfoRow
                   label="Market Committee Name"
-                  value="The Market Committee, Okara"
+                  value="The Market Committee, Rawalpindi"
                 />
                 <InfoRow label="Dispute Handling" value="Market Committee" />
               </CardContent>
@@ -207,7 +206,7 @@ export default function ApplicationPendingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <InfoRow label="Commodity" value="Maize" />
+                <InfoRow label="Commodity" value="Wheat" />
                 <InfoRow label="Auction Type" value="Forward" />
                 <InfoRow label="Style" value="English (ascending)" />
                 <InfoRow label="Filling Method" value="Full Lot" />
@@ -241,13 +240,10 @@ export default function ApplicationPendingPage() {
         <div className={`${styles.footerBar} ${styles.repaymentCompact}`}>
           <div />
           <div className={styles.footerActions}>
-            <Button variant="outline" onClick={() => alert("Report generated")}>
+            <Button variant="outline" onClick={() => alert("Report generated")}> 
               Generate Report
             </Button>
-            <Button
-              className={styles.primaryBtn}
-              onClick={() => alert("Marked as completed")}
-            >
+            <Button className={styles.primaryBtn} onClick={() => alert("Marked as completed")}>
               Mark as Completed
             </Button>
           </div>
@@ -256,3 +252,5 @@ export default function ApplicationPendingPage() {
     </div>
   );
 }
+
+

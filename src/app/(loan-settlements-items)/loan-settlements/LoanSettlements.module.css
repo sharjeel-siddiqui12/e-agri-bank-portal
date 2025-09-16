@@ -100,7 +100,7 @@ html, body {
   white-space: nowrap;
 }
 
-.tableRow:hover { background: #F8F8F8; }
+.tableRow:hover { background: #F8F8F8; cursor: pointer;  }
 
 .userCell {
   display: flex;

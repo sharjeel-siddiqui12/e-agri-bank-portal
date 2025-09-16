@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import debounce from "lodash/debounce";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button-loan";
@@ -145,6 +146,7 @@ function sortRows(rows, field, order) {
 
 /* --------------------------------- Page -------------------------------- */
 export default function LoanDisbursementsPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -192,6 +194,18 @@ export default function LoanDisbursementsPage() {
     setStatusFilter(v);
     setShowDropdown(false);
     setPage(1);
+  }
+
+  function openDetail(row) {
+    try {
+      if (typeof window !== "undefined" && window.sessionStorage) {
+        window.sessionStorage.setItem(
+          `loan-disbursements:row:${row.id}`,
+          JSON.stringify(row)
+        );
+      }
+    } catch (_) {}
+    router.push(`/loan-disbursements/${row.id}`);
   }
 
   return (
@@ -328,7 +342,7 @@ export default function LoanDisbursementsPage() {
               )}
 
               {pageRows.map((r, i) => (
-                <TableRow key={r.id + i} className={styles.tableRow}>
+                <TableRow key={r.id + i} className={styles.tableRow} style={{ cursor: "pointer" }} onClick={() => openDetail(r)}>
                   <TableCell className={styles.userCell}>
                     <span className={styles.avatarWrap}>
                       <User size={18} color="#7a7a7a" />
@@ -372,7 +386,7 @@ export default function LoanDisbursementsPage() {
                     <Button
                       variant="ghost"
                       className={styles.eyeBtn}
-                      onClick={() => alert(`Open disbursement ${r.id}`)}
+                      onClick={(e) => { e.stopPropagation(); openDetail(r); }}
                     >
                       <Eye className={styles.eyeIcon} color="#5D882D" size={22} strokeWidth={2.2} />
                     </Button>
