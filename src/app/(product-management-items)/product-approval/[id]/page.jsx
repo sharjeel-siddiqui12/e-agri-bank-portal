@@ -1,10 +1,13 @@
 "use client";
 
+
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import styles from "../ProductApproval.module.css";
 
-export default function ProductDetailPage() {
+
+function ProductDetailPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -199,6 +202,14 @@ export default function ProductDetailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductDetailPage() {
+  return (
+    <Suspense>
+      <ProductDetailPageInner />
+    </Suspense>
   );
 }
 
