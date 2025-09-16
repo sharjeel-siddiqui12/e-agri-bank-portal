@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./PreferredVendorApproval.module.css";
 import { Button } from "@/components/ui/button";
@@ -168,7 +168,7 @@ export default function PreferredVendorSetupApprovalPage() {
       isPublished: String(getPublishedState(key)),
       readOnly: "false" // editable
     }).toString();
-    router.push(`/preferred-vendor-setup-approval-copy/${encodeURIComponent(key)}?${queryParams}`);
+    router.push(`/preferred-vendor-setup-approval/${encodeURIComponent(key)}?${queryParams}`);
   };
 
   const openApprovedDetail = (row) => {
@@ -186,7 +186,7 @@ export default function PreferredVendorSetupApprovalPage() {
       isPublished: String(getPublishedState(key)),
       readOnly: "true" // read-only detail
     }).toString();
-    router.push(`/preferred-vendor-setup-approval-copy/${encodeURIComponent(key)}?${queryParams}`);
+    router.push(`/preferred-vendor-setup-approval/${encodeURIComponent(key)}?${queryParams}`);
   };
 
   // ---- Apply updates from localStorage (runs on mount + when ts query changes) ----
@@ -285,6 +285,7 @@ export default function PreferredVendorSetupApprovalPage() {
   }, [searchParams?.toString()]);
 
   return (
+    <Suspense fallback={null}>
     <div className={styles.page}>
       <h1 className={styles.heading}>Preferred Vendor Setup - Approval</h1>
 
@@ -423,5 +424,6 @@ export default function PreferredVendorSetupApprovalPage() {
         </div>
       </div>
     </div>
+    </Suspense>
   );
 }
