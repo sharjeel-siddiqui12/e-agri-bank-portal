@@ -143,6 +143,7 @@
 .footerActions {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 .primaryBtn {
   cursor: pointer;
@@ -166,12 +167,15 @@
   .rightColumn {
     gap: 20px;
   }
+  .infoCard { padding: 16px; }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 16px;
+    padding: 0px 16px;
+    padding-bottom: 80px;
   }
+  .page { padding: 16px 0; background: linear-gradient(135deg, #f8f9fa 0%, #f1f5f9 100%); }
   
   .pageTitle {
     font-size: 20px;
@@ -191,7 +195,31 @@
   
   .backBtn {
     align-self: flex-end;
+    min-height: 44px;
   }
+
+  .cardTitle {
+    font-size: 15px;
+    padding-bottom: 12px;
+  }
+
+  .infoRow {
+    padding: 10px 0;
+  }
+
+  .footerBar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+  .footerActions {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .footerActions > * { width: auto; min-width: 200px; }
+  .primaryBtn { min-height: 44px; }
 }
 
 @media (max-width: 480px) {
@@ -207,6 +235,22 @@
   
   .summaryItem {
     text-align: center;
+  }
+
+  .pageTitle { font-size: 18px; }
+  .summaryLabel { font-size: 11px; }
+  .summaryValue { font-size: 13px; }
+  .footerActions { flex-direction: column; gap: 8px; }
+  .rejectBtn, .approveBtn { width: 100%; max-width: none; min-height: 40px; }
+  .modalContent {
+    width: 95%;
+    max-height: 80vh; 
+    margin: 20px auto; 
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding-bottom: 0;
+    margin-bottom: 0;
+    overflow-y: auto;
   }
 }
 
@@ -265,3 +309,45 @@
     max-width: 200px;
   }
 }
+
+/* -------------------- Modal desktop button layout -------------------- */
+.modalActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.modalSubmitBtn {
+  background: #375515;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  min-width: 140px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.25);
+}
+.modalSubmitBtn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(55, 85, 21, 0.35); }
+
+.modalCancelBtn {
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-width: 140px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modalCancelBtn:hover { background: #f1f5f9; border-color: #cbd5e1; transform: translateY(-1px); }

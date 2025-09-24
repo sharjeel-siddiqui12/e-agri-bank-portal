@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ResponsiveContainer,
   BarChart,
@@ -20,32 +20,67 @@ const data = [
 ];
 
 export default function LoanAgingChart() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  const chartHeight = isMobile ? 160 : 200;
+  const barSize = isMobile ? 20 : 30;
+  const yAxisWidth = isMobile ? 60 : 80;
+
   return (
     <div className={styles.container}>
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={chartHeight}>
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={isMobile ? 
+            { top: 5, right: 10, left: 10, bottom: 5 } : 
+            { top: 5, right: 30, left: 20, bottom: 5 }
+          }
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} />
           <XAxis 
             type="number" 
-            tickFormatter={(value) => value.toLocaleString()} 
+            tickFormatter={(value) => isMobile ? 
+              `${Math.round(value/1000)}k` : 
+              value.toLocaleString()
+            }
             domain={[0, 100000]}
+            fontSize={isMobile ? 10 : 12}
           />
           <YAxis 
             dataKey="name" 
             type="category" 
-            width={80}
+            width={yAxisWidth}
+            fontSize={isMobile ? 9 : 11}
+            tick={{
+              fontSize: isMobile ? 9 : 11,
+              fill: '#666'
+            }}
           />
           <Tooltip
             formatter={(value) => value.toLocaleString()}
-            labelStyle={{ color: '#333', fontWeight: 600 }}
+            labelStyle={{ color: '#333', fontWeight: 600, fontSize: isMobile ? 12 : 14 }}
+            contentStyle={{
+              fontSize: isMobile ? 11 : 13,
+              padding: isMobile ? '6px 8px' : '8px 12px',
+              border: '1px solid #e5e7eb',
+              borderRadius: '8px'
+            }}
           />
           <Bar 
             dataKey="value" 
-            barSize={30}
+            barSize={barSize}
             shape={props => {
               return (
                 <rect
@@ -54,8 +89,8 @@ export default function LoanAgingChart() {
                   width={props.width}
                   height={props.height}
                   fill={props.fill}
-                  rx={4}
-                  ry={4}
+                  rx={isMobile ? 3 : 4}
+                  ry={isMobile ? 3 : 4}
                 />
               );
             }}

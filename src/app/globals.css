@@ -44,6 +44,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Mobile-first responsive root variables */
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -117,8 +118,15 @@
 }
 
 
-html, body { height: 100%; overflow: hidden; font-family: var(--font-inter); }
-
+html, body { 
+  height: 100%; 
+  overflow: hidden; 
+  font-family: var(--font-inter);
+  /* Mobile optimization */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 
 body {
   margin: 0;
@@ -129,6 +137,31 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+/* Mobile-first global improvements */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Better scrolling on mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize form inputs for mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevent zoom on iOS */
+    border-radius: 8px;
+  }
+  
+  /* Better button touch targets */
+  button, [role="button"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
 }
 
 @layer base {

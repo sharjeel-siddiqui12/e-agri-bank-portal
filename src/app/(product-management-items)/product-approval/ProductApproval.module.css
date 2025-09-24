@@ -385,6 +385,8 @@
 @media (max-width: 768px) {
   .page, .detailPage {
     padding: 16px;
+        /* padding-bottom: 80px; */
+
   }
   
   .detailCard {
@@ -427,6 +429,47 @@
   
   .radioGroup {
     justify-content: space-between;
+  }
+
+  /* Mobile checkbox improvements */
+  .checkbox {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    border-radius: 6px;
+    margin-right: 8px;
+    margin-left: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    border: 1.5px solid #d1d5db;
+    background: #fff;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checkbox[data-state="checked"] {
+    background: #375515;
+    border-color: #375515;
+    color: white;
+  }
+  /* .checkbox:checked::after,
+  .checkbox[data-state="checked"]::after {
+    content: '✓';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  } */
+  .th:first-child .checkbox {
+    margin-right: 10px;
+    margin-left: 0;
+  }
+  .td:first-child .checkbox {
+    margin-right: 10px;
+    margin-left: 0;
   }
 }
 
@@ -528,3 +571,20 @@
 .rejectBtn:focus {
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
 }
+
+@media (max-width: 480px) {
+  .page {
+    padding: 12px 18px;
+    padding-bottom: 80px;
+  }
+
+  .section{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .tableWrap {
+    border-radius: 12px;
+  }
+}
+
+

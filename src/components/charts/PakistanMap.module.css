@@ -8,6 +8,7 @@
   position: relative;
   overflow: visible;
   background: #F7FAFC;
+  min-height: 250px;
 }
 
 .mapComponent {
@@ -21,13 +22,16 @@
   border-radius: 50%;
   border: 1.5px solid white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  min-width: 10px;
+  min-height: 10px;
 }
 
 .riskMarker:hover {
   transform: translate(-50%, -50%) scale(1.2) !important;
   z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .greenMarker {
@@ -40,4 +44,76 @@
 
 .redMarker {
   background-color: #ef5350;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .mapWrapper {
+    min-height: 200px;
+    padding: 8px;
+  }
+
+  .mapComponent {
+    border-radius: 6px;
+  }
+
+  .riskMarker {
+    border-width: 1px;
+    min-width: 8px;
+    min-height: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .riskMarker:hover {
+    transform: translate(-50%, -50%) scale(1.3) !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 480px) {
+  .mapWrapper {
+    min-height: 180px;
+    padding: 4px;
+  }
+
+  .riskMarker {
+    min-width: 6px;
+    min-height: 6px;
+    border-width: 0.5px;
+  }
+
+  .riskMarker:hover {
+    transform: translate(-50%, -50%) scale(1.4) !important;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mapWrapper {
+    min-height: 220px;
+  }
+
+  .riskMarker {
+    min-width: 12px;
+    min-height: 12px;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .mapWrapper {
+    min-height: 300px;
+  }
+
+  .riskMarker {
+    min-width: 14px;
+    min-height: 14px;
+    border-width: 2px;
+  }
+
+  .riskMarker:hover {
+    transform: translate(-50%, -50%) scale(1.15) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
 }

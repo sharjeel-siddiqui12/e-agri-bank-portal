@@ -6,17 +6,35 @@
   height: 100vh;
   position: sticky;
   top: 0;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, transform 0.3s ease;
   width: 250px;
-  flex: 0 0 250px; /* prevent shrinking in flex row */
+  flex: 0 0 250px;
   flex-shrink: 0;
   font-size: 1rem;
   font-family: var(--font-inter);
+  z-index: 40;
 }
 
 .sidebar.collapsed {
   width: 64px;
-  flex-basis: 64px; /* keep fixed basis when collapsed */
+  flex-basis: 64px;
+}
+
+/* Mobile styles */
+.sidebar.mobile {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  flex-basis: 280px;
+  height: 100vh;
+  z-index: 50;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(0);
+}
+
+.sidebar.mobile.mobileHidden {
+  transform: translateX(-100%);
 }
 
 .collapseButton {
@@ -79,7 +97,7 @@
 }
 
 .section {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .sectionHeader {
@@ -90,7 +108,6 @@
   font-size: 0.875rem;
   color: #375515;
   font-weight: 600;
-  /* margin-bottom: 4px; */
 }
 
 .sectionIcon {
@@ -100,33 +117,37 @@
 }
 
 .sectionTitle {
-  color: #191F2B;
+  color: #191f2b;
   font-weight: 600;
 }
 
 .sectionItems {
   display: flex;
   flex-direction: column;
- 
 }
 
 .navItem {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 2px 20px;
-  padding: 3px 12px;
+  margin-left: 20px;
+  padding: 0px 12px;
   border-radius: 6px;
   font-size: 0.85rem;
   transition: all 0.2s ease;
-  color: #191F2B;
+  color: #191f2b;
   position: relative;
-  
+  min-height: 40px; /* Slightly tighter vertical spacing */
 }
 
 .collapsedItem {
   justify-content: center;
   padding: 10px 0;
+}
+
+.collapsedItem.mobile {
+  justify-content: flex-start;
+  padding: 12px 16px;
 }
 
 .navItem:hover {
@@ -163,18 +184,18 @@
   font-size: 0.875em;
 }
 
-/* Large primary nav items (Dashboards, Onboard Farmer, Loan Marketplace) */
 .primaryLarge {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-left: 4px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.2s ease;
-  color: #191F2B;
+  color: #191f2b;
+  min-height: 44px; /* Tighter spacing while keeping usability */
 }
 
 .primaryLarge:hover {
@@ -184,4 +205,80 @@
 .primaryLarge.active {
   background-color: #f0fdf4;
   color: #375515;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  /* .sidebar:not(.mobile) {
+    display: none;
+  } */
+
+  .sidebar {
+    /* margin-bottom: 50px; */
+    padding-bottom: 60px;
+  }
+
+  /* Enhanced Logo Size for Mobile */
+  .logoSection {
+    padding: 24px 20px;
+    margin-top: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    max-width: 160px;
+    min-width: 120px;
+    height: auto;
+    min-height: 50px;
+  }
+
+  .navigation {
+    padding-top: 16px;
+  }
+
+  .navItem {
+    margin: 0px 16px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .primaryLarge {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    justify-content: flex-start;
+  }
+
+  .collapsedItem {
+    justify-content: flex-start;
+    padding: 12px 16px;
+    margin: 2px 16px;
+  }
+
+  .sectionHeader {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sidebar {
+    width: 220px;
+    flex-basis: 220px;
+  }
+
+  .navText {
+    font-size: 0.825em;
+  }
+}
+
+/* Large desktop optimization */
+@media (min-width: 1440px) {
+  .sidebar {
+    width: 280px;
+    flex-basis: 280px;
+  }
 }

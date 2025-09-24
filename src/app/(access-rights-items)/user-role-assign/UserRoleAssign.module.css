@@ -170,3 +170,63 @@ html, body {
   width: 28px;
   height: 28px;
 }
+
+/* ================= Mobile Responsive Styles ================= */
+@media (max-width: 768px) {
+  .pageBg {
+    padding: 16px;
+    background: linear-gradient(135deg, #FAFAFA 0%, #f1f5f9 100%);
+  }
+
+  .wrapper {
+    max-width: 100%;
+    margin: 0;
+    padding-bottom: 80px;
+  }
+
+  .heading { font-size: 1.5rem; margin-bottom: 6px; }
+  .subheading { font-size: 0.95rem; margin-bottom: 18px; }
+
+  .definedBox {
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .roleRow { gap: 10px; font-size: 0.95rem; }
+  .accessTag { font-size: 0.9rem; padding: 5px 12px; }
+
+  .formRow {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .inputCol { min-height: auto; }
+  .label { font-size: 0.95rem; }
+
+  .dropdownBtn { height: 44px; font-size: 1rem; }
+  .dropdownMenu { min-width: 240px !important; max-height: 280px; }
+
+  .plusCol { padding-left: 0; align-items: stretch; }
+  .plusBtn { width: 100%; height: 44px; border-radius: 10px; }
+  .plusIcon { width: 24px; height: 24px; }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .pageBg { padding: 1.5rem; }
+  .definedBox { padding: 20px 24px; }
+  .formRow { gap: 16px; }
+  .dropdownBtn { height: 46px; }
+}
+
+/* Extra-small phones */
+@media (max-width: 480px) {
+  .pageBg { padding: 12px; }
+  .heading { font-size: 1.375rem; }
+  .subheading { font-size: 0.9rem; margin-bottom: 14px; }
+  .definedBox { padding: 14px; border-radius: 10px; }
+  .dropdownMenu { min-width: 200px !important; }
+  .dropdownBtn { height: 40px; font-size: 0.95rem; }
+  .plusBtn { height: 40px; }
+}

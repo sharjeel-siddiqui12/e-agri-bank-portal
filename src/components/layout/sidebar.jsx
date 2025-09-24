@@ -86,40 +86,59 @@ const accessRightsItems = [
   { name: "User Role Assign", icon: UserCheck, href: "/user-role-assign" },
 ];
 
-export function Sidebar({ className, collapsed, setCollapsed }) {
+export function Sidebar({ 
+  className, 
+  collapsed, 
+  setCollapsed, 
+  isMobile, 
+  sidebarOpen, 
+  setSidebarOpen 
+}) {
   const { activePage, setActivePage } = useNavigation();
 
   const asideClassName = `${styles.sidebar} ${
     collapsed ? styles.collapsed : ""
+  } ${isMobile ? styles.mobile : ""} ${
+    isMobile && !sidebarOpen ? styles.mobileHidden : ""
   } ${className || ""}`;
+
+  const handleLinkClick = (pageName) => {
+    setActivePage(pageName);
+    // Close sidebar on mobile after navigation
+    if (isMobile) {
+      setSidebarOpen(false);
+    }
+  };
 
   return (
     <aside className={asideClassName}>
-      {/* Toggle button */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className={styles.collapseButton}
-        onClick={() => setCollapsed(!collapsed)}
-      >
-        {collapsed ? (
-          <ChevronRight className={styles.collapseIcon} />
-        ) : (
-          <ChevronLeft className={styles.collapseIcon} />
-        )}
-      </Button>
+      {/* Toggle button - Hide on mobile since we'll use topbar hamburger */}
+      {!isMobile && (
+        <Button
+          variant="ghost"
+          size="icon"
+          className={styles.collapseButton}
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          {collapsed ? (
+            <ChevronRight className={styles.collapseIcon} />
+          ) : (
+            <ChevronLeft className={styles.collapseIcon} />
+          )}
+        </Button>
+      )}
 
       {/* Logo section */}
       <div className={styles.logoSection}>
         <Link
           href="/dashboard"
           className={styles.logoLink}
-          onClick={() => setActivePage("Dashboards")}
+          onClick={() => handleLinkClick("Dashboards")}
         >
           <Image
             src="/logo.svg"
-            width={collapsed ? 50 : 120}
-            height={collapsed ? 50 : 40}
+            width={collapsed ? 50 : (isMobile ? 110 : 120)}
+            height={collapsed ? 50 : (isMobile ? 44 : 40)}
             alt="e-Agri Logo"
             className={styles.logo}
             priority
@@ -128,7 +147,7 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
       </div>
 
       {/* Menu label */}
-      {!collapsed && <div className={styles.menuLabel}>Menu</div>}
+      {!collapsed && !isMobile && <div className={styles.menuLabel}>Menu</div>}
 
       {/* Navigation items */}
       <nav className={styles.navigation}>
@@ -139,21 +158,24 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.primaryLarge} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed || isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed || isMobile ? styles.collapsedIcon : ""}`;
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed || isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {!collapsed && !isMobile && (
+                    <span className={styles.navText}>{item.name}</span>
+                  )}
+                  {isMobile && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
@@ -164,7 +186,13 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
 
         {/* Product Management Section */}
         <div className={styles.section}>
-          {!collapsed && (
+          {!collapsed && !isMobile && (
+            <div className={styles.sectionHeader}>
+              <ClipboardList className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>Product Management</span>
+            </div>
+          )}
+          {isMobile && (
             <div className={styles.sectionHeader}>
               <ClipboardList className={styles.sectionIcon} />
               <span className={styles.sectionTitle}>Product Management</span>
@@ -176,21 +204,21 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed && !isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {(!collapsed || isMobile) && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
@@ -201,9 +229,15 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
 
         {/* Loan Operations Section */}
         <div className={styles.section}>
-          {!collapsed && (
+          {!collapsed && !isMobile && (
             <div className={styles.sectionHeader}>
-              <FolderOpen className={styles.sectionIcon} /> {/* folder icon */}
+              <FolderOpen className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>Loan Operations</span>
+            </div>
+          )}
+          {isMobile && (
+            <div className={styles.sectionHeader}>
+              <FolderOpen className={styles.sectionIcon} />
               <span className={styles.sectionTitle}>Loan Operations</span>
             </div>
           )}
@@ -213,21 +247,21 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed && !isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {(!collapsed || isMobile) && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
@@ -236,12 +270,18 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
           </div>
         </div>
 
-        {/* Loan Operations Section */}
+        {/* Loan Settlements Section */}
         <div className={styles.section}>
-          {!collapsed && (
+          {!collapsed && !isMobile && (
             <div className={styles.sectionHeader}>
               <FolderOpen className={styles.sectionIcon} />
-              <span className={styles.sectionTitle}>Loan Operations</span>
+              <span className={styles.sectionTitle}>Loan Settlements</span>
+            </div>
+          )}
+          {isMobile && (
+            <div className={styles.sectionHeader}>
+              <FolderOpen className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>Loan Settlements</span>
             </div>
           )}
 
@@ -250,21 +290,21 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed && !isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {(!collapsed || isMobile) && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
@@ -281,20 +321,20 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.primaryLarge} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed && !isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {(!collapsed || isMobile) && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
@@ -305,7 +345,15 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
 
         {/* Access Rights Management Section */}
         <div className={styles.section}>
-          {!collapsed && (
+          {!collapsed && !isMobile && (
+            <div className={styles.sectionHeader}>
+              <Shield className={styles.sectionIcon} />
+              <span className={styles.sectionTitle}>
+                Access Rights Management
+              </span>
+            </div>
+          )}
+          {isMobile && (
             <div className={styles.sectionHeader}>
               <Shield className={styles.sectionIcon} />
               <span className={styles.sectionTitle}>
@@ -319,21 +367,21 @@ export function Sidebar({ className, collapsed, setCollapsed }) {
               const isActive = activePage === item.name;
               const itemClassName = `${styles.navItem} ${
                 isActive ? styles.active : ""
-              } ${collapsed ? styles.collapsedItem : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
               const iconClassName = `${styles.icon} ${
                 isActive ? styles.activeIcon : ""
-              } ${collapsed ? styles.collapsedIcon : ""}`;
+              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={itemClassName}
-                  title={collapsed ? item.name : undefined}
-                  onClick={() => setActivePage(item.name)}
+                  title={collapsed && !isMobile ? item.name : undefined}
+                  onClick={() => handleLinkClick(item.name)}
                 >
                   <item.icon className={iconClassName} />
-                  {!collapsed && (
+                  {(!collapsed || isMobile) && (
                     <span className={styles.navText}>{item.name}</span>
                   )}
                 </Link>
