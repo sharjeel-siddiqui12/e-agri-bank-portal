@@ -229,31 +229,286 @@
 	background: #fef3c7;
 	color: #92400e;
 }
-@media (max-width: 900px) {
+/* ================= Mobile Responsive Styles ================= */
+@media (max-width: 768px) {
+	.page {
+		padding: 16px 12px;
+		padding-bottom: 100px;
+	}
+
+	.heading {
+		font-size: 1.25rem;
+		margin-bottom: 20px;
+		text-align: left;
+	}
+
+	.form {
+		padding: 20px 16px;
+		margin-bottom: 20px;
+		border-radius: 12px;
+	}
+
 	.formRow {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 8px;
+		margin-bottom: 16px;
 	}
+
 	.label {
 		margin-top: 0;
 		width: 100%;
-		margin-bottom: 4px;
+		margin-bottom: 6px;
+		font-size: 0.9rem;
 	}
+
 	.inputWrap {
 		min-width: 0;
+		width: 100%;
+	}
+
+	.input {
+		height: 44px;
+		font-size: 16px; /* Prevent zoom on iOS */
+		padding: 0 12px;
+		border-radius: 8px;
+	}
+
+	.tags {
+		gap: 8px;
+		margin-top: 8px;
+	}
+
+	.tag {
+		padding: 6px 10px;
+		font-size: 0.8rem;
+		border-radius: 6px;
+		height: auto;
+		min-height: 32px;
+	}
+
+	.removeTagBtn {
+		width: 18px;
+		height: 18px;
+	}
+
+	.percentSuffix {
+		right: 12px;
+		font-size: 0.9rem;
+	}
+
+	.buttonRow {
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 20px;
+		align-items: stretch;
+		padding-top: 16px;
+	}
+
+	.saveBtn,
+	.cancelBtn {
+		width: 100%;
+		padding: 14px 20px;
+		font-size: 1rem;
+		border-radius: 8px;
+		justify-content: center;
+	}
+
+	/* Table responsive styles */
+	.tableWrap {
+		margin-top: 20px;
+		border-radius: 12px;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.table {
+		min-width: 800px;
+	}
+
+	.th {
+		font-size: 0.8rem;
+		padding: 12px 8px;
+		white-space: nowrap;
+		min-width: 80px;
+	}
+
+	.td {
+		padding: 12px 8px;
+		font-size: 0.85rem;
+		white-space: nowrap;
+	}
+
+	.actionTd {
+		width: 50px;
+		text-align: center;
+	}
+
+	.editBtn {
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+		padding: 8px;
+	}
+
+	.statusBadge {
+		padding: 4px 8px;
+		font-size: 0.75rem;
+		border-radius: 12px;
 	}
 }
 
+/* ================= Tablet Responsive Styles ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+	.page {
+		padding: 20px 16px;
+	}
 
-@media (max-width: 700px) {
-  .page {
-    /* padding: 16px 12px; */
-    background: #f8f9fa;
-	padding-bottom: 100px;
-  }
-  .tag{
-	height: 35px;
-	/* padding: 2px 10px; */
-  }
+	.form {
+		padding: 24px 20px;
+		max-width: 100%;
+	}
+
+	.formRow {
+		gap: 20px;
+	}
+
+	.input {
+		height: 42px;
+	}
+
+	.tableWrap {
+		overflow-x: auto;
+	}
+
+	.table {
+		min-width: 900px;
+	}
+}
+
+/* ================= Small Mobile Devices ================= */
+@media (max-width: 480px) {
+	.page {
+		padding: 12px 8px;
+		padding-bottom: 100px;
+	}
+
+	.heading {
+		font-size: 1.1rem;
+		margin-bottom: 16px;
+	}
+
+	.form {
+		padding: 16px 12px;
+		border-radius: 10px;
+	}
+
+	.formRow {
+		margin-bottom: 14px;
+		gap: 6px;
+	}
+
+	.label {
+		font-size: 0.85rem;
+		margin-bottom: 4px;
+	}
+
+	.input {
+		height: 42px;
+		font-size: 15px;
+		padding: 0 10px;
+	}
+
+	.tag {
+		padding: 5px 8px;
+		font-size: 0.75rem;
+		min-height: 30px;
+	}
+
+	.buttonRow {
+		gap: 10px;
+		margin-top: 16px;
+		padding-top: 14px;
+	}
+
+	.saveBtn,
+	.cancelBtn {
+		padding: 12px 16px;
+		font-size: 0.95rem;
+	}
+
+	.th {
+		padding: 10px 6px;
+		font-size: 0.75rem;
+		min-width: 70px;
+	}
+
+	.td {
+		padding: 10px 6px;
+		font-size: 0.8rem;
+	}
+
+	.editBtn {
+		width: 28px;
+		height: 28px;
+		padding: 6px;
+	}
+
+	.statusBadge {
+		padding: 3px 6px;
+		font-size: 0.7rem;
+	}
+}
+
+/* ================= Landscape Mobile Optimization ================= */
+@media (max-width: 768px) and (orientation: landscape) {
+	.page {
+		padding: 12px;
+	}
+
+	.form {
+		padding: 16px;
+	}
+
+	.formRow {
+		gap: 12px;
+	}
+
+	.input {
+		height: 40px;
+	}
+
+	.tag {
+		min-height: 28px;
+	}
+}
+
+/* ================= High DPI Displays ================= */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.form {
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+}
+
+/* ================= Print Styles ================= */
+@media print {
+	.page {
+		background: white;
+		padding: 0;
+	}
+
+	.form {
+		box-shadow: none;
+		border: 1px solid #000;
+	}
+
+	.buttonRow {
+		display: none;
+	}
+
+	.tableWrap {
+		box-shadow: none;
+		border: 1px solid #000;
+	}
 }
