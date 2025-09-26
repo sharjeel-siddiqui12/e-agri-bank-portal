@@ -72,7 +72,7 @@ export default function OnBoardFarmerPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.heading}>Onboard Farmer</h1>
+      <h1 className={styles.heading}>Farmer e-Agri Registration Request</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.grid}>
           <div className={styles.formRow}>

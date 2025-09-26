@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
                 {/* Mobile overlay */}
                 {isMobile && sidebarOpen && (
                   <div 
-                    className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-50 lg:hidden"
                     onClick={() => setSidebarOpen(false)}
                   />
                 )}
@@ -74,14 +74,14 @@ export default function RootLayout({ children }) {
                   setSidebarOpen={setSidebarOpen}
                 />
                 
-                <div className="flex flex-col flex-1 overflow-auto min-w-0">
+                <div className="flex flex-col flex-1 min-w-0 h-screen relative">
                   <Topbar 
                     isMobile={isMobile}
                     sidebarOpen={sidebarOpen}
                     toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
                   />
-                  <main className="flex-1 bg-white overflow-auto">
-                    <div className="h-full">
+                  <main className="flex-1 bg-white overflow-auto relative" style={{ minHeight: 0 }}>
+                    <div className="h-full w-full">
                       {children}
                     </div>
                   </main>

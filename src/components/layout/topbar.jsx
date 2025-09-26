@@ -68,7 +68,8 @@ export function Topbar({
     // Get title from path or use a default
     const titleFromPath = routeTitleMap[pathname] || "Dashboard";
     setDisplayTitle(titleFromPath);
-  }, [pathname]);
+    console.log('Topbar: Path changed to', pathname, 'isMobile:', isMobile);
+  }, [pathname, isMobile]);
 
   // Then update if activePage changes (for manual overrides)
   useEffect(() => {
@@ -78,7 +79,17 @@ export function Topbar({
   }, [activePage]);
 
   return (
-    <div className={styles.topbar}>
+    <div className={styles.topbar} style={{ 
+      display: 'flex', 
+      visibility: 'visible', 
+      opacity: 1,
+      position: 'sticky',
+      top: 0,
+      zIndex: 60,
+      backgroundColor: 'white',
+      width: '100%',
+      minHeight: '56px'
+    }}>
       {/* Mobile: Hamburger Menu */}
       {isMobile && (
         <div className={styles.hamburgerContainer}>

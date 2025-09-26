@@ -548,6 +548,7 @@ export default function ProductSetupPage() {
                 <TableCell className={`${styles.td} ${styles.actionTd}`}>
                   <button className={styles.editBtn} title="Edit">
                     <Pencil size={16} />
+                    
                   </button>
                 </TableCell>
                 <TableCell className={styles.td}>{row.productId}</TableCell>

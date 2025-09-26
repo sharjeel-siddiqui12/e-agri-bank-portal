@@ -1,65 +1,75 @@
-/* Onboard Farmer Page Styles */
+/* Onboard Farmer Page Styles - Mobile First Responsive Design */
 .page {
   background: #f8f9fa;
   min-height: 100vh;
-  padding: 24px;
+  padding: 16px;
   font-family: var(--font-inter);
   max-width: 100%;
   margin: 0;
-  /* margin-bottom: 20px; */
+  /* Mobile optimization */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .heading {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   margin-left: 0;
+  line-height: 1.3;
 }
 
 .form {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 32px 32px 24px 32px;
-  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 20px;
   border: 1px solid #e5e7eb;
-  max-width: 1100px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  /* Mobile touch optimization */
+  -webkit-overflow-scrolling: touch;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px 40px;
-  margin-bottom: 32px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 .formRow {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .label {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #374151;
   margin-bottom: 2px;
+  line-height: 1.4;
 }
 
 .input {
   width: 100%;
-  height: 48px;
-  font-size: 0.95rem;
+  height: 44px;
+  font-size: 16px; /* Prevent zoom on iOS */
   border-radius: 8px;
   border: 1px solid #d1d5db;
-  padding: 0 14px;
+  padding: 0 12px;
   background: #fff;
   color: #1f2937;
   font-weight: 400;
   transition: border-color 0.2s, box-shadow 0.2s;
+  /* Mobile optimization */
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
 
 .input:focus {
@@ -70,10 +80,10 @@
 
 .buttonRow {
   display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 18px;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 .saveBtn {
@@ -82,14 +92,23 @@
   border: none;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 1.07rem;
-  padding: 12px 35px;
+  font-size: 1rem;
+  padding: 14px 24px;
   cursor: pointer;
   transition: background 0.18s;
+  /* Mobile touch optimization */
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .saveBtn:hover {
   background: #3a5100;
+}
+
+.saveBtn:active {
+  background: #2d4000;
+  transform: translateY(1px);
 }
 
 .cancelBtn {
@@ -99,54 +118,190 @@
   border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
-  padding: 12px 35px;
+  padding: 14px 24px;
   cursor: pointer;
+  /* Mobile touch optimization */
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cancelBtn:hover {
   background: #f6f6f4;
 }
 
-@media (max-width: 1100px) {
-  .form {
-    max-width: 100%;
-    padding: 24px 8px 16px 8px;
+.cancelBtn:active {
+  background: #f0f0f0;
+  transform: translateY(1px);
+}
+
+/* ================= Tablet Styles ================= */
+@media (min-width: 768px) {
+  .page {
+    padding: 24px;
   }
+
+  .heading {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .form {
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+  }
+
   .grid {
-    gap: 18px 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+    margin-bottom: 32px;
+  }
+
+  .formRow {
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 0.95rem;
+  }
+
+  .input {
+    height: 48px;
+    font-size: 0.95rem;
+    padding: 0 14px;
+  }
+
+  .buttonRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+    justify-content: flex-start;
+  }
+
+  .saveBtn, .cancelBtn {
+    padding: 12px 35px;
+    font-size: 1.07rem;
+    min-height: auto;
   }
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 18px 0;
-    
+/* ================= Desktop Styles ================= */
+@media (min-width: 1024px) {
+  .page {
+    padding: 24px;
   }
 
-  .page{
+  .form {
+    max-width: 1100px;
+    padding: 32px 32px 24px 32px;
+  }
+
+  .grid {
+    gap: 28px 40px;
+  }
+
+  .buttonRow {
+    gap: 18px;
+  }
+}
+
+/* ================= Large Desktop Styles ================= */
+@media (min-width: 1280px) {
+  .page {
+    padding: 32px;
+  }
+
+  .form {
+    max-width: 1200px;
+  }
+}
+
+/* ================= Extra Small Mobile Devices ================= */
+@media (max-width: 480px) {
+  .page {
+    padding: 12px;
     padding-bottom: 80px;
   }
-}
 
-@media (max-width: 600px) {
-  .form {
-    padding: 10px;
-  }
+
   .heading {
-    font-size: 1.1rem;
+    font-size: 1.125rem;
+    margin-bottom: 16px;
   }
+
+  .form {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .grid {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .label {
+    font-size: 0.875rem;
+  }
+
   .input {
     height: 40px;
-    font-size: 0.9rem;
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0 10px;
   }
+
   .buttonRow {
-    flex-direction: column;
-    align-items: stretch;
     gap: 10px;
+    margin-top: 16px;
   }
+
   .saveBtn, .cancelBtn {
-    width: 100%;
-    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ================= Landscape Mobile Optimization ================= */
+@media (max-width: 768px) and (orientation: landscape) {
+  .page {
+    padding: 12px;
+  }
+
+  .form {
+    padding: 16px;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .input {
+    height: 40px;
+  }
+}
+
+/* ================= High DPI Displays ================= */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .form {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* ================= Print Styles ================= */
+@media print {
+  .page {
+    background: white;
+    padding: 0;
+  }
+
+  .form {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .buttonRow {
+    display: none;
   }
 }

@@ -1,14 +1,20 @@
 .topbar {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #e5e7eb;
   background-color: white;
   padding: 16px 24px;
   width: 100%;
-  z-index: 10;
-  position: relative;
+  z-index: 60;
+  position: sticky;
+  top: 0;
   min-height: 64px;
+  flex-shrink: 0;
+  /* Ensure visibility */
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Mobile hamburger menu */
@@ -239,6 +245,17 @@
   .topbar {
     padding: 12px 16px;
     gap: 8px;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 60 !important;
+    background-color: white !important;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+    min-height: 56px !important;
   }
 
   .hamburgerContainer {
@@ -315,6 +332,50 @@
     display: none;
   }
 }
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 8px 12px;
+    min-height: 56px;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 60 !important;
+  }
+}
+
+  .pageTitle {
+    font-size: 1.125rem;
+  }
+
+  .hamburgerBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .notificationButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar {
+    height: 32px;
+    width: 32px;
+  }
+
+  .searchContainer {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .mobileSearchField {
+    height: 36px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
 
 /* Tablet styles */
 @media (min-width: 769px) and (max-width: 1024px) {
