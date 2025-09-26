@@ -1,0 +1,258 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.bg {
+  min-height: 100vh;
+  background: #FAFAFA;
+  padding: 2rem;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Back Button */
+.backBtn {
+  background: transparent;
+  border: 1px solid #E6E6E6;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.backBtn:hover {
+  background: #f5f5f5;
+  border-color: #97AA63;
+  color: #375515;
+}
+
+/* Main Container */
+.container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E6E6E6;
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+/* Form Layout */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+}
+
+.fieldRow:nth-child(2) {
+  grid-template-columns: 1fr 1fr;
+}
+
+.fieldRow:nth-child(2) .fieldGroup:first-child {
+  max-width: 400px;
+}
+
+/* Field Groups */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.fieldValue {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1F2937;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Ask Input Container */
+.askInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.askInput {
+  background: #fff;
+  border: 2px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #1F2937;
+  min-height: 44px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.askInput:focus {
+  border-color: #375515;
+  box-shadow: 0 0 0 1px rgba(55, 85, 21, 0.1);
+}
+
+.askInput::placeholder {
+  color: #9CA3AF;
+}
+
+.percentSymbol {
+  position: absolute;
+  right: 1rem;
+  color: #6B7280;
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* Button Row */
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+/* Sell Button */
+.sellButton {
+  background: #375515 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 32px !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  min-height: 44px !important;
+  min-width: 120px !important;
+  transition: all 0.2s ease !important;
+}
+
+.sellButton:hover:not(:disabled) {
+  background: #2d4411 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.25);
+}
+
+.sellButton:disabled {
+  background: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .bg {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .fieldRow:nth-child(2) .fieldGroup {
+    max-width: none;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sellButton {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bg {
+    padding: 0.5rem;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .heading {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .formGrid {
+    gap: 1.25rem;
+  }
+
+  .fieldValue,
+  .askInput {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    min-height: 40px;
+  }
+
+  .askInput {
+    padding-right: 2.25rem;
+  }
+
+  .percentSymbol {
+    right: 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .fieldLabel {
+    font-size: 0.8rem;
+  }
+
+  .sellButton {
+    padding: 10px 20px !important;
+    font-size: 0.875rem !important;
+    min-height: 40px !important;
+  }
+}

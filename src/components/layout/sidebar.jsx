@@ -28,17 +28,23 @@ import {
   ReceiptText,
   Shield,
   UserCog,
+  Landmark,
 } from "lucide-react";
 
 // Primary top-level items (matches: dashboard tile, onboarding, marketplace)
 const primaryItems = [
   { name: "Dashboards", icon: LayoutDashboard, href: "/dashboard" },
-  { name: "Farmer Registration Request", icon: UserPlus, href: "/farmer-registration-request" },
+  {
+    name: "Farmer Registration Request",
+    icon: UserPlus,
+    href: "/farmer-registration-request",
+  },
   { name: "Loan Marketplace", icon: Store, href: "/loan-marketplace" },
 ];
 
 // Product Management section (clipboard/doc vibe + approvals/gauge/vendor)
 const productManagementItems = [
+  { name: "Loan Schemes", icon: Landmark, href: "/loan-schemes" },
   { name: "Product Setup", icon: Settings, href: "/product-setup" },
   { name: "Product Approval", icon: BadgeCheck, href: "/product-approval" },
   { name: "Credit Score Setup", icon: Gauge, href: "/credit-score-setup" },
@@ -73,26 +79,20 @@ const loanSettlementsItems = [
   { name: "Loan Settlements", icon: ReceiptText, href: "/loan-settlements" },
 ];
 
-// Standalone
-const resourceOnboardingItem = {
-  name: "Resource Onboarding",
-  icon: Settings,
-  href: "/resource-onboarding",
-};
-
-// Access Rights Management section (security/roles)
+// Access Rights Management section (security/roles + resource onboarding)
 const accessRightsItems = [
+  { name: "Resource Onboarding", icon: Settings, href: "/resource-onboarding" },
   { name: "User Role Define", icon: UserCog, href: "/user-role-define" },
   { name: "User Role Assign", icon: UserCheck, href: "/user-role-assign" },
 ];
 
-export function Sidebar({ 
-  className, 
-  collapsed, 
-  setCollapsed, 
-  isMobile, 
-  sidebarOpen, 
-  setSidebarOpen 
+export function Sidebar({
+  className,
+  collapsed,
+  setCollapsed,
+  isMobile,
+  sidebarOpen,
+  setSidebarOpen,
 }) {
   const { activePage, setActivePage } = useNavigation();
 
@@ -137,8 +137,8 @@ export function Sidebar({
         >
           <Image
             src="/logo.svg"
-            width={collapsed ? 50 : (isMobile ? 110 : 120)}
-            height={collapsed ? 50 : (isMobile ? 44 : 40)}
+            width={collapsed ? 50 : isMobile ? 110 : 120}
+            height={collapsed ? 50 : isMobile ? 44 : 40}
             alt="e-Agri Logo"
             className={styles.logo}
             priority
@@ -313,35 +313,7 @@ export function Sidebar({
           </div>
         </div>
 
-        {/* Resource Onboarding */}
-        <div className={styles.section}>
-          <div className={styles.sectionItems}>
-            {(() => {
-              const item = resourceOnboardingItem;
-              const isActive = activePage === item.name;
-              const itemClassName = `${styles.primaryLarge} ${
-                isActive ? styles.active : ""
-              } ${collapsed && !isMobile ? styles.collapsedItem : ""}`;
-              const iconClassName = `${styles.icon} ${
-                isActive ? styles.activeIcon : ""
-              } ${collapsed && !isMobile ? styles.collapsedIcon : ""}`;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={itemClassName}
-                  title={collapsed && !isMobile ? item.name : undefined}
-                  onClick={() => handleLinkClick(item.name)}
-                >
-                  <item.icon className={iconClassName} />
-                  {(!collapsed || isMobile) && (
-                    <span className={styles.navText}>{item.name}</span>
-                  )}
-                </Link>
-              );
-            })()}
-          </div>
-        </div>
+        
 
         {/* Access Rights Management Section */}
         <div className={styles.section}>

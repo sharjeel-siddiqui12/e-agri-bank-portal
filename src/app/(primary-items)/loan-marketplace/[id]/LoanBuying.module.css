@@ -1,0 +1,313 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.bg {
+  min-height: 100vh;
+  background: #FAFAFA;
+  padding: 2rem;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Back Button */
+.backBtn {
+  background: transparent;
+  border: 1px solid #E6E6E6;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.backBtn:hover {
+  background: #f5f5f5;
+  border-color: #97AA63;
+  color: #375515;
+}
+
+/* Main Container */
+.container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #E6E6E6;
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+/* Form Layout */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+}
+
+.fieldRow:last-of-type .fieldGroup:last-child {
+  grid-column: 1;
+}
+
+/* Field Groups */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.fieldValue {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1F2937;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Bid Input */
+.bidInput {
+  background: #fff;
+  border: 2px solid #E5E7EB;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #1F2937;
+  min-height: 44px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.bidInput:focus {
+  border-color: #375515;
+  box-shadow: 0 0 0 1px rgba(55, 85, 21, 0.1);
+}
+
+.bidInput::placeholder {
+  color: #9CA3AF;
+}
+
+/* Button Row */
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+/* Buy Button */
+.buyButton {
+  background: #375515 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  min-height: 44px !important;
+  min-width: 100px !important;
+  transition: all 0.2s ease !important;
+}
+
+.buyButton:hover:not(:disabled) {
+  background: #2d4411 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.25);
+}
+
+.buyButton:disabled {
+  background: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Place Bid Button */
+.placeBidButton {
+  background: transparent !important;
+  color: #374151 !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  min-height: 44px !important;
+  min-width: 100px !important;
+  transition: all 0.2s ease !important;
+}
+
+.placeBidButton:hover:not(:disabled) {
+  background: #F9FAFB !important;
+  border-color: #D1D5DB !important;
+  color: #1F2937 !important;
+}
+
+.placeBidButton:disabled {
+  background: #f9fafb !important;
+  color: #9ca3af !important;
+  border-color: #e5e7eb !important;
+  cursor: not-allowed !important;
+}
+
+/* Submit Bid Button */
+.submitBidButton {
+  background: #375515 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  min-height: 44px !important;
+  min-width: 120px !important;
+  transition: all 0.2s ease !important;
+}
+
+.submitBidButton:hover:not(:disabled) {
+  background: #2d4411 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(55, 85, 21, 0.25);
+}
+
+.submitBidButton:disabled {
+  background: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Cancel Button */
+.cancelButton {
+  background: transparent !important;
+  color: #EF4444 !important;
+  border: 1px solid #FEE2E2 !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  min-height: 44px !important;
+  min-width: 100px !important;
+  transition: all 0.2s ease !important;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: #FEF2F2 !important;
+  border-color: #FECACA !important;
+  color: #DC2626 !important;
+}
+
+.cancelButton:disabled {
+  background: transparent !important;
+  color: #fca5a5 !important;
+  border-color: #fee2e2 !important;
+  cursor: not-allowed !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .bg {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .buyButton,
+  .placeBidButton,
+  .submitBidButton,
+  .cancelButton {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bg {
+    padding: 0.5rem;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .heading {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .formGrid {
+    gap: 1.25rem;
+  }
+
+  .fieldValue,
+  .bidInput {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    min-height: 40px;
+  }
+
+  .fieldLabel {
+    font-size: 0.8rem;
+  }
+
+  .buyButton,
+  .placeBidButton,
+  .submitBidButton,
+  .cancelButton {
+    padding: 10px 20px !important;
+    font-size: 0.875rem !important;
+    min-height: 40px !important;
+  }
+}

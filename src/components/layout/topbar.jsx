@@ -27,6 +27,7 @@ const routeTitleMap = {
   "/farmer-registration-request": "Farmer Registration Request",
   "/loan-marketplace": "Loan Marketplace",
   // Product Management
+  "/loan-schemes": "Loan Schemes",
   "/product-setup": "Product Setup",
   "/product-approval": "Product Approval",
   "/credit-score-setup": "Credit Score Setup",
@@ -41,11 +42,14 @@ const routeTitleMap = {
   // Loan Settlements
   "/auction-requests-approval": "Auction Requests Approval",
   "/loan-settlements": "Loan Settlements",
-  // Resource Onboarding
-  "/resource-onboarding": "Resource Onboarding",
+  
   // Access Rights Management
+  "/resource-onboarding": "Resource Onboarding",
   "/user-role-define": "User Role Define",
   "/user-role-assign": "User Role Assign",
+
+  // Button Links
+  "/loan-marketplace/sell": "Sell Your Loans",
 };
 
 export function Topbar({ 
